@@ -13,7 +13,6 @@
     ></router-link>
 
     <v-card-title style="color: whitesmoke">{{ title }}</v-card-title>
-    <v-card-title style="color: whitesmoke">{{ id }}</v-card-title>
 
     <div class="card-text-container">
       <v-card-text

@@ -1,13 +1,13 @@
 import HomePage from "./pages/HomePage.vue";
 import SignIn from "./pages/SignInPage.vue";
-import MovieDetailsPage from "./pages/MovieDetailsPage.vue";
+import MovieDetails from "./components/Movie/MovieDetails.vue";
 export const routes = [
   { path: "/", component: HomePage },
   { path: "/sign-in", component: SignIn },
 
   {
     path: "/Movie/:id",
-    component: MovieDetailsPage,
+    component: MovieDetails,
     props: true,
     // children: [{ path: "details", component: null }],
   },
