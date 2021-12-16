@@ -4,7 +4,7 @@
       <v-toolbar-title>MyCinema</v-toolbar-title>
     </div>
     <div>
-      <v-btn text class="m1-2" to="/Home">Home</v-btn>
+      <v-btn text class="m1-2" to="/">Home</v-btn>
       <v-btn
         text
         class="m1-2"

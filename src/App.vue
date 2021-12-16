@@ -7,13 +7,16 @@
 </template>
 
 <script>
-import TheHeader from './components/UI/TheHeader.vue';
-import TheFooter from './components/UI/TheFooter.vue';
+import TheHeader from "./components/UI/TheHeader.vue";
+import TheFooter from "./components/UI/TheFooter.vue";
 export default {
   name: "App",
   components: {
     TheHeader,
     TheFooter,
+  },
+  created() {
+    this.$store.dispatch("initMovies");
   },
 };
 </script>
