@@ -14,8 +14,8 @@
         <div class="category-menu" v-if="showCategories === true">
           <ul>
             <li
-              v-for="category in staticCategoriesName"
-              :key="category"
+              v-for="(category, index) in staticCategoriesName"
+              :key="index"
               @click="filterByCategory(category)"
             >
               {{ category }}
@@ -54,18 +54,10 @@ export default {
       ],
     };
   },
+
   methods: {
     filterByCategory(categ) {
-      this.filteredMovies = this.$store.getters.movies.filter((movie) => {
-        return (
-          movie.categories[0] === categ ||
-          movie.categories[1] === categ ||
-          movie.categories[2] === categ
-        );
-      });
-      console.log("po filtron");
-      console.log(this.filteredMovies);
-      this.showCategories = false;
+      this.$store.dispatch('updateMovies', categ)
     },
   },
 };
