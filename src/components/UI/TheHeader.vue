@@ -13,7 +13,11 @@
         >Categories
         <div class="category-menu" v-if="showCategories === true">
           <ul>
-            <li v-for="category in staticCategoriesName" :key="category">
+            <li
+              v-for="category in staticCategoriesName"
+              :key="category"
+              @click="filterByCategory(category)"
+            >
               {{ category }}
             </li>
           </ul>
@@ -33,8 +37,9 @@ export default {
   data() {
     return {
       showCategories: false,
+      filteredMovies: [],
       staticCategoriesName: [
-        "Action",
+        "Aksion",
         "Anime",
         "Adventure",
         "Drama",
@@ -48,6 +53,20 @@ export default {
         "Thriller",
       ],
     };
+  },
+  methods: {
+    filterByCategory(categ) {
+      this.filteredMovies = this.$store.getters.movies.filter((movie) => {
+        return (
+          movie.categories[0] === categ ||
+          movie.categories[1] === categ ||
+          movie.categories[2] === categ
+        );
+      });
+      console.log("po filtron");
+      console.log(this.filteredMovies);
+      this.showCategories = false;
+    },
   },
 };
 </script>

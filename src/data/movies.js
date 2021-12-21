@@ -13,7 +13,7 @@ export default [
     id: '2',
     image: Image,
     title: "Eternals",
-    categories: ["Aksion", "Fantashkence", "Komedi"],
+    categories: ["Aksion", "Fantashkence", "Drama"],
     description: "qlira qlira qlira qlira.",
     rating: 6.7,
   },
