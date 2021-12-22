@@ -131,6 +131,9 @@ export default {
         ? (this.passwordIsValid = "valid")
         : (this.passwordIsValid = "invalid");
     },
+    submitLogInForm() {
+      
+    },
     submitRegisterForm() {
       if (
         this.nameIsValid === "valid" &&

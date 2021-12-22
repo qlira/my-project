@@ -17,8 +17,6 @@ const mutations = {
         movie.categories[2] === value
       );
     });
-    console.log(state.movies);
-    console.log("click");
   },
   RND_MOVIES() {},
 };
@@ -36,18 +34,15 @@ const actions = {
   updateMovies({ state, commit }, value) {
     if (state.movies) {
       commit("FILTER_MOVIES", value);
-      console.log(state.movies);
     }
   },
 };
 
 const getters = {
   movies: (state) => {
-    console.log(state.movies);
     return state.movies;
   },
   filteredMovies: (state) => {
-    console.log(state.filteredMovies);
     return state.filteredMovies;
   },
 };
