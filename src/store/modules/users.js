@@ -1,44 +1,45 @@
 import users from "../../data/users";
 
+//firebase imports
+import { auth } from "../../firebase/config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
 const state = {
   users: [],
+  user: null,
 };
 
 const mutations = {
   SET_USERS(state, users) {
     state.users = users;
   },
-  //   FILTER_MOVIES(state, value) {
-  //     state.filteredMovies = state.movies.filter((movie) => {
-  //       return (
-  //         movie.categories[0] === value ||
-  //         movie.categories[1] === value ||
-  //         movie.categories[2] === value
-  //       );
-  //     });
-  //     console.log(state.movies);
-  //     console.log("click");
-  //   },
-  RND_USERS() {},
+  SET_USER(state, payload) {
+    state.user = payload;
+    console.log("user state changed: " + state.user);
+  },
 };
 
 const actions = {
-  //   reserveMovie: ({ commit }) => {
-  //     commit();
-  //   },
   initUsers: ({ commit }) => {
     commit("SET_USERS", users);
     console.log(state.users);
   },
-  randomizeUsers: ({ commit }) => {
-    commit("RND_MOVIES");
+  async signUp(context, { email, password }) {
+    console.log("signUp action");
+
+    //async code
+    const response = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    )
+    if(response) {
+      context.commit('SET_USER', response.user)
+    }else {
+
+      throw new Error('could not complete signup')
+    }
   },
-  //   updateMovies({ state, commit }, value) {
-  //     if (state.movies) {
-  //       commit("FILTER_MOVIES", value);
-  //       console.log(state.movies);
-  //     }
-  //   },
 };
 
 const getters = {

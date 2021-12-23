@@ -1,21 +1,23 @@
 <template>
-  <v-carousel
-    :show-arrows="false"
-    hide-delimiter-background
-    delimiter-icon="mdi-minus"
-  >
-    <div class="cms">
-      <h1>Cooming Soon</h1>
-    </div>
-    <v-carousel-item
-      v-for="(item, i) in items"
-      :key="i"
-      :src="item.src"
-      reverse-transition="fade-transition"
-      transition="fade-transition"
+  <div>
+    <v-carousel
+      :show-arrows="false"
+      hide-delimiter-background
+      delimiter-icon="mdi-minus"
     >
-    </v-carousel-item>
-  </v-carousel>
+      <div class="cms">
+        <h1>Cooming Soon</h1>
+      </div>
+      <v-carousel-item
+        v-for="(item, i) in items"
+        :key="i"
+        :src="item.src"
+        reverse-transition="fade-transition"
+        transition="fade-transition"
+      >
+      </v-carousel-item>
+    </v-carousel>
+  </div>
 </template>
 <script>
 export default {

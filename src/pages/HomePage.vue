@@ -1,18 +1,18 @@
 <template>
   <div>
-    <carousel></carousel>
+    <carousel-banner></carousel-banner>
     <movies-list></movies-list>
     <pagination-menu></pagination-menu>
   </div>
 </template>
 
 <script>
-import Carousel from "../components/Carousel/Carousel.vue";
+import CarouselBanner from "../components/Carousel/CarouselBanner.vue";
 import MoviesList from "../components/Movie/MoviesList.vue";
 import PaginationMenu from '../components/Movie/PaginationMenu.vue';
 export default {
   components: {
-    Carousel,
+    CarouselBanner,
     MoviesList,
     PaginationMenu,
   },

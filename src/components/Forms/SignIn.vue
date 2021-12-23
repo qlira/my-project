@@ -3,14 +3,18 @@
     <div class="container" v-if="show === false">
       <div class="signIn-container">
         <div style="width: 60%; height: 100%">
-          <form>
+          <form @submit.prevent="submitLogInForm">
             <div class="sign-in-use">
               <h2>Sign In</h2>
               <p>Use your account</p>
             </div>
             <div style="display: flex; flex-direction: column">
-              <input type="email" placeholder="Email" />
-              <input type="password" placeholder="Password" />
+              <input type="email" placeholder="Email" v-model="loginEmail" />
+              <input
+                type="password"
+                placeholder="Password"
+                v-model="loginPassword"
+              />
             </div>
             <button class="sign">Sign In</button>
           </form>
@@ -26,12 +30,13 @@
       <div class="signIn-container">
         <div style="width: 60%; height: 100%">
           <form @submit.prevent="submitRegisterForm">
+            <v-alert v-if="error">{{ error }}</v-alert>
             <div class="sign-up-register">
               <h2>Sign Up</h2>
               <p>Register your account</p>
             </div>
             <div style="display: flex; flex-direction: column">
-              <input
+              <!-- <input
                 type="text"
                 placeholder="Name"
                 v-model.trim="nameInput"
@@ -43,7 +48,7 @@
               />
               <p v-if="nameIsValid === 'invalid'" style="color: red; margin: 0">
                 Please enter a name!
-              </p>
+              </p> -->
 
               <input
                 type="email"
@@ -80,9 +85,8 @@
                 <span>Please enter 8 charachters!</span>
               </p>
             </div>
-            <button class="sign">Sign Up</button>
+            <button class="sign" type="submit">Sign Up</button>
             <p v-if="!formFilled" style="margin: 0">Form is not filled!</p>
-            
           </form>
         </div>
         <div class="signIn-text-con">
@@ -102,24 +106,27 @@ export default {
       show: false,
       signUp: false,
       formFilled: true,
-      nameInput: "",
+      loginEmail: "",
+      loginPassword: "",
+      // nameInput: "",
       emailInput: "",
       passwordInput: "",
-      nameIsValid: "pending",
+      // nameIsValid: "pending",
       emailIsValid: "pending",
       passwordIsValid: "pending",
+      error: null,
     };
   },
   methods: {
     showSignIn() {
       this.show = !this.show;
     },
-    name() {
-      this.nameInput.length > 0 && this.nameInput.length <= 12
-        ? (this.nameIsValid = "valid")
-        : (this.nameIsValid = "invalid");
-      // console.log(this.nameInput);
-    },
+    // name() {
+    //   this.nameInput.length > 0 && this.nameInput.length <= 12
+    //     ? (this.nameIsValid = "valid")
+    //     : (this.nameIsValid = "invalid");
+    //   // console.log(this.nameInput);
+    // },
     email() {
       this.emailInput.endsWith("@gmail.com" || "@hotmail.com" || "@live.com") &&
       !this.emailInput.startsWith("@")
@@ -131,25 +138,35 @@ export default {
         ? (this.passwordIsValid = "valid")
         : (this.passwordIsValid = "invalid");
     },
-    submitLogInForm() {
-      
-    },
-    submitRegisterForm() {
+    submitLogInForm() {},
+    async submitRegisterForm() {
+      await this.$store.dispatch("signUp", {
+          // name: this.nameInput,
+          email: this.emailInput,
+          password: this.passwordInput,
+        });
       if (
-        this.nameIsValid === "valid" &&
+        // this.nameIsValid === "valid" &&
         this.emailIsValid === "valid" &&
         this.passwordIsValid === "valid"
       ) {
-        console.log("po bon");
-        
-        this.nameInput = "";
+      console.log("po bon");
+      try {
+        await this.$store.dispatch("signUp", {
+          email: this.emailInput,
+          password: this.passwordInput,
+        });
+      } catch (err) {
+        this.error = err.message;
+      }
+
+        // this.nameInput = "";
         this.emailInput = "";
         this.passwordInput = "";
-        this.nameIsValid = "pending";
+        // this.nameIsValid = "pending";
         this.emailIsValid = "pending";
         this.passwordIsValid = "pending";
         this.formFilled = true;
-        this.logInRegister();
       } else {
         console.log("spo bon");
         this.formFilled = false;

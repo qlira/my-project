@@ -10,7 +10,10 @@
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
+    "babel-polyfill": "^6.26.0",
     "core-js": "^3.6.5",
+    "firebase": "^9.6.1",
+    "save": "^2.4.0",
     "vue": "^2.6.11",
     "vue-router": "^3.5.3",
     "vuetify": "^2.6.1",
