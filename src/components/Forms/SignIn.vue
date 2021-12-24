@@ -142,8 +142,8 @@ export default {
     async submitLogInForm() {
       try {
         await this.$store.dispatch("login", {
-          email: this.emailInput,
-          password: this.passwordInput,
+          email: this.loginEmail,
+          password: this.loginPassword,
         });
         this.$router.push("/");
       } catch (err) {

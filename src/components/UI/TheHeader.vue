@@ -26,11 +26,12 @@
       <v-btn text class="m1-2">About Us</v-btn>
       <v-btn text class="m1-2">Contact Us</v-btn>
     </div>
-    <div v-if="!isLogin">
+    <div v-if="!user" style="display: flex; aligh-items: center">
+      <h2>{{ isLogin }}</h2>
       <v-btn text class="m1-2" to="/sign-in">Sign In</v-btn>
     </div>
-    <div v-else>
-      <h3></h3>
+    <div v-if="user">
+      <h4>{{ user.email }}</h4>
       <v-btn text class="m1-2" @click="handleLogout">Logout</v-btn>
     </div>
   </nav>
@@ -61,6 +62,9 @@ export default {
   computed: {
     isLogin() {
       return this.$store.getters.isLogin;
+    },
+    user() {
+      return this.$store.getters.user;
     },
   },
   methods: {

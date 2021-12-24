@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 const state = {
@@ -43,7 +44,6 @@ const actions = {
     );
     if (response) {
       context.commit("SET_USER", response.user);
-      context.commit("SET_ISLOGIN", true);
     } else {
       throw new Error("could not complete signup");
     }
@@ -61,11 +61,8 @@ const actions = {
   },
 
   async logout(context) {
-    console.log("logout action");
-
     await signOut(auth);
     context.commit("SET_USER", null);
-    context.commit("SET_ISLOGIN", false);
   },
 };
 
@@ -77,7 +74,16 @@ const getters = {
   isLogin: (state) => {
     return state.isLogin;
   },
+  user: (state) => {
+    return state.user;
+  },
 };
+
+const unsub = onAuthStateChanged(auth, (user) => {
+  this.$store.commit("SET_ISLOGIN", true);
+  this.$store.commit("SET_USER", user);
+  unsub();
+});
 
 export default {
   state,
