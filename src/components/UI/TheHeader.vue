@@ -26,8 +26,12 @@
       <v-btn text class="m1-2">About Us</v-btn>
       <v-btn text class="m1-2">Contact Us</v-btn>
     </div>
-    <div>
+    <div v-if="!isLogin">
       <v-btn text class="m1-2" to="/sign-in">Sign In</v-btn>
+    </div>
+    <div v-else>
+      <h3></h3>
+      <v-btn text class="m1-2" @click="handleLogout">Logout</v-btn>
     </div>
   </nav>
 </template>
@@ -54,10 +58,18 @@ export default {
       ],
     };
   },
-
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin;
+    },
+  },
   methods: {
     filterByCategory(categ) {
-      this.$store.dispatch('updateMovies', categ)
+      this.$store.dispatch("updateMovies", categ);
+    },
+    handleLogout() {
+      this.$store.dispatch("logout");
+      console.log(this.$store.getters.isLogin);
     },
   },
 };

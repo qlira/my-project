@@ -4,6 +4,7 @@
       <div class="signIn-container">
         <div style="width: 60%; height: 100%">
           <form @submit.prevent="submitLogInForm">
+            <v-alert v-if="error">{{ error }}</v-alert>
             <div class="sign-in-use">
               <h2>Sign In</h2>
               <p>Use your account</p>
@@ -16,7 +17,7 @@
                 v-model="loginPassword"
               />
             </div>
-            <button class="sign">Sign In</button>
+            <button class="sign" type="submit">Sign In</button>
           </form>
         </div>
         <div class="signIn-text-con">
@@ -138,35 +139,39 @@ export default {
         ? (this.passwordIsValid = "valid")
         : (this.passwordIsValid = "invalid");
     },
-    submitLogInForm() {},
-    async submitRegisterForm() {
-      await this.$store.dispatch("signUp", {
-          // name: this.nameInput,
+    async submitLogInForm() {
+      try {
+        await this.$store.dispatch("login", {
           email: this.emailInput,
           password: this.passwordInput,
         });
+        this.$router.push("/");
+      } catch (err) {
+        this.error = err.message;
+      }
+    },
+    async submitRegisterForm() {
       if (
         // this.nameIsValid === "valid" &&
         this.emailIsValid === "valid" &&
         this.passwordIsValid === "valid"
       ) {
-      console.log("po bon");
-      try {
-        await this.$store.dispatch("signUp", {
-          email: this.emailInput,
-          password: this.passwordInput,
-        });
-      } catch (err) {
-        this.error = err.message;
-      }
-
-        // this.nameInput = "";
-        this.emailInput = "";
-        this.passwordInput = "";
-        // this.nameIsValid = "pending";
-        this.emailIsValid = "pending";
-        this.passwordIsValid = "pending";
-        this.formFilled = true;
+        console.log("po bon");
+        try {
+          await this.$store.dispatch("signUp", {
+            email: this.emailInput,
+            password: this.passwordInput,
+          });
+          // this.nameInput = "";
+          this.emailInput = "";
+          this.passwordInput = "";
+          // this.nameIsValid = "pending";
+          this.emailIsValid = "pending";
+          this.passwordIsValid = "pending";
+          this.formFilled = true;
+        } catch (err) {
+          this.error = err.message;
+        }
       } else {
         console.log("spo bon");
         this.formFilled = false;
