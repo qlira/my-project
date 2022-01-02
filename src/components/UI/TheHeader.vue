@@ -27,7 +27,6 @@
       <v-btn text class="m1-2">Contact Us</v-btn>
     </div>
     <div v-if="!user" style="display: flex; aligh-items: center">
-      <h2>{{ isLogin }}</h2>
       <v-btn text class="m1-2" to="/sign-in">Sign In</v-btn>
     </div>
     <div v-if="user">

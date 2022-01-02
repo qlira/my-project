@@ -1,9 +1,18 @@
 import HomePage from "./pages/HomePage.vue";
 import SignIn from "./pages/SignInPage.vue";
 import MovieDetails from "./components/Movie/MovieDetails.vue";
+import Dashboard from "./admin/pages/Dashboard.vue";
+import Users from './admin/pages/Users.vue';
 export const routes = [
-  { path: "/", component: HomePage },
+  {  path: "/", component: HomePage },
   { path: "/sign-in", component: SignIn },
+  {
+    path: "/dashboard",
+    component: Dashboard,
+    children: [
+      { path: 'users', component: Users}
+    ],
+  },
 
   {
     path: "/Movie/:id",

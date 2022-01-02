@@ -1,28 +1,14 @@
 <template>
-  <footer>
-    <h3>&copy; 2021. All rights reserved | MyCinema</h3>
-    <a href="">Contact Us</a>
-  </footer>
+  <div>
+    <v-footer dark padless app inset>
+      <v-card class="flex" flat tile color="red" :elevation="10">
+        <v-card-text class="py-2 white--text text-center">
+          {{ new Date().getFullYear() }} — <strong>MyCinema</strong>
+        </v-card-text>
+      </v-card>
+    </v-footer>
+  </div>
 </template>
 
 <style scoped>
-footer {
-  width: 100%;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: whitesmoke;
-  background: #3d3d3d;
-}
-h3 {
-  padding-left: 20px;
-  font-size: 15px;
-}
-a {
-  padding-right: 20px;
-  font-size: 15px;
-  color: whitesmoke;
-  text-decoration: none;
-}
 </style>

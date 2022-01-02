@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <the-header></the-header>
+    <the-header v-if="path != '/dashboard' && path !='/dashboard/users'"></the-header>
+    <the-navbar v-else></the-navbar>
     <router-view></router-view>
     <the-footer></the-footer>
   </div>
@@ -9,15 +10,23 @@
 <script>
 import TheHeader from "./components/UI/TheHeader.vue";
 import TheFooter from "./components/UI/TheFooter.vue";
+import TheNavbar from "./admin/components/UI/TheNavbar.vue";
 export default {
   name: "App",
   components: {
     TheHeader,
     TheFooter,
+    TheNavbar,
+  },
+  computed: {
+    path() {
+      return this.$route.path;
+    },
   },
   created() {
     this.$store.dispatch("initMovies");
     this.$store.dispatch("initUsers");
+    console.log(this.path)
   },
 };
 </script>
