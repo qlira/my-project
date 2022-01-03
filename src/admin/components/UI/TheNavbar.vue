@@ -22,7 +22,7 @@
     >
     <v-layout column align-center>
         <v-avatar size="100">
-            <v-img src=""></v-img>
+            <v-img :src="img"></v-img>
         </v-avatar>
         <p class="white--text subheading mt-1 text-center">Username</p>
     </v-layout>
@@ -47,9 +47,11 @@
 </template>
 
 <script>
+import profile from '../../assets/images/profile.png'
 export default {
   data() {
     return {
+      img: profile,
       drawer: false,
       links: [
         { icon: "dashboard", text: "Dashboard", route: "/dashboard" },
