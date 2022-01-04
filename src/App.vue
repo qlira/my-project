@@ -1,8 +1,12 @@
 <template>
   <div id="app">
-    <the-header v-if="path != '/dashboard' && path !='/dashboard/users'"></the-header>
+    <the-header
+      v-if="path != '/dashboard' && path != '/dashboard/users'"
+    ></the-header>
     <the-navbar v-else></the-navbar>
-    <router-view></router-view>
+    <v-main>
+      <router-view></router-view>
+    </v-main>
     <the-footer></the-footer>
   </div>
 </template>
@@ -26,7 +30,7 @@ export default {
   created() {
     this.$store.dispatch("initMovies");
     this.$store.dispatch("initUsers");
-    console.log(this.path)
+    console.log(this.path);
   },
 };
 </script>
