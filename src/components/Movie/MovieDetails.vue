@@ -1,34 +1,86 @@
 <template>
-  <div class="container">
-    <img :src="image" alt="" height="739" width="890" />
-    <div class="desc-container">
-      <div style="text-align: center">
-        <h1>{{ selectedMovie.title }}</h1>
-      </div>
-      <div>
-        <p>{{ description }}</p>
-        <div
-          style="
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            padding-top: 40px;
-          "
-        >
-          <ul>
-            <li
-              v-for="(category, index) in selectedMovie.categories"
-              :key="index"
-            >
-              {{ category }}
-            </li>
-          </ul>
-          <h3>{{ rating }} IMDB</h3>
+  <v-app>
+    <div class="container">
+      <img :src="image" alt="" height="739" width="890" />
+      <div class="desc-container">
+        <div style="text-align: center">
+          <h1>{{ selectedMovie.title }}</h1>
         </div>
+        <div>
+          <p>{{ description }}</p>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-evenly;
+              padding-top: 40px;
+            "
+          >
+            <ul>
+              <li
+                v-for="(category, index) in selectedMovie.categories"
+                :key="index"
+              >
+                {{ category }}
+              </li>
+            </ul>
+            <h3>{{ rating }} IMDB</h3>
+          </div>
+        </div>
+        <v-btn depressed elevation="3" x-large @click="openReserveDialog">
+          Reserve Ticket
+        </v-btn>
+        <v-dialog v-model="reserveTicket" max-width="700px">
+          <v-card color="">
+            <v-card-title>
+              <span class="text-h5">Reserve Tickets</span>
+            </v-card-title>
+            <v-form>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        :value="selectedMovie.title"
+                        disabled
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        label="Quantity"
+                        v-model="quantity"
+                        type="number"
+                        :rules="[rules.required, rules.max, rules.min]"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-select
+                        :items="dates"
+                        label="Avaiable Dates"
+                      ></v-select>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-checkbox v-model="isVIP" label="VIP SEAT"></v-checkbox>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+            </v-form>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="closeReserveDialog">
+                Cancel
+              </v-btn>
+              <v-btn color="blue darken-1" text @click="closeReserveDialog">
+                Save
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </div>
-      <button id="reserve-btn">Reserve Ticket</button>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -36,7 +88,16 @@ export default {
   props: ["id"],
   data() {
     return {
+      rules: {
+        required: (value) => !!value || "Required.",
+        min: (value) => value > 0 || "Quantity should be above 0",
+        max: (value) => value <= 5 || "Quantity should not be above 5",
+      },
+      quantity: "",
+      isVIP: false,
+      reserveTicket: false,
       selectedMovie: null,
+      dates: ["18/01/2022", "22/01/2022", "24/01/2022", "26/01/2022"],
     };
   },
   computed: {
@@ -48,6 +109,14 @@ export default {
     },
     description() {
       return this.selectedMovie.description;
+    },
+  },
+  methods: {
+    openReserveDialog() {
+      this.reserveTicket = true;
+    },
+    closeReserveDialog() {
+      this.reserveTicket = false;
     },
   },
   created() {
@@ -94,16 +163,5 @@ p {
   padding: 40px;
   border-top: 1px solid whitesmoke;
   border-bottom: 1px solid whitesmoke;
-}
-#reserve-btn {
-  border: 1px solid black;
-  text-align: center;
-  width: 200px;
-  padding: 15px 20px;
-  border-radius: 10px;
-  background: whitesmoke;
-  color: #3d3d3d;
-  font-weight: 600;
-  font-size: 20px;
 }
 </style>

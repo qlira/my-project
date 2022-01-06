@@ -8,7 +8,7 @@
           <span>MyCinema</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn text>
+        <v-btn text to="/">
           <span>Exit</span>
           <v-icon right> exit_to_app</v-icon>
         </v-btn>
