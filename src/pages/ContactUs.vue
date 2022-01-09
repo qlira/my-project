@@ -45,16 +45,6 @@
               </v-container>
             </v-card-text>
           </v-form>
-
-          <!-- <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="closeReserveDialog">
-                Cancel
-              </v-btn>
-              <v-btn color="blue darken-1" text @click="closeReserveDialog">
-                Save
-              </v-btn>
-            </v-card-actions> -->
         </v-card>
         <v-card color="" width="50%" height="70%">
           <v-img :src="img" height="100%"></v-img>
