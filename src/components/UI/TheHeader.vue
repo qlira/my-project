@@ -24,7 +24,7 @@
         </div>
       </v-btn>
       <v-btn text class="m1-2">About Us</v-btn>
-      <v-btn text class="m1-2">Contact Us</v-btn>
+      <v-btn to="/contactus" text class="m1-2">Contact Us</v-btn>
     </div>
     <div v-if="!user" style="display: flex; aligh-items: center">
       <v-btn text class="m1-2" to="/sign-in">Sign In</v-btn>
