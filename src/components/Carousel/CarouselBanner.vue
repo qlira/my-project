@@ -4,6 +4,8 @@
       :show-arrows="false"
       hide-delimiter-background
       delimiter-icon="mdi-minus"
+      interval="6000"
+      cycle
     >
       <div class="cms">
         <h1>Cooming Soon</h1>
