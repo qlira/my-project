@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <sign-in></sign-in>
-  </div>
+  <v-app>
+    <v-main>
+      <sign-in></sign-in>
+    </v-main>
+  </v-app>
 </template>
 
 <script>

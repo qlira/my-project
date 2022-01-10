@@ -10,6 +10,7 @@
         class="m1-2"
         @mouseover="showCategories = true"
         @mouseleave="showCategories = false"
+        :to="path != '/' ? '/' : ''"
         >Categories
         <div class="category-menu" v-if="showCategories === true">
           <ul>
@@ -64,6 +65,9 @@ export default {
     },
     user() {
       return this.$store.getters.user;
+    },
+    path() {
+      return this.$route.path;
     },
   },
   methods: {

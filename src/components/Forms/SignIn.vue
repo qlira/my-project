@@ -1,103 +1,170 @@
 <template>
-  <div class="sa">
-    <div class="container" v-if="show === false">
-      <div class="signIn-container">
-        <div style="width: 60%; height: 100%">
-          <form @submit.prevent="submitLogInForm">
-            <v-alert v-if="error">{{ error }}</v-alert>
-            <div class="sign-in-use">
-              <h2>Sign In</h2>
-              <p>Use your account</p>
-            </div>
-            <div style="display: flex; flex-direction: column">
-              <input type="email" placeholder="Email" v-model="loginEmail" />
-              <input
-                type="password"
-                placeholder="Password"
-                v-model="loginPassword"
-              />
-            </div>
-            <button class="sign" type="submit">Sign In</button>
-          </form>
-        </div>
-        <div class="signIn-text-con">
-          <h2>Welcome Back, Friend</h2>
-          <p>Enter your login details</p>
-          <button @click="showSignIn" class="invert-btn">Sign up</button>
-        </div>
-      </div>
-    </div>
-    <div class="container" v-if="show === true">
-      <div class="signIn-container">
-        <div style="width: 60%; height: 100%">
-          <form @submit.prevent="submitRegisterForm">
-            <v-alert v-if="error">{{ error }}</v-alert>
-            <div class="sign-up-register">
-              <h2>Sign Up</h2>
-              <p>Register your account</p>
-            </div>
-            <div style="display: flex; flex-direction: column">
-              <!-- <input
-                type="text"
-                placeholder="Name"
-                v-model.trim="nameInput"
-                :class="{
-                  invalid: nameIsValid === 'invalid',
-                  valid: nameIsValid === 'valid',
-                }"
-                @blur="name"
-              />
-              <p v-if="nameIsValid === 'invalid'" style="color: red; margin: 0">
-                Please enter a name!
-              </p> -->
+  <v-app>
+    <v-main>
+      <v-container class="con">
+        <v-container class="form-con-1" v-if="show === false">
+          <v-container
+            style="
+              background-color: white;
+              width: 60%;
+              height: 60%;
+              border-radius: 15px;
+            "
+          >
+            <v-card class="cardColor-1">
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
 
-              <input
-                type="email"
-                placeholder="Email"
-                v-model="emailInput"
-                :class="{
-                  invalid: emailIsValid === 'invalid',
-                  valid: emailIsValid === 'valid',
-                }"
-                @blur="email"
-              />
-              <p
-                v-if="emailIsValid === 'invalid'"
-                style="color: red; margin: 0"
+              <v-content style="font-size: 40px; padding: 0"
+                >Sign In
+              </v-content>
+              <v-content style="padding: 0; font-size: 20px"
+                >Use your account
+              </v-content>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-form ref="formLogin">
+                <v-alert v-if="error">{{ error }}</v-alert>
+                <v-text-field
+                  label="Email"
+                  type="email"
+                  v-model="loginEmail"
+                  :rules="[loginRules.required]"
+                >
+                </v-text-field>
+                <v-text-field
+                  label="Password"
+                  type="password"
+                  v-model="loginPassword"
+                  :rules="[loginRules.required]"
+                >
+                </v-text-field>
+                <v-btn
+                  x-large
+                  color="teal"
+                  style="color: white"
+                  @click="submitLogInForm"
+                  >Log In</v-btn
+                >
+              </v-form>
+            </v-card>
+          </v-container>
+          <v-container
+            style="
+              background: teal;
+              width: 40%;
+              height: 70%;
+              border-radius: 15px;
+            "
+          >
+            <v-card class="cardColor-2">
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-content style="font-size: 40px; padding: 0"
+                >Welcome Back, Friend
+              </v-content>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-content style="padding: 0; font-size: 20px"
+                >Enter your login details
+              </v-content>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-btn
+                x-large
+                color="teal"
+                style="color: white"
+                @click="showSignIn"
+                >Sign up</v-btn
               >
-                Email Invalid! Please enter a valid email
-              </p>
-              <input
-                type="password"
-                placeholder="Password"
-                v-model.trim="passwordInput"
-                :class="{
-                  invalid: passwordIsValid === 'invalid',
-                  valid: passwordIsValid === 'valid',
-                }"
-                @blur="password"
-                :input="passwordInput"
-              />
-              <p
-                v-if="passwordIsValid === 'invalid'"
-                style="color: red; margin: 0"
+            </v-card>
+          </v-container>
+        </v-container>
+        <!-- FORM 2222 -->
+
+        <v-container class="form-con-1" v-if="show === true">
+          <v-container
+            style="
+              background-color: white;
+              width: 60%;
+              height: 60%;
+              border-radius: 15px;
+            "
+          >
+            <v-card class="cardColor-1">
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+
+              <v-content style="font-size: 40px; padding: 0"
+                >Sign Up
+              </v-content>
+              <v-content style="padding: 0; font-size: 20px"
+                >Register your account
+              </v-content>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-form ref="formSignup">
+                <v-alert v-if="error">{{ error }}</v-alert>
+                <v-text-field
+                  label="Email"
+                  type="email"
+                  v-model="emailInput"
+                  :rules="[loginRules.email, loginRules.required]"
+                >
+                </v-text-field>
+                <v-text-field
+                  label="Password"
+                  type="password"
+                  v-model="passwordInput"
+                  :rules="[loginRules.password, loginRules.required]"
+                >
+                </v-text-field>
+                <v-btn x-large color="teal" style="color: white" @click="submitRegisterForm">Sign Up</v-btn>
+              </v-form>
+            </v-card>
+          </v-container>
+          <v-container
+            style="
+              background: teal;
+              width: 40%;
+              height: 70%;
+              border-radius: 15px;
+            "
+          >
+            <v-card class="cardColor-2">
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-content style="font-size: 40px; padding: 0"
+                >Hello Friend
+              </v-content>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-content style="padding: 0; font-size: 20px"
+                >Enter your register details
+              </v-content>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-btn
+                x-large
+                color="teal"
+                style="color: white"
+                @click="showSignIn"
+                >Sign In</v-btn
               >
-                Password Invalid!
-                <span>Please enter 8 charachters!</span>
-              </p>
-            </div>
-            <button class="sign" type="submit">Sign Up</button>
-            <p v-if="!formFilled" style="margin: 0">Form is not filled!</p>
-          </form>
-        </div>
-        <div class="signIn-text-con">
-          <h2>Hello Friend</h2>
-          <p>Enter your register details</p>
-          <button @click="showSignIn" class="invert-btn">Sign In</button>
-        </div>
-      </div>
-    </div>
-  </div>
+            </v-card>
+          </v-container>
+        </v-container>
+      </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
@@ -105,76 +172,55 @@ export default {
   data() {
     return {
       show: false,
-      signUp: false,
-      formFilled: true,
       loginEmail: "",
       loginPassword: "",
-      // nameInput: "",
       emailInput: "",
       passwordInput: "",
-      // nameIsValid: "pending",
-      emailIsValid: "pending",
-      passwordIsValid: "pending",
       error: null,
+      loginRules: {
+        required: (value) => !!value || "Required.",
+        email: (value) =>
+          value.endsWith("@gmail.com") ||
+          value.endsWith("@hotmail.com") ||
+          (value.endsWith("@live.com") && !value.startsWith("@")) ||
+          "Email is invalid!",
+        password: (value) =>
+          value.length >= 8 ||
+          "Password should be at least 8 charachters or more",
+      },
     };
   },
   methods: {
     showSignIn() {
       this.show = !this.show;
     },
-    // name() {
-    //   this.nameInput.length > 0 && this.nameInput.length <= 12
-    //     ? (this.nameIsValid = "valid")
-    //     : (this.nameIsValid = "invalid");
-    //   // console.log(this.nameInput);
-    // },
-    email() {
-      this.emailInput.endsWith("@gmail.com" || "@hotmail.com" || "@live.com") &&
-      !this.emailInput.startsWith("@")
-        ? (this.emailIsValid = "valid")
-        : (this.emailIsValid = "invalid");
-    },
-    password() {
-      this.passwordInput.length >= 8
-        ? (this.passwordIsValid = "valid")
-        : (this.passwordIsValid = "invalid");
-    },
     async submitLogInForm() {
-      try {
-        await this.$store.dispatch("login", {
-          email: this.loginEmail,
-          password: this.loginPassword,
-        });
-        this.$router.push("/");
-      } catch (err) {
-        this.error = err.message;
+      if (this.$refs.formLogin.validate()) {
+        try {
+          await this.$store.dispatch("login", {
+            email: this.loginEmail,
+            password: this.loginPassword,
+          });
+          this.$router.push("/");
+        } catch (err) {
+          this.error = err.message;
+        }
       }
     },
     async submitRegisterForm() {
-      if (
-        // this.nameIsValid === "valid" &&
-        this.emailIsValid === "valid" &&
-        this.passwordIsValid === "valid"
-      ) {
-        console.log("po bon");
+      if (this.$refs.formSignup.validate()) {
         try {
           await this.$store.dispatch("signUp", {
             email: this.emailInput,
             password: this.passwordInput,
           });
-          // this.nameInput = "";
           this.emailInput = "";
           this.passwordInput = "";
-          // this.nameIsValid = "pending";
-          this.emailIsValid = "pending";
-          this.passwordIsValid = "pending";
-          this.formFilled = true;
+          this.$router.push("/");
         } catch (err) {
           this.error = err.message;
         }
       } else {
-        console.log("spo bon");
-        this.formFilled = false;
         return;
       }
     },
@@ -183,104 +229,26 @@ export default {
 </script>
 
 <style scoped>
-.sa {
-  height: 939px;
-}
-
-.container {
-  position: relative;
-  background: white;
-  height: 500px;
-  width: 50%;
-  top: 25%;
-  border-radius: 10px;
-}
-.signIn-container {
+.con {
   height: 100%;
-  width: 100%;
+}
+.form-con-1 {
   display: flex;
+  height: 100%;
+  width: 80%;
   align-items: center;
 }
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  justify-content: center;
-}
-input {
-  border: none;
-  border-radius: 30px;
-  padding: 10px 10px;
-  margin: 10px 0px;
-  width: 400px;
-  border-bottom: 1px solid #ddd;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4), 0 -1px 1px #fff, 0 1px 0 #fff;
-  overflow: hidden;
-}
-input:focus {
-  outline: none;
-  background-color: #fff;
-}
-.invalid {
-  border-color: red;
-}
-.valid {
-  border-color: green;
-}
-.signIn-text-con {
-  width: 40%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  background: linear-gradient(to bottom right, black, #436252);
-  color: whitesmoke;
-  border-radius: 10px;
-}
-.sign {
-  width: 160px;
-  height: 40px;
-  margin-top: 15px;
-  border-radius: 20px;
-  border: 1px solid #436252;
-  background-color: #436252;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 10px 40px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.sign-in-use {
-  padding: 15px;
+.cardColor-1 {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
   text-align: center;
 }
-.sign-in-use h2 {
-  padding: 10px;
-}
-.sign-up-register {
-  padding: 15px;
+.cardColor-2 {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
   text-align: center;
-}
-.sign-up-register h2 {
-  padding: 10px;
-}
-.invert-btn {
-  width: 160px;
-  height: 40px;
-  margin-top: 15px;
-  border-radius: 20px;
-  border: 1px solid #436252;
-  background-color: #436252;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 10px 40px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
+  color: white;
 }
 </style>

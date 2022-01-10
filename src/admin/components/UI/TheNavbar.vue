@@ -69,7 +69,5 @@ export default {
 </script>
 
 <style scoped>
-.border {
-  /* border-left: 4px solid #0ba518; */
-}
+
 </style>
