@@ -1,25 +1,27 @@
 <template>
-  <div>
-    <v-carousel
-      :show-arrows="false"
-      hide-delimiter-background
-      delimiter-icon="mdi-minus"
-      interval="6000"
-      cycle
-    >
-      <div class="cms">
-        <h1>Cooming Soon</h1>
-      </div>
-      <v-carousel-item
-        v-for="(item, i) in items"
-        :key="i"
-        :src="item.src"
-        reverse-transition="fade-transition"
-        transition="fade-transition"
+  <v-main>
+    <div>
+      <v-carousel
+        :show-arrows="false"
+        hide-delimiter-background
+        delimiter-icon="mdi-minus"
+        interval="6000"
+        cycle
       >
-      </v-carousel-item>
-    </v-carousel>
-  </div>
+        <div class="cms">
+          <h1>Cooming Soon</h1>
+        </div>
+        <v-carousel-item
+          v-for="(item, i) in items"
+          :key="i"
+          :src="item.src"
+          reverse-transition="fade-transition"
+          transition="fade-transition"
+        >
+        </v-carousel-item>
+      </v-carousel>
+    </div>
+  </v-main>
 </template>
 <script>
 export default {

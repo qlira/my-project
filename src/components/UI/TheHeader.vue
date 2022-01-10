@@ -1,40 +1,42 @@
 <template>
-  <nav>
-    <div>
-      <v-toolbar-title>MyCinema</v-toolbar-title>
-    </div>
-    <div>
-      <v-btn text class="m1-2" to="/">Home</v-btn>
-      <v-btn
-        text
-        class="m1-2"
-        @mouseover="showCategories = true"
-        @mouseleave="showCategories = false"
-        :to="path != '/' ? '/' : ''"
-        >Categories
-        <div class="category-menu" v-if="showCategories === true">
-          <ul>
-            <li
-              v-for="(category, index) in staticCategoriesName"
-              :key="index"
-              @click="filterByCategory(category)"
-            >
-              {{ category }}
-            </li>
-          </ul>
-        </div>
-      </v-btn>
-      <v-btn text class="m1-2">About Us</v-btn>
-      <v-btn to="/contactus" text class="m1-2">Contact Us</v-btn>
-    </div>
-    <div v-if="!user" style="display: flex; aligh-items: center">
-      <v-btn text class="m1-2" to="/sign-in">Sign In</v-btn>
-    </div>
-    <div v-if="user">
-      <h4>{{ user.email }}</h4>
-      <v-btn text class="m1-2" @click="handleLogout">Logout</v-btn>
-    </div>
-  </nav>
+  <v-main>
+    <nav>
+      <div>
+        <v-toolbar-title>MyCinema</v-toolbar-title>
+      </div>
+      <div>
+        <v-btn text class="m1-2" to="/">Home</v-btn>
+        <v-btn
+          text
+          class="m1-2"
+          @mouseover="showCategories = true"
+          @mouseleave="showCategories = false"
+          :to="path != '/' ? '/' : ''"
+          >Categories
+          <div class="category-menu" v-if="showCategories === true">
+            <ul>
+              <li
+                v-for="(category, index) in staticCategoriesName"
+                :key="index"
+                @click="filterByCategory(category)"
+              >
+                {{ category }}
+              </li>
+            </ul>
+          </div>
+        </v-btn>
+        <v-btn text class="m1-2">About Us</v-btn>
+        <v-btn to="/contactus" text class="m1-2">Contact Us</v-btn>
+      </div>
+      <div v-if="!user" style="display: flex; aligh-items: center">
+        <v-btn text class="m1-2" to="/sign-in">Sign In</v-btn>
+      </div>
+      <div v-if="user">
+        <h4>{{ user.email }}</h4>
+        <v-btn text class="m1-2" @click="handleLogout">Logout</v-btn>
+      </div>
+    </nav>
+  </v-main>
 </template>
 
 <script>

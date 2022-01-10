@@ -1,30 +1,38 @@
 <template>
-  <v-container>
-    <v-row v-if="filteredMovies.length === 0">
-      <v-col v-for="movie in movies" :key="movie.id">
-        <movie-item
-          :title="movie.title"
-          :image="movie.image"
-          :categories="movie.categories"
-          :id="movie.id"
-        >
-        </movie-item>
-        <movie-detalis :id="movie.id" v-if="showNever === true"></movie-detalis>
-      </v-col>
-    </v-row>
-    <v-row v-else>
-      <v-col v-for="movie in filteredMovies" :key="movie.id">
-        <movie-item
-          :title="movie.title"
-          :image="movie.image"
-          :categories="movie.categories"
-          :id="movie.id"
-        >
-        </movie-item>
-        <movie-detalis :id="movie.id" v-if="showNever === true"></movie-detalis>
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-main>
+    <v-container>
+      <v-row v-if="filteredMovies.length === 0">
+        <v-col v-for="movie in movies" :key="movie.id">
+          <movie-item
+            :title="movie.title"
+            :image="movie.image"
+            :categories="movie.categories"
+            :id="movie.id"
+          >
+          </movie-item>
+          <movie-detalis
+            :id="movie.id"
+            v-if="showNever === true"
+          ></movie-detalis>
+        </v-col>
+      </v-row>
+      <v-row v-else>
+        <v-col v-for="movie in filteredMovies" :key="movie.id">
+          <movie-item
+            :title="movie.title"
+            :image="movie.image"
+            :categories="movie.categories"
+            :id="movie.id"
+          >
+          </movie-item>
+          <movie-detalis
+            :id="movie.id"
+            v-if="showNever === true"
+          ></movie-detalis>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-main>
 </template>
 
 <script>

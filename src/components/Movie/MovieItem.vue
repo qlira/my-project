@@ -1,28 +1,30 @@
 <template>
-  <v-card class="mx-auto my-12" max-width="374" style="background: #3d3d3d">
-    <template slot="progress">
-      <v-progress-linear
-        color="deep-purple"
-        height="10"
-        indeterminate
-      ></v-progress-linear>
-    </template>
+  <v-main>
+    <v-card class="mx-auto my-12" max-width="374" style="background: #3d3d3d">
+      <template slot="progress">
+        <v-progress-linear
+          color="deep-purple"
+          height="10"
+          indeterminate
+        ></v-progress-linear>
+      </template>
 
-    <router-link :to="movieLink"
-      ><v-img height="380" :src="image"></v-img
-    ></router-link>
+      <router-link :to="movieLink"
+        ><v-img height="380" :src="image"></v-img
+      ></router-link>
 
-    <v-card-title style="color: whitesmoke">{{ title }}</v-card-title>
+      <v-card-title style="color: whitesmoke">{{ title }}</v-card-title>
 
-    <div class="card-text-container">
-      <v-card-text
-        align="left"
-        v-for="category in categories"
-        :key="category"
-        >{{ category }}</v-card-text
-      >
-    </div>
-  </v-card>
+      <div class="card-text-container">
+        <v-card-text
+          align="left"
+          v-for="category in categories"
+          :key="category"
+          >{{ category }}</v-card-text
+        >
+      </div>
+    </v-card>
+  </v-main>
 </template>
 
 <script>
