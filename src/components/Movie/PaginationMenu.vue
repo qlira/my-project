@@ -1,7 +1,9 @@
 <template>
-  <div class="text-center">
-    <v-pagination v-model="page" :length="4" circle dark></v-pagination>
-  </div>
+  <v-main>
+    <v-container>
+      <v-pagination v-model="page" :length="4" circle dark></v-pagination>
+    </v-container>
+  </v-main>
 </template>
 
 <script>
@@ -15,8 +17,5 @@ export default {
 </script>
 
 <style scoped>
-.text-center {
-  padding: 30px 0 80px 0;
-}
 
 </style>

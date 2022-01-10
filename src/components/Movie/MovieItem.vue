@@ -15,14 +15,14 @@
 
       <v-card-title style="color: whitesmoke">{{ title }}</v-card-title>
 
-      <div class="card-text-container">
+      <v-container class="card-text-container">
         <v-card-text
           align="left"
           v-for="category in categories"
           :key="category"
           >{{ category }}</v-card-text
         >
-      </div>
+      </v-container>
     </v-card>
   </v-main>
 </template>

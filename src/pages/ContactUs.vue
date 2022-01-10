@@ -7,8 +7,6 @@
             <span class="text-h5">Contact Us</span>
           </v-card-title>
           <v-spacer tag="v-card-title"></v-spacer>
-          <v-spacer tag="v-card-title"></v-spacer>
-          <v-spacer tag="v-card-title"></v-spacer>
 
           <v-form>
             <v-card-text>

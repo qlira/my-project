@@ -1,89 +1,89 @@
 <template>
   <v-app>
     <v-main>
-      <div class="container">
-        <img :src="image" alt="" height="739" width="890" />
-        <div class="desc-container">
-          <div style="text-align: center">
-            <h1>{{ selectedMovie.title }}</h1>
-          </div>
-          <div>
-            <p>{{ description }}</p>
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                justify-content: space-evenly;
-                padding-top: 40px;
-              "
+      <v-container class="con-1">
+        <v-card color="" width="50%" height="auto" style="border-radius: 15px">
+          <v-img :src="image" height="600px"></v-img>
+        </v-card>
+        <v-card
+          color=""
+          width="50%"
+          height="60%"
+          active-class="card"
+          class="cardC"
+        >
+          <v-content>{{ selectedMovie.title }}</v-content>
+          <v-divider></v-divider>
+          <v-content>{{ description }}</v-content>
+          <v-divider></v-divider>
+          <v-content>
+            <v-list-item
+              style="display: inline-block; padding: 0 10px 0 0; color: white"
+              v-for="(category, index) in selectedMovie.categories"
+              :key="index"
+              >{{ category }}</v-list-item
             >
-              <ul>
-                <li
-                  v-for="(category, index) in selectedMovie.categories"
-                  :key="index"
-                >
-                  {{ category }}
-                </li>
-              </ul>
-              <h3>{{ rating }} IMDB</h3>
-            </div>
-          </div>
-          <v-btn depressed elevation="3" x-large @click="openReserveDialog">
+            <v-content style="display: inline-block">{{ rating }}</v-content>
+          </v-content>
+          <v-btn
+            depressed
+            elevation="3"
+            x-large
+            @click="openReserveDialog"
+            style="display: block"
+          >
             Reserve Ticket
           </v-btn>
-          <v-dialog v-model="reserveTicket" max-width="700px">
-            <v-card color="">
-              <v-card-title>
-                <span class="text-h5">Reserve Tickets</span>
-              </v-card-title>
-              <v-form>
-                <v-card-text>
-                  <v-container>
-                    <v-row>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          :value="selectedMovie.title"
-                          disabled
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          label="Quantity"
-                          v-model="quantity"
-                          type="number"
-                          :rules="[rules.required, rules.max, rules.min]"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-select
-                          :items="dates"
-                          label="Avaiable Dates"
-                        ></v-select>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-checkbox
-                          v-model="isVIP"
-                          label="VIP SEAT"
-                        ></v-checkbox>
-                      </v-col>
-                    </v-row>
-                  </v-container>
-                </v-card-text>
-              </v-form>
+        </v-card>
+        <v-dialog v-model="reserveTicket" max-width="700px">
+          <v-card color="">
+            <v-card-title>
+              <span class="text-h5">Reserve Tickets</span>
+            </v-card-title>
+            <v-form>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        :value="selectedMovie.title"
+                        disabled
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        label="Quantity"
+                        v-model="quantity"
+                        type="number"
+                        :rules="[rules.required, rules.max, rules.min]"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-select
+                        :items="dates"
+                        label="Avaiable Dates"
+                      ></v-select>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-checkbox v-model="isVIP" label="VIP SEAT"></v-checkbox>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+            </v-form>
 
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="closeReserveDialog">
-                  Cancel
-                </v-btn>
-                <v-btn color="blue darken-1" text @click="closeReserveDialog">
-                  Save
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </div>
-      </div>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="closeReserveDialog">
+                Cancel
+              </v-btn>
+              <v-btn color="blue darken-1" text @click="closeReserveDialog">
+                Save
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-container>
     </v-main>
   </v-app>
 </template>
@@ -135,7 +135,22 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.cardC {
+  background: #3d3d3d !important;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  padding: 50px 15px;
+}
+.v-content:first-child{
+  font-size: 30px;
+}
+.v-content{
+  font-size: 20px;
+  color: white;
+}
+/* .container {
   display: flex;
   padding: 140px 0px 60px 0px;
   width: 100%;
@@ -168,5 +183,11 @@ p {
   padding: 40px;
   border-top: 1px solid whitesmoke;
   border-bottom: 1px solid whitesmoke;
+  
+} */
+.con-1 {
+  display: flex;
+  height: 100%;
+  align-items: center;
 }
 </style>
