@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <the-header
-      v-if="path != '/dashboard' && path != '/dashboard/users'"
-    ></the-header>
+    <the-header v-if="!path.includes('/dashboard')"></the-header>
     <the-navbar v-else></the-navbar>
     <v-main>
       <router-view></router-view>

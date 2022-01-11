@@ -2,7 +2,8 @@ import HomePage from "./pages/HomePage.vue";
 import SignIn from "./pages/SignInPage.vue";
 import MovieDetails from "./components/Movie/MovieDetails.vue";
 import Dashboard from "./admin/pages/Dashboard.vue";
-import Users from "./admin/pages/Users.vue";
+import Movies from "./admin/pages/Movies.vue";
+import Users from './admin/pages/Users.vue'
 import ContactUs from "./pages/ContactUs.vue";
 export const routes = [
   { path: "/", component: HomePage },
@@ -11,7 +12,7 @@ export const routes = [
   {
     path: "/dashboard",
     component: Dashboard,
-    children: [{ path: "users", component: Users }],
+    children: [{ path: "movies", component: Movies }, { path: "users", component: Users }],
   },
 
   {
