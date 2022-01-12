@@ -65,7 +65,8 @@ export default {
         required: (value) => !!value || "Required.",
         min: (value) =>
           value.length >= 10 || "Text should be 10 characters or more",
-        max: (value) => value.length <= 200 || "Text should be 200 or less",
+        max: (value) =>
+          value.length <= 200 || "Text should be 200 characters or less",
       },
     };
   },
