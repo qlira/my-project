@@ -130,5 +130,6 @@ nav {
 .v-toolbar__title {
   font-size: 2.25rem;
   font-family: "Montserrat Alternates";
+  color: orange !important;
 }
 </style>
