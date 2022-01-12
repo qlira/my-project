@@ -32,7 +32,7 @@
         <v-btn text class="m1-2" to="/sign-in">Sign In</v-btn>
       </div>
       <div v-if="user">
-        <h4>{{ user.email }}</h4>
+        <h4>{{ user.email }} {{ user.firstName }}</h4>
         <v-btn text class="m1-2" @click="handleLogout">Logout</v-btn>
       </div>
     </nav>
@@ -50,12 +50,12 @@ export default {
         "Anime",
         "Adventure",
         "Drama",
-        "Science Fiction",
-        "Fiction",
-        "History",
+        "Fantashkence",
+        "Shkence",
+        "Histori",
         "Horror",
-        "Comedy",
-        "Crime",
+        "Komedi",
+        "Krim",
         "Romance",
         "Thriller",
       ],

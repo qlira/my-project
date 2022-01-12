@@ -5,7 +5,7 @@ export default [
     id: '1',
     image: Image,
     title: "Eternalss",
-    categories: ["Aksion", "Fantashkence", "Comedy"],
+    categories: ["Aksion", "Fantashkence", "Komedi"],
     description: "5 heroes try to save the Earth from evil encounter.",
     rating: 6.7,
   },
@@ -75,6 +75,14 @@ export default [
   },
   {
     id: '10',
+    image: Image,
+    title: "Eternals",
+    categories: ["Aksion", "Fantashkence", "Komedi"],
+    description: "5 heroes try to save the Earth from evil encounter.",
+    rating: 6.7,
+  },
+  {
+    id: '11',
     image: Image,
     title: "Eternals",
     categories: ["Aksion", "Fantashkence", "Komedi"],

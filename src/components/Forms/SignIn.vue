@@ -109,6 +109,13 @@
               <v-form ref="formSignup">
                 <v-alert v-if="error">{{ error }}</v-alert>
                 <v-text-field
+                  label="First Name"
+                  type="text"
+                  v-model="firstNameInput"
+                  :rules="[loginRules.required]"
+                >
+                </v-text-field>
+                <v-text-field
                   label="Email"
                   type="email"
                   v-model="emailInput"
@@ -122,7 +129,13 @@
                   :rules="[loginRules.password, loginRules.required]"
                 >
                 </v-text-field>
-                <v-btn x-large color="teal" style="color: white" @click="submitRegisterForm">Sign Up</v-btn>
+                <v-btn
+                  x-large
+                  color="teal"
+                  style="color: white"
+                  @click="submitRegisterForm"
+                  >Sign Up</v-btn
+                >
               </v-form>
             </v-card>
           </v-container>
@@ -176,6 +189,7 @@ export default {
       loginPassword: "",
       emailInput: "",
       passwordInput: "",
+      firstNameInput: "",
       error: null,
       loginRules: {
         required: (value) => !!value || "Required.",
@@ -213,9 +227,11 @@ export default {
           await this.$store.dispatch("signUp", {
             email: this.emailInput,
             password: this.passwordInput,
+            firstName: this.firstNameInput,
           });
           this.emailInput = "";
           this.passwordInput = "";
+          this.firstNameInput = "";
           this.$router.push("/");
         } catch (err) {
           this.error = err.message;

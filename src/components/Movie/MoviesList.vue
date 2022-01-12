@@ -63,3 +63,9 @@ export default {
   methods: {},
 };
 </script>
+
+<style scoped>
+.col {
+  max-width: 25%;
+}
+</style>

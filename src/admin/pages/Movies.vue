@@ -38,17 +38,38 @@
                     <v-row>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
+                          v-model="editedItem.id"
+                          label="ID"
+                          type="text"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
                           v-model="editedItem.title"
                           label="Title"
                           type="text"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.categories"
+                        <v-select
+                          v-model="editedItem.categories[0]"
                           label="Categories"
-                          type="text"
-                        ></v-text-field>
+                          :items="staticCategoriesName"
+                        ></v-select>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-select
+                          v-model="editedItem.categories[1]"
+                          label="Categories"
+                          :items="staticCategoriesName"
+                        ></v-select>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-select
+                          v-model="editedItem.categories[2]"
+                          label="Categories"
+                          :items="staticCategoriesName"
+                        ></v-select>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
@@ -64,12 +85,12 @@
                           type="text"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
+                      <v-col cols="14" sm="6" md="13">
+                        <v-file-input
                           v-model="editedItem.image"
-                          label="Image"
-                          type="text"
-                        ></v-text-field>
+                          label="Choose an Image"
+                          type="file"
+                        ></v-file-input>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -99,17 +120,39 @@
                     <v-row>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
+                          v-model="editedItem.id"
+                          label="ID"
+                          type="text"
+                          disabled
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
                           v-model="editedItem.title"
                           label="Title"
                           type="text"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.categories"
+                        <v-select
+                          v-model="editedItem.categories[0]"
                           label="Categories"
-                          type="text"
-                        ></v-text-field>
+                          :items="staticCategoriesName"
+                        ></v-select>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-select
+                          v-model="editedItem.categories[1]"
+                          label="Categories"
+                          :items="staticCategoriesName"
+                        ></v-select>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-select
+                          v-model="editedItem.categories[2]"
+                          label="Categories"
+                          :items="staticCategoriesName"
+                        ></v-select>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
@@ -180,6 +223,7 @@
 <script>
 export default {
   data: () => ({
+    randomID: Math.floor(Math.random() * 10),
     search: "",
     addDialog: false,
     editDialog: false,
@@ -195,19 +239,35 @@ export default {
     // desserts: [],
     editedIndex: -1,
     editedItem: {
+      id: "",
       title: "",
-      categories: 0,
-      description: 0,
-      rating: 0,
-      image: 0,
+      categories: ["", "", ""],
+      description: "",
+      rating: "",
+      image: null,
     },
     defaultItem: {
+      id: "",
       title: "",
-      categories: 0,
-      description: 0,
-      rating: 0,
-      image: 0,
+      categories: ["", "", ""],
+      description: "",
+      rating: "",
+      image: "",
     },
+    staticCategoriesName: [
+      "Aksion",
+      "Anime",
+      "Adventure",
+      "Drama",
+      "Fantashkence",
+      "Shkence",
+      "Histori",
+      "Horror",
+      "Komedi",
+      "Krim",
+      "Romance",
+      "Thriller",
+    ],
   }),
 
   computed: {
@@ -228,85 +288,7 @@ export default {
     },
   },
 
-  // created() {
-  //   this.initialize();
-  // },
-
   methods: {
-    // initialize() {
-    //   this.desserts = [
-    //     {
-    //       name: "Frozen Yogurt",
-    //       calories: 159,
-    //       fat: 6.0,
-    //       carbs: 24,
-    //       protein: 4.0,
-    //     },
-    //     {
-    //       name: "Ice cream sandwich",
-    //       calories: 237,
-    //       fat: 9.0,
-    //       carbs: 37,
-    //       protein: 4.3,
-    //     },
-    //     {
-    //       name: "Eclair",
-    //       calories: 262,
-    //       fat: 16.0,
-    //       carbs: 23,
-    //       protein: 6.0,
-    //     },
-    //     {
-    //       name: "Cupcake",
-    //       calories: 305,
-    //       fat: 3.7,
-    //       carbs: 67,
-    //       protein: 4.3,
-    //     },
-    //     {
-    //       name: "Gingerbread",
-    //       calories: 356,
-    //       fat: 16.0,
-    //       carbs: 49,
-    //       protein: 3.9,
-    //     },
-    //     {
-    //       name: "Jelly bean",
-    //       calories: 375,
-    //       fat: 0.0,
-    //       carbs: 94,
-    //       protein: 0.0,
-    //     },
-    //     {
-    //       name: "Lollipop",
-    //       calories: 392,
-    //       fat: 0.2,
-    //       carbs: 98,
-    //       protein: 0,
-    //     },
-    //     {
-    //       name: "Honeycomb",
-    //       calories: 408,
-    //       fat: 3.2,
-    //       carbs: 87,
-    //       protein: 6.5,
-    //     },
-    //     {
-    //       name: "Donut",
-    //       calories: 452,
-    //       fat: 25.0,
-    //       carbs: 51,
-    //       protein: 4.9,
-    //     },
-    //     {
-    //       name: "KitKat",
-    //       calories: 518,
-    //       fat: 26.0,
-    //       carbs: 65,
-    //       protein: 7,
-    //     },
-    //   ];
-    // },
     filterOnlyCapsText(value, search) {
       return (
         value != null &&

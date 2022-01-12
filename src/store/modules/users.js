@@ -33,17 +33,19 @@ const actions = {
     commit("SET_USERS", users);
     console.log(state.users);
   },
-  async signUp(context, { email, password }) {
+  async signUp(context, { email, password, firstName }) {
     console.log("signUp action");
 
     //async code
     const response = await createUserWithEmailAndPassword(
       auth,
       email,
-      password
+      password,
+      firstName,
     );
     if (response) {
       context.commit("SET_USER", response.user);
+      console.log(response.user.email);
     } else {
       throw new Error("could not complete signup");
     }
