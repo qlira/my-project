@@ -5,10 +5,14 @@ import Dashboard from "./admin/pages/Dashboard.vue";
 import Movies from "./admin/pages/Movies.vue";
 import Users from './admin/pages/Users.vue'
 import ContactUs from "./pages/ContactUs.vue";
+import AboutUs from "./pages/AboutUs.vue";
 export const routes = [
   { path: "/", component: HomePage },
   { path: "/sign-in", component: SignIn },
   { path: "/contactus", component: ContactUs },
+  {
+    path: "/aboutus", component: AboutUs
+  },
   {
     path: "/dashboard",
     component: Dashboard,
