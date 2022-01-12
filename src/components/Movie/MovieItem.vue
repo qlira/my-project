@@ -13,7 +13,7 @@
         ><v-img height="380" :src="image"></v-img
       ></router-link>
 
-      <v-card-title style="color: whitesmoke">{{ title }}</v-card-title>
+      <v-card-title style="color: whitesmoke; font-family: Poppins">{{ title }}</v-card-title>
 
       <v-container class="card-text-container">
         <v-card-text
@@ -46,6 +46,7 @@ export default {
 <style scoped>
 .card-text-container {
   display: flex;
+  font-family: Lato;
 }
 .card-text-container .v-card__text {
   width: auto;

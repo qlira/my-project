@@ -1,7 +1,7 @@
 <template>
   <v-main>
     <v-container>
-      <v-pagination v-model="page" :length="4" circle dark></v-pagination>
+      <v-pagination v-model="page" :length="4" circle dark style="font-family: Lato"></v-pagination>
     </v-container>
   </v-main>
 </template>

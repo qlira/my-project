@@ -121,9 +121,10 @@ nav {
 }
 .v-btn {
   color: whitesmoke !important;
+  font-family: Montserrat;
 }
 .v-toolbar__title {
   font-size: 2.25rem;
-  font-family: cursive;
+  font-family: Poppins;
 }
 </style>

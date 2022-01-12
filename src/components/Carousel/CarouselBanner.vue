@@ -9,7 +9,7 @@
         cycle
       >
         <div class="cms">
-          <h1>Cooming Soon</h1>
+          <h2>Coming Soon</h2>
         </div>
         <v-carousel-item
           v-for="(item, i) in items"
@@ -56,7 +56,7 @@ export default {
 }
 .cms {
   padding: 10px 0px;
-  font-family: monospace;
+  font-family: Poppins;  
   color: whitesmoke;
   text-align: center;
 }
