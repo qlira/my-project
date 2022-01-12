@@ -86,11 +86,11 @@
                         ></v-text-field>
                       </v-col>
                       <v-col cols="14" sm="6" md="13">
-                        <v-file-input
+                        <v-text-field
                           v-model="editedItem.image"
                           label="Choose an Image"
-                          type="file"
-                        ></v-file-input>
+                          type="text"
+                        ></v-text-field>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -223,7 +223,6 @@
 <script>
 export default {
   data: () => ({
-    randomID: Math.floor(Math.random() * 10),
     search: "",
     addDialog: false,
     editDialog: false,
@@ -244,7 +243,7 @@ export default {
       categories: ["", "", ""],
       description: "",
       rating: "",
-      image: null,
+      image: "",
     },
     defaultItem: {
       id: "",
