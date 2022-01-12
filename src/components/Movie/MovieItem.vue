@@ -44,9 +44,11 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 .card-text-container {
   display: flex;
-  font-family: Lato;
+  font-family: "Lato";
 }
 .card-text-container .v-card__text {
   width: auto;

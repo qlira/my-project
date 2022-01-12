@@ -82,9 +82,13 @@ export default {
     },
   },
 };
+
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 nav {
   width: 100%;
   height: 76px;
@@ -121,10 +125,10 @@ nav {
 }
 .v-btn {
   color: whitesmoke !important;
-  font-family: Montserrat;
+  font-family: "Montserrat"
 }
 .v-toolbar__title {
   font-size: 2.25rem;
-  font-family: Poppins;
+  font-family: "Montserrat Alternates";
 }
 </style>
