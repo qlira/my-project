@@ -1,67 +1,60 @@
 <template>
   <v-app>
     <v-main>
-      <v-content>
-        <div class="staticHero">
-          <v-img :src="img" style="max-height: 350px">
+      <div class="staticHero">
+        <v-img :src="img" style="max-height: 350px">
+          <v-img src="../assets/images/contactpage-img.jpg">
             <v-row align="end" class="lightbox white--text pa-2 fill-height">
               <v-col>
                 <v-container>
-                  <div class="headline">CONTACT US</div>
+                  <div class="headline">Contact Us</div>
                 </v-container>
               </v-col>
             </v-row>
           </v-img>
-        </div>
-        <div class="staticHero">
-          <v-img src="../assets/images/contactusimg.jpg">
-            <v-row align="end" class="lightbox white--text pa-2 fill-height">
-            </v-row>
-          </v-img>
-        </div>
-        <div class="bothfields" display="flex">
-          <div class="block">
-            <v-container>
-              <v-form ref="form" v-model="valid" lazy-validation>
-                <v-text-field
-                  v-model="name"
-                  :counter="10"
-                  :rules="nameRules"
-                  label="Name"
-                  required
-                ></v-text-field>
-                <v-text-field
-                  v-model="email"
-                  :rules="emailRules"
-                  label="E-mail"
-                  required
-                ></v-text-field>
-                <v-textarea
-                  v-model="message"
-                  :rules="messageRules"
-                  label="Message"
-                  required
-                ></v-textarea>
-                <v-btn
-                  :disabled="!valid"
-                  color="success"
-                  class="mr-4"
-                  @click="validate"
-                  >Submit</v-btn
-                >
-                <v-btn color="error" class="mr-4" @click="reset">Reset</v-btn>
-              </v-form>
-            </v-container>
-          </div>
-          <div class="googlemap">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16705.802661855836!2d-0.14290489950731525!3d51.50711704027593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon!5e0!3m2!1sen!2suk!4v1577041400110!5m2!1sen!2suk"
-              width="50%"
-              height="450"
-            ></iframe>
-          </div>
-        </div>
-      </v-content>
+        </v-img>
+      </div>
+      <div class="contactus-block">
+        <v-container>
+          <v-form ref="form" v-model="valid" lazy-validation>
+            <v-text-field
+              v-model="name"
+              :counter="10"
+              :rules="nameRules"
+              label="Name"
+              required
+            ></v-text-field>
+            <v-text-field
+              v-model="email"
+              :rules="emailRules"
+              label="E-mail"
+              required
+            ></v-text-field>
+            <v-textarea
+              v-model="message"
+              :rules="messageRules"
+              label="Message"
+              required
+            ></v-textarea>
+            <v-btn
+              :disabled="!valid"
+              color="success"
+              class="mr-4"
+              @click="validate"
+              >Submit</v-btn
+            >
+            <v-btn color="error" class="mr-4" @click="reset">Reset</v-btn>
+          </v-form>
+        </v-container>
+      </div>
+      <div class="googlemap">
+        <iframe
+          class="map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16705.802661855836!2d-0.14290489950731525!3d51.50711704027593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon!5e0!3m2!1sen!2suk!4v1577041400110!5m2!1sen!2suk"
+          width="100%"
+          height="450"
+        ></iframe>
+      </div>
     </v-main>
   </v-app>
 </template>
@@ -99,26 +92,9 @@ export default {
   },
 };
 </script>
-
-<script>
-import Image from "../assets/images/contactusimg.jpg";
-export default {
-  name: "AboutUs",
-
-  data() {
-    return {
-      img: Image,
-      items: [],
-    };
-  },
-};
-</script>
-
 <style>
-.bothfields {
-  display: flex;
-  width: 100vw;
-  height: 60vw;
-  margin: 0;
+.contactus-block {
+  background-color: whitesmoke;
+  max-width: 50%;
 }
 </style>
