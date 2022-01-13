@@ -16,7 +16,7 @@
         <div class="block">
           <v-container>
             <div id="desc" class="white--text" style="padding-top: 40px">
-              <b class="orange--text text-xl-h2">MyCinema</b> is more than a regular place to see a movie - it is a movie theater for movie lovers. Since 2020, our mission has been to create the most complete and best possible movie-going experience for our customers.
+              <b class="orange--text text-xl-h2">MYCINEMA</b> is more than a regular place to see a movie - it is a movie theater for movie lovers. Since 2020, our mission has been to create the most complete and best possible movie-going experience for our customers.
 At MyCinema, we love cinemas. 
 <br> Nestled in the heart of <b class="orange--text">Prishtina</b>, each of our cinema theaters are distinct, full of personality and run by welcoming and attentive staff. We don't just screen excellent films: we provide places to eat, meet and relax, and host a busy calendar of events for everyone to explore. 
 We pride ourselves in delivering the very best cinema experience, cutting-edge technology and the widest choice of experiences. We’re at the forefront of cinematic experiences, thanks to iSense, Dolby and IMAX extraordinary cinema viewing.
@@ -126,12 +126,12 @@ b{
   font-size: 20px;
   padding-right: 5px;
   padding-left: 2px;
-  font-family: "Montserrat Alternates";
+  font-family: "Montserrat";
 }
 
 i{
   padding-top: 5px;
-  font-family: "Montserrat Alternates";
+  font-family: "Montserrat";
   font-size: 23px;
 }
 

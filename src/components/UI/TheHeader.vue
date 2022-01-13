@@ -2,10 +2,18 @@
   <v-main>
     <nav>
       <div>
-        <v-toolbar-title>MyCinema</v-toolbar-title>
+        <v-toolbar-title>
+          <v-img 
+            src="https://o.remove.bg/downloads/26ff885e-4c3c-4dc8-9b8c-807855434a5b/default-removebg-preview.png"
+            height="125"
+            width="125"
+              class="grey darken-4"
+            >
+          </v-img>
+        </v-toolbar-title>
       </div>
       <div>
-        <v-btn text class="m1-2" to="/">Home</v-btn>
+        <v-btn text class="m1-2" to="/"><p style="color: orange">Home</p></v-btn>
         <v-btn
           text
           class="m1-2"
@@ -29,7 +37,7 @@
         <v-btn to="/contactus" text class="m1-2">Contact Us</v-btn>
       </div>
       <div v-if="!user" style="display: flex; aligh-items: center">
-        <v-btn text class="m1-2" to="/sign-in">Sign In</v-btn>
+        <v-btn text class="m1-2" to="/sign-in"><p style="color: orange">Sign In</p></v-btn>
       </div>
       <div v-if="user">
         <h4>{{ user.email }} {{ user.firstName }}</h4>
@@ -125,11 +133,11 @@ nav {
 }
 .v-btn {
   color: whitesmoke !important;
-  font-family: "Montserrat"
+  font-family: "Montserrat";
 }
-.v-toolbar__title {
+/* .v-toolbar__title {
   font-size: 2.25rem;
   font-family: "Montserrat Alternates";
   color: orange !important;
-}
+} */
 </style>

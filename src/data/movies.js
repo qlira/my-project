@@ -1,12 +1,15 @@
 import Image from "../assets/images/eternals.jpg";
+import Image2 from "../assets/images/spiderman.jpg";
+import Image3 from "../assets/images/scream.jpg";
+import Image4 from "../assets/images/the355.jpg";
 
 export default [
   {
     id: '1',
-    image: Image,
-    title: "Eternalss",
+    image: Image3,
+    title: "Scream",
     categories: ["Aksion", "Fantashkence", "Komedi"],
-    description: "5 heroes try to save the Earth from evil encounter.",
+    description: "Your halloween favorite.",
     rating: 6.7,
   },
   {
@@ -19,16 +22,16 @@ export default [
   },
   {
     id: '3',
-    image: Image,
-    title: "Eternals",
+    image: Image2,
+    title: "Spiderman: NWH",
     categories: ["Aksion", "Fantashkence", "Komedi"],
-    description: "5 heroes try to save the Earth from evil encounter.",
+    description: "Dea's test",
     rating: 6.7,
   },
   {
     id: '4',
-    image: Image,
-    title: "Eternals",
+    image: Image4,
+    title: "The 355",
     categories: ["Aksion", "Fantashkence", "Komedi"],
     description: "5 heroes try to save the Earth from evil encounter.",
     rating: 6.7,
