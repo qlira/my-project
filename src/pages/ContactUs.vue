@@ -1,82 +1,124 @@
 <template>
   <v-app>
     <v-main>
-      <v-container class="con-1">
-        <v-card color="" width="50%" height="50%" active-class="card">
-          <v-card-title>
-            <span class="text-h5">Contact Us</span>
-          </v-card-title>
-          <v-spacer tag="v-card-title"></v-spacer>
-
-          <v-form>
-            <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-text-field
-                    v-model="email"
-                    :rules="[rules.required]"
-                    label="Email"
-                    type="email"
-                  ></v-text-field>
-                </v-row>
-
-                <v-row>
-                  <v-text-field
-                    v-model="fullName"
-                    :rules="[rules.required]"
-                    label="Full Name"
-                    type="text"
-                  ></v-text-field>
-                </v-row>
-
-                <v-row>
-                  <v-textarea
-                    v-model="message"
-                    :rules="[rules.required, rules.max, rules.min]"
-                    prepend-icon="mdi-comment"
-                    auto-grow
-                    clearable
-                    clear-icon="mdi-close-circle"
-                    label="Message"
-                  ></v-textarea>
-                </v-row>
-              </v-container>
-            </v-card-text>
-          </v-form>
-        </v-card>
-        <v-card color="" width="50%" height="70%">
-          <v-img :src="img" height="100%"></v-img>
-        </v-card>
-      </v-container>
+      <v-content>
+        <div class="staticHero">
+          <v-img :src="img" style="max-height: 350px">
+            <v-row align="end" class="lightbox white--text pa-2 fill-height">
+              <v-col>
+                <v-container>
+                  <div class="headline">CONTACT US</div>
+                </v-container>
+              </v-col>
+            </v-row>
+          </v-img>
+        </div>
+        <div class="staticHero">
+          <v-img src="../assets/images/contactusimg.jpg">
+            <v-row align="end" class="lightbox white--text pa-2 fill-height">
+            </v-row>
+          </v-img>
+        </div>
+        <div class="bothfields" display="flex">
+          <div class="block">
+            <v-container>
+              <v-form ref="form" v-model="valid" lazy-validation>
+                <v-text-field
+                  v-model="name"
+                  :counter="10"
+                  :rules="nameRules"
+                  label="Name"
+                  required
+                ></v-text-field>
+                <v-text-field
+                  v-model="email"
+                  :rules="emailRules"
+                  label="E-mail"
+                  required
+                ></v-text-field>
+                <v-textarea
+                  v-model="message"
+                  :rules="messageRules"
+                  label="Message"
+                  required
+                ></v-textarea>
+                <v-btn
+                  :disabled="!valid"
+                  color="success"
+                  class="mr-4"
+                  @click="validate"
+                  >Submit</v-btn
+                >
+                <v-btn color="error" class="mr-4" @click="reset">Reset</v-btn>
+              </v-form>
+            </v-container>
+          </div>
+          <div class="googlemap">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16705.802661855836!2d-0.14290489950731525!3d51.50711704027593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon!5e0!3m2!1sen!2suk!4v1577041400110!5m2!1sen!2suk"
+              width="50%"
+              height="450"
+            ></iframe>
+          </div>
+        </div>
+      </v-content>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Image from "../assets/images/contact.jpg";
 export default {
+  name: "Contact",
+  data: () => ({
+    valid: true,
+    name: "",
+    nameRules: [
+      (v) => !!v || "Name is required",
+      (v) => (v && v.length <= 10) || "Name must be less than 10 characters",
+    ],
+    email: "",
+    emailRules: [
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    ],
+    message: "",
+    messageRules: [
+      (v) => !!v || "Message is required",
+      (v) => (v && v.length >= 10) || "Message must be more than 10 characters",
+    ],
+  }),
+  methods: {
+    validate() {
+      if (this.$refs.form.validate()) {
+        this.snackbar = true;
+      }
+    },
+    reset() {
+      this.$refs.form.reset();
+    },
+  },
+};
+</script>
+
+<script>
+import Image from "../assets/images/contactusimg.jpg";
+export default {
+  name: "AboutUs",
+
   data() {
     return {
       img: Image,
-      message: "",
-      email: "",
-      fullName: "",
-      rules: {
-        required: (value) => !!value || "Required.",
-        min: (value) =>
-          value.length >= 10 || "Text should be 10 characters or more",
-        max: (value) =>
-          value.length <= 200 || "Text should be 200 characters or less",
-      },
+      items: [],
     };
   },
 };
 </script>
 
-<style scoped>
-.con-1 {
+<style>
+.bothfields {
   display: flex;
-  height: 100%;
-  align-items: center;
+  width: 100vw;
+  height: 60vw;
+  margin: 0;
 }
 </style>
