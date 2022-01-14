@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main>
+    <v-main style="padding-bottom: 0">
       <v-container class="staticHero" fluid>
         <v-img :src="img" style="max-height: 350px">
           <v-row align="end" class="lightbox white--text pa-2 fill-height">
@@ -14,7 +14,6 @@
           </v-row>
         </v-img>
       </v-container>
-      <v-spacer tag="v-container"></v-spacer>
       <v-spacer tag="v-container"></v-spacer>
       <v-spacer tag="v-container"></v-spacer>
       <v-spacer tag="v-container"></v-spacer>
@@ -39,7 +38,6 @@
               required
             ></v-text-field>
             <v-textarea
-            
               class="messagebox"
               v-model="message"
               :rules="messageRules"
@@ -58,12 +56,43 @@
         </v-container>
         <v-container class="info-block">
           <ul>
-            <li><v-icon color="white" x-large style="padding-right: 10px">mdi-map-marker</v-icon> Bill Clinton</li>
-            <li><v-icon color="white" x-large style="padding-right: 10px">mdi-email</v-icon>   mycinema@gmail.com</li>
-            <li><v-icon color="white" x-large style="padding-right: 10px">mdi-phone</v-icon>   +383 44 111 232</li>
-            <li><v-icon color="white" x-large style="padding-right: 10px">mdi-clock</v-icon>   Mon-Fri 10:00 AM-23:00 PM</li>
+            <li>
+              <v-icon color="white" x-large style="padding-right: 10px"
+                >mdi-map-marker</v-icon
+              >
+              Bill Clinton
+            </li>
+            <li>
+              <v-icon color="white" x-large style="padding-right: 10px"
+                >mdi-email</v-icon
+              >
+              mycinema@gmail.com
+            </li>
+            <li>
+              <v-icon color="white" x-large style="padding-right: 10px"
+                >mdi-phone</v-icon
+              >
+              +383 44 111 232
+            </li>
+            <li>
+              <v-icon color="white" x-large style="padding-right: 10px"
+                >mdi-clock</v-icon
+              >
+              Mon-Fri 10:00 AM-23:00 PM
+            </li>
           </ul>
         </v-container>
+      </v-container>
+      <v-spacer tag="v-container"></v-spacer>
+      <v-spacer tag="v-container"></v-spacer>
+      <v-spacer tag="v-container"></v-spacer>
+      <v-container style="padding: 0" fluid>
+        <iframe
+          style="filter: invert(90%)"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16705.802661855836!2d-0.14290489950731525!3d51.50711704027593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon!5e0!3m2!1sen!2suk!4v1577041400110!5m2!1sen!2suk"
+          width="100%"
+          height="450"
+        ></iframe>
       </v-container>
     </v-main>
   </v-app>
@@ -145,10 +174,9 @@ ul li {
   display: flex;
 }
 .v-form {
-  background: grey!important;
-    padding: 20px;
-    border-radius: 15px;
-    width: 80%;
-    box-shadow: 8px 5px 20px blanchedalmond;
+  background: #1e1e1e !important;
+  padding: 20px;
+  border-radius: 15px;
+  width: 80%;
 }
 </style>
