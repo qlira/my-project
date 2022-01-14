@@ -3,18 +3,20 @@
     <nav>
       <div>
         <v-toolbar-title>
-          <v-img 
+          <v-img
             src="https://i.ibb.co/VYVVvcM/default-removebg-preview.png"
             height="125"
             width="125"
-              class="grey darken-4"
-            >
+            class="grey darken-4"
+          >
           </v-img>
         </v-toolbar-title>
       </div>
       <div>
-        <v-btn text class="m1-2 " to="/"><p style="color: orange">Home</p></v-btn>
-        
+        <v-btn text class="m1-2" to="/"
+          ><p style="color: orange">Home</p></v-btn
+        >
+
         <v-btn
           text
           class="m1-2"
@@ -22,12 +24,8 @@
           @mouseleave="showCategories = false"
           :to="path != '/' ? '/' : ''"
           >Categories
-          <v-card 
-            max-width="300"
-            tile 
-            class="category-menu mx-auto" 
-            v-if="showCategories === true">
-            <!-- <ul>
+          <v-container class="category-menu" v-if="showCategories === true">
+            <ul>
               <li
                 v-for="(category, index) in staticCategoriesName"
                 :key="index"
@@ -35,30 +33,16 @@
               >
                 {{ category }}
               </li>
-            </ul> -->
-
-            <v-list dark flat dense>
-              <v-list-item-group
-              v-if="showCategories === true">
-                <v-list-item
-                style="color: orange"
-                v-for="(category, index) in staticCategoriesName"
-                :key="index"
-                @click="filterByCategory(category)">
-                  {{ category }}
-                </v-list-item>
-                <v-divider
-  vertical
-></v-divider>
-              </v-list-item-group>
-            </v-list>
-          </v-card>
+            </ul>
+          </v-container>
         </v-btn>
         <v-btn to="/aboutus" text class="m1-2">About Us</v-btn>
         <v-btn to="/contactus" text class="m1-2">Contact Us</v-btn>
       </div>
       <div v-if="!user" style="display: flex; aligh-items: center">
-        <v-btn text class="m1-2" to="/sign-in"><p style="color: orange">Sign In</p></v-btn>
+        <v-btn text class="m1-2" to="/sign-in"
+          ><p style="color: orange">Sign In</p></v-btn
+        >
       </div>
       <div v-if="user">
         <h4>{{ user.email }} {{ user.firstName }}</h4>
@@ -111,12 +95,11 @@ export default {
     },
   },
 };
-
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 nav {
   width: 100%;
@@ -134,12 +117,12 @@ nav {
   position: absolute;
   z-index: 20;
   background-color: #3d3d3d;
-  width: 300px;
+  width: 500px;
   top: 26px;
   left: -15px;
   border-radius: 10px;
 }
-.category-menu .v-list {
+.category-menu ul {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -147,11 +130,11 @@ nav {
   width: 120%;
 }
 
-.category-menu .v-list-item {
+.category-menu ul li {
   list-style: none;
   display: inline-block;
   flex: 0 0 26%;
-  padding: 15px 15px;
+  padding: 15px 0px;
 }
 .v-btn {
   color: whitesmoke !important;
@@ -163,5 +146,4 @@ nav {
   font-family: "Montserrat Alternates";
   color: orange !important;
 } */
-
 </style>

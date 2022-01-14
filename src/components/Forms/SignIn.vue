@@ -31,7 +31,6 @@
                   filled
                   rounded
                   prepend-inner-icon="mdi-at"
-                  suffix="@gmail.com"
                   label="Email"
                   type="email"
                   v-model="loginEmail"
@@ -49,10 +48,6 @@
                   v-model="loginPassword"
                   :rules="[loginRules.required]"
                   :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                  :type="show1 ? 'text' : 'password'"
-                  counter
-                  @click:append="show1 = !show1"
-                  hint="Should be at least 8 characters"
                 >
                 </v-text-field>
                 <v-btn
