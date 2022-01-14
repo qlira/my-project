@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
       <v-content>
-        <div class="staticHero">
+        <v-container class="staticHero">
           <v-img :src="img" style="max-height: 350px">
             <v-row align="end" class="lightbox white--text pa-2 fill-height">
               <v-col>
@@ -14,8 +14,8 @@
               </v-col>
             </v-row>
           </v-img>
-        </div>
-        <div
+        </v-container>
+        <v-container
           class="MOTHER-ROW"
           style="
             max-width: 1500px;
@@ -27,15 +27,15 @@
             justify-content: space-around;
           "
         >
-          <div class="info-block">
+          <v-container class="info-block">
             <ul>
               <li>Str. Bill Clinton</li>
               <li>mycinema@gmail.com</li>
               <li>+383 44 111 232</li>
               <li>Mon-Fri 10:00 AM-23:00 PM</li>
             </ul>
-          </div>
-          <div class="contact-block">
+          </v-container>
+          <v-container class="contact-block">
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-text-field
                 class="name"
@@ -68,8 +68,8 @@
               >
               <v-btn color="error" class="mr-4" @click="reset">Reset</v-btn>
             </v-form>
-          </div>
-        </div>
+          </v-container>
+        </v-container>
       </v-content>
     </v-main>
   </v-app>
@@ -133,5 +133,8 @@ export default {
 
 ul li {
   list-style-type: none;
+}
+.staticHero {
+  width: 100%;
 }
 </style>
