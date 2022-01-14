@@ -61,7 +61,7 @@
 
 <script>
 export default {
-  name: "Contact",
+  name: "ContactUs",
   data: () => ({
     valid: true,
     name: "",

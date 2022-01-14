@@ -4,7 +4,7 @@
       <div>
         <v-toolbar-title>
           <v-img 
-            src="https://o.remove.bg/downloads/26ff885e-4c3c-4dc8-9b8c-807855434a5b/default-removebg-preview.png"
+            src="https://i.ibb.co/VYVVvcM/default-removebg-preview.png"
             height="125"
             width="125"
               class="grey darken-4"
@@ -13,7 +13,8 @@
         </v-toolbar-title>
       </div>
       <div>
-        <v-btn text class="m1-2" to="/"><p style="color: orange">Home</p></v-btn>
+        <v-btn text class="m1-2 " to="/"><p style="color: orange">Home</p></v-btn>
+        
         <v-btn
           text
           class="m1-2"
@@ -21,8 +22,12 @@
           @mouseleave="showCategories = false"
           :to="path != '/' ? '/' : ''"
           >Categories
-          <div class="category-menu" v-if="showCategories === true">
-            <ul>
+          <v-card 
+            max-width="300"
+            tile 
+            class="category-menu mx-auto" 
+            v-if="showCategories === true">
+            <!-- <ul>
               <li
                 v-for="(category, index) in staticCategoriesName"
                 :key="index"
@@ -30,8 +35,24 @@
               >
                 {{ category }}
               </li>
-            </ul>
-          </div>
+            </ul> -->
+
+            <v-list dark flat dense>
+              <v-list-item-group
+              v-if="showCategories === true">
+                <v-list-item
+                style="color: orange"
+                v-for="(category, index) in staticCategoriesName"
+                :key="index"
+                @click="filterByCategory(category)">
+                  {{ category }}
+                </v-list-item>
+                <v-divider
+  vertical
+></v-divider>
+              </v-list-item-group>
+            </v-list>
+          </v-card>
         </v-btn>
         <v-btn to="/aboutus" text class="m1-2">About Us</v-btn>
         <v-btn to="/contactus" text class="m1-2">Contact Us</v-btn>
@@ -113,31 +134,34 @@ nav {
   position: absolute;
   z-index: 20;
   background-color: #3d3d3d;
-  width: 500px;
+  width: 300px;
   top: 26px;
   left: -15px;
   border-radius: 10px;
 }
-.category-menu ul {
+.category-menu .v-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   padding: 20px;
   width: 120%;
 }
-.category-menu ul li {
+
+.category-menu .v-list-item {
   list-style: none;
   display: inline-block;
   flex: 0 0 26%;
-  padding: 15px 0px;
+  padding: 15px 15px;
 }
 .v-btn {
   color: whitesmoke !important;
   font-family: "Montserrat";
+  padding-left: 15px;
 }
 /* .v-toolbar__title {
   font-size: 2.25rem;
   font-family: "Montserrat Alternates";
   color: orange !important;
 } */
+
 </style>
