@@ -138,9 +138,16 @@ export default {
 </script>
 
 <style>
+<<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,800;0,900;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap");
+=======
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,800;0,900;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+>>>>>>> 4d78ce38fd0c4ca7b16850d80c220105645bcbf6
 
 h1,
 h2 {
@@ -149,7 +156,7 @@ h2 {
 
 #desc {
   font-size: 17px;
-  font-family: "Poppins";
+  font-family: "Lato";
 }
 
 b {

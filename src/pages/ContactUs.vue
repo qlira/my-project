@@ -78,7 +78,7 @@
 <script>
 import Image from "../assets/images/contactpage-img.jpg";
 export default {
-  name: "Contact",
+  name: "ContactUs",
   data: () => ({
     img: Image,
     valid: true,

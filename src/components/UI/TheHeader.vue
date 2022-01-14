@@ -3,25 +3,29 @@
     <nav>
       <div>
         <v-toolbar-title>
-          <v-img 
-            src="https://o.remove.bg/downloads/26ff885e-4c3c-4dc8-9b8c-807855434a5b/default-removebg-preview.png"
+          <v-img
+            src="https://i.ibb.co/VYVVvcM/default-removebg-preview.png"
             height="125"
             width="125"
-              class="grey darken-4"
-            >
+            class="grey darken-4"
+          >
           </v-img>
         </v-toolbar-title>
       </div>
       <div>
-        <v-btn text class="m1-2" to="/"><p style="color: orange">Home</p></v-btn>
+        <v-btn text class="m1-2" to="/" style="color: orange !important"
+          >Home</v-btn
+        >
+
         <v-btn
           text
           class="m1-2"
           @mouseover="showCategories = true"
           @mouseleave="showCategories = false"
+          style="color: orange !important"
           :to="path != '/' ? '/' : ''"
           >Categories
-          <div class="category-menu" v-if="showCategories === true">
+          <v-container class="category-menu" v-if="showCategories === true">
             <ul>
               <li
                 v-for="(category, index) in staticCategoriesName"
@@ -31,13 +35,15 @@
                 {{ category }}
               </li>
             </ul>
-          </div>
+          </v-container>
         </v-btn>
-        <v-btn to="/aboutus" text class="m1-2">About Us</v-btn>
-        <v-btn to="/contactus" text class="m1-2">Contact Us</v-btn>
+        <v-btn to="/aboutus" text class="m1-2" style="color: orange !important">About Us</v-btn>
+        <v-btn to="/contactus" text class="m1-2" style="color: orange !important">Contact Us</v-btn>
       </div>
       <div v-if="!user" style="display: flex; aligh-items: center">
-        <v-btn text class="m1-2" to="/sign-in"><p style="color: orange">Sign In</p></v-btn>
+        <v-btn text class="m1-2" to="/sign-in" style="color: orange !important"
+          >Sign In</v-btn
+        >
       </div>
       <div v-if="user">
         <h4>{{ user.email }} {{ user.firstName }}</h4>
@@ -90,12 +96,11 @@ export default {
     },
   },
 };
-
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 nav {
   width: 100%;
@@ -124,16 +129,22 @@ nav {
   align-items: center;
   padding: 20px;
   width: 120%;
+  color: orange;
 }
+
 .category-menu ul li {
   list-style: none;
   display: inline-block;
   flex: 0 0 26%;
   padding: 15px 0px;
 }
+.category-menu ul li:hover {
+
+}
 .v-btn {
   color: whitesmoke !important;
   font-family: "Montserrat";
+  padding-left: 15px;
 }
 /* .v-toolbar__title {
   font-size: 2.25rem;

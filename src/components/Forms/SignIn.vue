@@ -1,30 +1,36 @@
 <template>
   <v-app>
     <v-main>
-      <v-container class="con">
+      <v-container dark class="con">
         <v-container class="form-con-1" v-if="show === false">
           <v-container
             style="
               background-color: white;
               width: 60%;
-              height: 60%;
-              border-radius: 15px;
+              height: 70%;
+              border-radius: 15px 0 0 15px;
             "
           >
             <v-card class="cardColor-1">
               <v-spacer tag="v-card-title"></v-spacer>
               <v-spacer tag="v-card-title"></v-spacer>
 
-              <v-content style="font-size: 40px; padding: 0"
+              <v-content class="tl" style="font-size: 40px; padding: 0"
                 >Sign In
               </v-content>
-              <v-content style="padding: 0; font-size: 20px"
+              <v-content class="subtl" style="padding: 0; font-size: 20px"
                 >Use your account
               </v-content>
               <v-spacer tag="v-card-title"></v-spacer>
               <v-form ref="formLogin">
                 <v-alert v-if="error">{{ error }}</v-alert>
                 <v-text-field
+                  single-line
+                  outlined
+                  clearable
+                  filled
+                  rounded
+                  prepend-inner-icon="mdi-at"
                   label="Email"
                   type="email"
                   v-model="loginEmail"
@@ -32,15 +38,22 @@
                 >
                 </v-text-field>
                 <v-text-field
+                  single-line
+                  outlined
+                  clearable
+                  filled
+                  rounded
+                  prepend-inner-icon="mdi-lock"
                   label="Password"
-                  type="password"
                   v-model="loginPassword"
                   :rules="[loginRules.required]"
+                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 >
                 </v-text-field>
                 <v-btn
+                  rounded
                   x-large
-                  color="teal"
+                  color="#3d3d3d"
                   style="color: white"
                   @click="submitLogInForm"
                   >Log In</v-btn
@@ -50,34 +63,33 @@
           </v-container>
           <v-container
             style="
-              background: teal;
+              background: #dcb933;
               width: 40%;
               height: 70%;
-              border-radius: 15px;
+              border-radius: 0 15px 15px 0;
             "
           >
-            <v-card class="cardColor-2">
+            <v-card class="cardColor-1">
               <v-spacer tag="v-card-title"></v-spacer>
               <v-spacer tag="v-card-title"></v-spacer>
               <v-spacer tag="v-card-title"></v-spacer>
-              <v-content style="font-size: 40px; padding: 0"
+              <v-spacer tag="v-card-title"></v-spacer>
+
+              <v-content class="tl" style="font-size: 40px; padding: 0"
                 >Welcome Back, Friend
               </v-content>
               <v-spacer tag="v-card-title"></v-spacer>
+
               <v-spacer tag="v-card-title"></v-spacer>
-              <v-spacer tag="v-card-title"></v-spacer>
-              <v-spacer tag="v-card-title"></v-spacer>
-              <v-content style="padding: 0; font-size: 20px"
+              <v-content class="subtl" style="padding: 0; font-size: 20px"
                 >Enter your login details
               </v-content>
               <v-spacer tag="v-card-title"></v-spacer>
               <v-spacer tag="v-card-title"></v-spacer>
-              <v-spacer tag="v-card-title"></v-spacer>
-              <v-spacer tag="v-card-title"></v-spacer>
               <v-btn
                 x-large
-                color="teal"
-                style="color: white"
+                color="#3d3d3d"
+                style="color: #dcb933"
                 @click="showSignIn"
                 >Sign up</v-btn
               >
@@ -89,26 +101,31 @@
         <v-container class="form-con-1" v-if="show === true">
           <v-container
             style="
-              background-color: white;
+              background-color: whitesmoke;
               width: 60%;
-              height: 60%;
-              border-radius: 15px;
+              height: 75%;
+              border-radius: 15px 0 0 15px;
             "
           >
             <v-card class="cardColor-1">
               <v-spacer tag="v-card-title"></v-spacer>
               <v-spacer tag="v-card-title"></v-spacer>
 
-              <v-content style="font-size: 40px; padding: 0"
+              <v-content class="tl" style="font-size: 40px; padding: 0"
                 >Sign Up
               </v-content>
-              <v-content style="padding: 0; font-size: 20px"
+              <v-content class="subtl" style="padding: 0; font-size: 20px"
                 >Register your account
               </v-content>
               <v-spacer tag="v-card-title"></v-spacer>
               <v-form ref="formSignup">
                 <v-alert v-if="error">{{ error }}</v-alert>
                 <v-text-field
+                  single-line
+                  outlined
+                  clearable
+                  filled
+                  rounded
                   label="First Name"
                   type="text"
                   v-model="firstNameInput"
@@ -116,6 +133,11 @@
                 >
                 </v-text-field>
                 <v-text-field
+                  single-line
+                  outlined
+                  clearable
+                  filled
+                  rounded
                   label="Email"
                   type="email"
                   v-model="emailInput"
@@ -123,6 +145,11 @@
                 >
                 </v-text-field>
                 <v-text-field
+                  single-line
+                  outlined
+                  clearable
+                  filled
+                  rounded
                   label="Password"
                   type="password"
                   v-model="passwordInput"
@@ -130,8 +157,9 @@
                 >
                 </v-text-field>
                 <v-btn
+                  rounded
                   x-large
-                  color="teal"
+                  color="#3d3d3d"
                   style="color: white"
                   @click="submitRegisterForm"
                   >Sign Up</v-btn
@@ -141,34 +169,34 @@
           </v-container>
           <v-container
             style="
-              background: teal;
+              background: #dcb933;
               width: 40%;
-              height: 70%;
-              border-radius: 15px;
+              height: 75%;
+              border-radius: 0 15px 15px 0;
+              border-width: 5px;
             "
           >
             <v-card class="cardColor-2">
               <v-spacer tag="v-card-title"></v-spacer>
               <v-spacer tag="v-card-title"></v-spacer>
               <v-spacer tag="v-card-title"></v-spacer>
-              <v-content style="font-size: 40px; padding: 0"
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+              <v-spacer tag="v-card-title"></v-spacer>
+
+              <v-content class="tl" style="font-size: 40px; padding: 0"
                 >Hello Friend
               </v-content>
               <v-spacer tag="v-card-title"></v-spacer>
-              <v-spacer tag="v-card-title"></v-spacer>
-              <v-spacer tag="v-card-title"></v-spacer>
-              <v-spacer tag="v-card-title"></v-spacer>
-              <v-content style="padding: 0; font-size: 20px"
+              <v-content class="subtl" style="padding: 0; font-size: 20px"
                 >Enter your register details
               </v-content>
               <v-spacer tag="v-card-title"></v-spacer>
               <v-spacer tag="v-card-title"></v-spacer>
-              <v-spacer tag="v-card-title"></v-spacer>
-              <v-spacer tag="v-card-title"></v-spacer>
               <v-btn
                 x-large
-                color="teal"
-                style="color: white"
+                color="#3d3d3d"
+                style="color: ##3d3d3d"
                 @click="showSignIn"
                 >Sign In</v-btn
               >
@@ -185,6 +213,11 @@ export default {
   data() {
     return {
       show: false,
+      show1: false,
+      show2: true,
+      show3: false,
+      show4: false,
+      password: "Password",
       loginEmail: "",
       loginPassword: "",
       emailInput: "",
@@ -245,6 +278,9 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
 .con {
   height: 100%;
 }
@@ -259,12 +295,20 @@ export default {
   border-color: transparent !important;
   box-shadow: none !important;
   text-align: center;
+  color: #3d3d3d !important;
 }
 .cardColor-2 {
   background-color: transparent !important;
   border-color: transparent !important;
   box-shadow: none !important;
   text-align: center;
-  color: white;
+  color: #3d3d3d !important;
+}
+.tl {
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+.subtl {
+  font-family: "Lato";
 }
 </style>
