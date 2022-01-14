@@ -2,11 +2,13 @@
   <v-app>
     <v-main style="padding-bottom: 0">
       <v-container class="staticHero" fluid>
-        <v-img :src="img" style="max-height: 350px">
+        <v-img :src="img" style="max-height: 300px">
           <v-row align="end" class="lightbox white--text pa-2 fill-height">
             <v-col>
               <v-container class="headline">
-                <v-toolbar-title class="text--lighten-1 font-weight-bold">
+                <v-toolbar-title
+                  class="red--text text--lighten-1 font-weight-bold"
+                >
                   CONTACT US
                 </v-toolbar-title>
               </v-container>
@@ -133,13 +135,14 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .headline {
-  text-align: center;
+  text-align: left;
+  font-family: "Montserrat";
 }
 .v-toolbar__title {
-  font-size: 35px !important;
-  color: #dcb933;
+  font-size: 32px !important;
+  font-family: "Montserrat";
 }
 
 .contact-block {
@@ -174,7 +177,7 @@ ul li {
   display: flex;
 }
 .v-form {
-  background: #1e1e1e !important;
+  background: rgb(65, 65, 65);
   padding: 20px;
   border-radius: 15px;
   width: 80%;
