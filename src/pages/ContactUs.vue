@@ -1,76 +1,70 @@
 <template>
   <v-app>
     <v-main>
-      <v-content>
-        <v-container class="staticHero">
-          <v-img :src="img" style="max-height: 350px">
-            <v-row align="end" class="lightbox white--text pa-2 fill-height">
-              <v-col>
-                <v-container class="headline">
-                  <h1 class="orange--text text--lighten-1 font-weight-bold">
-                    CONTACT US
-                  </h1>
-                </v-container>
-              </v-col>
-            </v-row>
-          </v-img>
+      <v-container class="staticHero" fluid>
+        <v-img :src="img" style="max-height: 350px">
+          <v-row align="end" class="lightbox white--text pa-2 fill-height">
+            <v-col>
+              <v-container class="headline">
+                <v-toolbar-title class="text--lighten-1 font-weight-bold">
+                  CONTACT US
+                </v-toolbar-title>
+              </v-container>
+            </v-col>
+          </v-row>
+        </v-img>
+      </v-container>
+      <v-spacer tag="v-container"></v-spacer>
+      <v-spacer tag="v-container"></v-spacer>
+      <v-spacer tag="v-container"></v-spacer>
+      <v-spacer tag="v-container"></v-spacer>
+      <v-spacer tag="v-container"></v-spacer>
+
+      <v-container class="content" fluid>
+        <v-container class="contact-block">
+          <v-form ref="form" v-model="valid" lazy-validation>
+            <v-text-field
+              class="name"
+              v-model="name"
+              :counter="10"
+              :rules="nameRules"
+              label="Name"
+              required
+            ></v-text-field>
+            <v-text-field
+              class="email"
+              v-model="email"
+              :rules="emailRules"
+              label="E-mail"
+              required
+            ></v-text-field>
+            <v-textarea
+            
+              class="messagebox"
+              v-model="message"
+              :rules="messageRules"
+              label="Message"
+              required
+            ></v-textarea>
+            <v-btn
+              :disabled="!valid"
+              style="background-color: #dcb933 !important; color: #1e1e1e"
+              class="mr-4"
+              @click="validate"
+              >Submit</v-btn
+            >
+            <v-btn color="error" class="mr-4" @click="reset">Reset</v-btn>
+          </v-form>
         </v-container>
-        <v-container
-          class="MOTHER-ROW"
-          style="
-            max-width: 1500px;
-            margin: 0 auto;
-            padding: 100px 0;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-around;
-          "
-        >
-          <v-container class="info-block">
-            <ul>
-              <li>Str. Bill Clinton</li>
-              <li>mycinema@gmail.com</li>
-              <li>+383 44 111 232</li>
-              <li>Mon-Fri 10:00 AM-23:00 PM</li>
-            </ul>
-          </v-container>
-          <v-container class="contact-block">
-            <v-form ref="form" v-model="valid" lazy-validation>
-              <v-text-field
-                class="name"
-                v-model="name"
-                :counter="10"
-                :rules="nameRules"
-                label="Name"
-                required
-              ></v-text-field>
-              <v-text-field
-                class="email"
-                v-model="email"
-                :rules="emailRules"
-                label="E-mail"
-                required
-              ></v-text-field>
-              <v-textarea
-                class="messagebox"
-                v-model="message"
-                :rules="messageRules"
-                label="Message"
-                required
-              ></v-textarea>
-              <v-btn
-                :disabled="!valid"
-                color="success"
-                class="mr-4"
-                @click="validate"
-                >Submit</v-btn
-              >
-              <v-btn color="error" class="mr-4" @click="reset">Reset</v-btn>
-            </v-form>
-          </v-container>
+        <v-container class="info-block">
+          <ul>
+            <li><v-icon color="white" x-large style="padding-right: 10px">mdi-map-marker</v-icon> Bill Clinton</li>
+            <li><v-icon color="white" x-large style="padding-right: 10px">mdi-email</v-icon>   mycinema@gmail.com</li>
+            <li><v-icon color="white" x-large style="padding-right: 10px">mdi-phone</v-icon>   +383 44 111 232</li>
+            <li><v-icon color="white" x-large style="padding-right: 10px">mdi-clock</v-icon>   Mon-Fri 10:00 AM-23:00 PM</li>
+          </ul>
         </v-container>
-      </v-content>
+      </v-container>
     </v-main>
   </v-app>
 </template>
@@ -114,27 +108,47 @@ export default {
 .headline {
   text-align: center;
 }
+.v-toolbar__title {
+  font-size: 35px !important;
+  color: #dcb933;
+}
 
 .contact-block {
-  background-color: #1e1e1e;
   padding: 40px;
-  border-radius: 10px;
-  box-shadow: 10%;
+
+  max-width: 50%;
+  margin: 0;
+  display: flex;
+
+  justify-content: right;
 }
 .name {
   color: white;
 }
 .info-block {
   color: white;
-  max-width: 500px;
+  max-width: 50%;
   line-height: 95px;
   font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 ul li {
   list-style-type: none;
 }
 .staticHero {
-  width: 100%;
+  padding: 0;
+}
+.content {
+  display: flex;
+}
+.v-form {
+  background: grey!important;
+    padding: 20px;
+    border-radius: 15px;
+    width: 80%;
+    box-shadow: 8px 5px 20px blanchedalmond;
 }
 </style>

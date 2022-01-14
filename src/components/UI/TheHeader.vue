@@ -13,7 +13,7 @@
         </v-toolbar-title>
       </div>
       <div>
-        <v-btn text class="m1-2" to="/" style="color: orange !important"
+        <v-btn text class="m1-2" to="/" style="color: #dcb933 !important"
           >Home</v-btn
         >
 
@@ -22,7 +22,7 @@
           class="m1-2"
           @mouseover="showCategories = true"
           @mouseleave="showCategories = false"
-          style="color: orange !important"
+          style="color: #dcb933 !important"
           :to="path != '/' ? '/' : ''"
           >Categories
           <v-container class="category-menu" v-if="showCategories === true">
@@ -37,11 +37,11 @@
             </ul>
           </v-container>
         </v-btn>
-        <v-btn to="/aboutus" text class="m1-2" style="color: orange !important">About Us</v-btn>
-        <v-btn to="/contactus" text class="m1-2" style="color: orange !important">Contact Us</v-btn>
+        <v-btn to="/aboutus" text class="m1-2" style="color: #dcb933 !important">About Us</v-btn>
+        <v-btn to="/contactus" text class="m1-2" style="color: #dcb933 !important">Contact Us</v-btn>
       </div>
       <div v-if="!user" style="display: flex; aligh-items: center">
-        <v-btn text class="m1-2" to="/sign-in" style="color: orange !important"
+        <v-btn text class="m1-2" to="/sign-in" style="color: #dcb933 !important"
           >Sign In</v-btn
         >
       </div>
@@ -129,7 +129,7 @@ nav {
   align-items: center;
   padding: 20px;
   width: 120%;
-  color: orange;
+  color: #dcb933;
 }
 
 .category-menu ul li {
