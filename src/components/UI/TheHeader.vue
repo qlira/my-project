@@ -13,8 +13,8 @@
         </v-toolbar-title>
       </div>
       <div>
-        <v-btn text class="m1-2" to="/"
-          ><p style="color: orange">Home</p></v-btn
+        <v-btn text class="m1-2" to="/" style="color: orange !important"
+          >Home</v-btn
         >
 
         <v-btn
@@ -22,6 +22,7 @@
           class="m1-2"
           @mouseover="showCategories = true"
           @mouseleave="showCategories = false"
+          style="color: orange !important"
           :to="path != '/' ? '/' : ''"
           >Categories
           <v-container class="category-menu" v-if="showCategories === true">
@@ -36,12 +37,12 @@
             </ul>
           </v-container>
         </v-btn>
-        <v-btn to="/aboutus" text class="m1-2">About Us</v-btn>
-        <v-btn to="/contactus" text class="m1-2">Contact Us</v-btn>
+        <v-btn to="/aboutus" text class="m1-2" style="color: orange !important">About Us</v-btn>
+        <v-btn to="/contactus" text class="m1-2" style="color: orange !important">Contact Us</v-btn>
       </div>
       <div v-if="!user" style="display: flex; aligh-items: center">
-        <v-btn text class="m1-2" to="/sign-in"
-          ><p style="color: orange">Sign In</p></v-btn
+        <v-btn text class="m1-2" to="/sign-in" style="color: orange !important"
+          >Sign In</v-btn
         >
       </div>
       <div v-if="user">
@@ -128,6 +129,7 @@ nav {
   align-items: center;
   padding: 20px;
   width: 120%;
+  color: orange;
 }
 
 .category-menu ul li {
@@ -135,6 +137,9 @@ nav {
   display: inline-block;
   flex: 0 0 26%;
   padding: 15px 0px;
+}
+.category-menu ul li:hover {
+
 }
 .v-btn {
   color: whitesmoke !important;
