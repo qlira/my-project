@@ -25,8 +25,10 @@
         <v-container class="contact-block">
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-text-field
+              @focus="methodToChangeColor"
               class="name"
               v-model="name"
+              placeholder="placeholder text"
               :counter="10"
               :rules="nameRules"
               label="Name"
@@ -48,12 +50,22 @@
             ></v-textarea>
             <v-btn
               :disabled="!valid"
-              style="background-color: #dcb933 !important; color: #1e1e1e"
+              style="
+                background-color: #dcb933 !important;
+                color: #1e1e1e;
+                border-radius: 0px;
+              "
               class="mr-4"
               @click="validate"
               >Submit</v-btn
             >
-            <v-btn color="error" class="mr-4" @click="reset">Reset</v-btn>
+            <v-btn
+              style="border-radius: 0px"
+              color="error"
+              class="mr-4"
+              @click="reset"
+              >Reset</v-btn
+            >
           </v-form>
         </v-container>
         <v-container class="info-block">
@@ -62,7 +74,7 @@
               <v-icon color="white" x-large style="padding-right: 10px"
                 >mdi-map-marker</v-icon
               >
-              Bill Clinton
+              Boulevard Bill Clinton
             </li>
             <li>
               <v-icon color="white" x-large style="padding-right: 10px"
@@ -90,8 +102,7 @@
       <v-spacer tag="v-container"></v-spacer>
       <v-container style="padding: 0" fluid>
         <iframe
-          style="filter: invert(90%)"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16705.802661855836!2d-0.14290489950731525!3d51.50711704027593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon!5e0!3m2!1sen!2suk!4v1577041400110!5m2!1sen!2suk"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.3466705580945!2d21.151025915754936!3d42.65400852447946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ef1e2266879%3A0x9f9ca7c7ab182591!2sStatue%20of%20Bill%20Clinton!5e0!3m2!1sen!2s!4v1642203706273!5m2!1sen!2s"
           width="100%"
           height="450"
         ></iframe>
@@ -141,21 +152,16 @@ export default {
   font-family: "Montserrat";
 }
 .v-toolbar__title {
-  font-size: 32px !important;
+  font-size: 32px;
   font-family: "Montserrat";
 }
 
 .contact-block {
   padding: 40px;
-
   max-width: 50%;
   margin: 0;
   display: flex;
-
   justify-content: right;
-}
-.name {
-  color: white;
 }
 .info-block {
   color: white;
@@ -177,9 +183,9 @@ ul li {
   display: flex;
 }
 .v-form {
-  background: rgb(65, 65, 65);
+  background: #1e1e1e;
   padding: 20px;
-  border-radius: 15px;
   width: 80%;
+  opacity: 90%;
 }
 </style>
