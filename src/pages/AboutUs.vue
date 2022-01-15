@@ -17,7 +17,11 @@
         </div>
         <div class="block">
           <v-container>
-            <div id="desc" class="white--text" style="padding-top: 40px">
+            <div
+              id="desc"
+              class="white--text"
+              style="padding-top: 60px; padding-bottom: 20px"
+            >
               <b class="orange--text text-xl-h2">MyCinema</b> is more than a
               regular place to see a movie - it is a movie theater for movie
               lovers. Since 2020, our mission has been to create the most
@@ -50,7 +54,7 @@
                 class="mb-6"
                 justify="center"
                 no-gutters
-                style="padding-top: 50px; padding-bottom: 60px"
+                style="padding-top: 100px; padding-bottom: 40px"
                 ><b
                   ><i id="quote" class="orange--text"
                     >Catering to a diverse and inclusive audience is part of our
@@ -61,8 +65,45 @@
             </div>
           </v-container>
         </div>
-        <div class="block">
+        <v-img :src="img3">
           <v-container>
+            <div style="padding-bottom: 100px; padding-top: 100px">
+              <v-timeline>
+                <v-timeline-item
+                  v-for="(year, i) in years"
+                  :key="i"
+                  :color="year.color"
+                  small
+                  :icon="year.icon"
+                  fill-dot
+                >
+                  <template v-slot:opposite>
+                    <h2
+                      :class="`font-weight-bold ${year.color}--text`"
+                      v-text="year.year"
+                    ></h2>
+                  </template>
+                  <div class="py-4">
+                    <h1 :class="`font-weight-bold mb-4 ${year.color}--text`" style="font-style: italic">
+                      {{ year.text }}
+                    </h1>
+                    <div
+                      style="
+                        color: whitesmoke;
+                        font-family: Lato;
+                        font-size: 20px;
+                      "
+                    >
+                      {{ year.desc }}
+                    </div>
+                  </div>
+                </v-timeline-item>
+              </v-timeline>
+            </div>
+          </v-container>
+        </v-img>
+        <div class="block">
+          <v-container style="padding-top: 70px">
             <h2
               id="title"
               class="text-center red--text text--lighten-1"
@@ -105,6 +146,7 @@
 <script>
 import Image1 from "../assets/images/aboutus-headline1.jpg";
 import Image2 from "../assets/images/team.jpg";
+import Image3 from "../assets/images/aboutus-ourstory(1).jpg";
 export default {
   name: "AboutUs",
 
@@ -112,6 +154,7 @@ export default {
     return {
       img: Image1,
       img2: Image2,
+      img3: Image3,
       items: [
         {
           id: 1,
@@ -130,6 +173,29 @@ export default {
           src: require("../assets/images/team.jpg"),
           name: "Dea Haliti",
           title: "CEO",
+        },
+      ],
+      years: [
+        {
+          text: "The beginning",
+          color: "yellow",
+          icon: "mdi-star",
+          year: "2020",
+          desc: "Due to the COVID-19 pandemic outbreak, our mission had been clear from the start: we would help our customers enjoy MyCinema, in a safe and enjoyable manner while still appreciating the art of film. Respecting mask usage, 2m distance between seats and a clean environment was the key to providing the best service to our loyal audience.",
+        },
+        {
+          text: "During",
+          color: "orange",
+          icon: "mdi-star",
+          year: "2021",
+          desc: "Having created an online platform that provides our loyal audience with knowledge about the current available films in our Cinema AND the feature of reserving tickets, we can say we have successfully done it all. Available movies are easy to look for, and so are upcoming movies! At MyCinema, we have a movie for everybody: grap some popcorn and you are guaranteed a great experience.",
+        },
+        {
+          text: "Today",
+          color: "red",
+          icon: "mdi-star",
+          year: "2022",
+          desc: "To this date, we are proud of our service and the feedback we have received. Each day, we look for better and easier ways to please our customers and make film-watching an even more enjoyable experience. As the world moves fast, adapting is a blessing in disguise. Whether you need to distract yourself or treat yourself for your free time, watch a film with us while you are at it.",
         },
       ],
     };
@@ -152,16 +218,13 @@ b {
   font-size: 20px;
   padding-right: 5px;
   padding-left: 2px;
-  font-family: "Montserrat Alternates";
-}
-
-i {
-  padding-top: 5px;
-  font-family: "Montserrat Alternates";
-  font-size: 23px;
+  font-family: "Montserrat";
 }
 
 #quote {
   text-align: center;
+  padding-top: 5px;
+  font-family: "Montserrat Alternates";
+  font-size: 23px;
 }
 </style>

@@ -25,6 +25,15 @@
             >
             <v-content style="display: inline-block">{{ rating }}</v-content>
           </v-content>
+           <v-alert
+              outlined
+              dense
+              border="left"
+              type="warning"
+            >
+            <!-- could be removed -->
+              Për shkak të masave <strong>anti COVID-19</strong> biletat janë të <strong>limituara</strong>
+            </v-alert>
           <v-btn
             depressed
             elevation="3"
