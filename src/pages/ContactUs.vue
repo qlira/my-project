@@ -25,7 +25,6 @@
         <v-container class="contact-block">
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-text-field
-              @focus="methodToChangeColor"
               class="name"
               v-model="name"
               placeholder="placeholder text"
@@ -155,7 +154,6 @@ export default {
   font-size: 32px;
   font-family: "Montserrat";
 }
-
 .contact-block {
   padding: 40px;
   max-width: 50%;
@@ -172,7 +170,6 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
 ul li {
   list-style-type: none;
 }
@@ -183,9 +180,16 @@ ul li {
   display: flex;
 }
 .v-form {
-  background: #1e1e1e;
+  background: #1e1e1e71;
   padding: 20px;
   width: 80%;
   opacity: 90%;
+}
+>>> .theme--light.v-label, >>> .theme--light.v-input, >>> .theme--light.v-input input, >>> .theme--light.v-input textarea {
+  color: #dcb333 !important;
+}
+>>> .v-messages__message {
+  /* Change the message color */
+  color: white !important;
 }
 </style>
