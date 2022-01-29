@@ -1,30 +1,19 @@
-import users from "../../data/users";
-
-//firebase imports
-import { auth } from "../../firebase/config";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-} from "firebase/auth";
+import axios from "axios";
 
 const state = {
-  users: [],
-  user: null,
-  isLogin: false,
+  user: {},
+  token: localStorage.getItem("token") || "",
+  status: "",
 };
 
 const mutations = {
-  SET_USERS(state, users) {
-    state.users = users;
+  auth_request(state) {
+    state.status = "loading";
   },
-  SET_USER(state, payload) {
-    state.user = payload;
-    console.log("user state changed: " + state.user);
-  },
-  SET_ISLOGIN(state, payload) {
-    state.isLogin = payload;
+  auth_success(state, token, user) {
+    state.token = token;
+    state.user = user;
+    state.status = "success";
   },
 };
 
@@ -33,59 +22,49 @@ const actions = {
     commit("SET_USERS", users);
     console.log(state.users);
   },
-  async signUp(context, { email, password, firstName }) {
-    console.log("signUp action");
+  //login
+  async login({ commit }, user) {
+    commit("auth_request");
+    let res = await axios.post("http://localhost:5000/users/login", user);
+    console.log(res);
+    if (res.status == 200) {
+      const token = res.data.token;
+      const user = res.data.user;
+      console.log("tokeni" + token);
+      localStorage.setItem("token", token);
 
-    //async code
-    const response = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password,
-      firstName,
-    );
-    if (response) {
-      context.commit("SET_USER", response.user);
-      console.log(response.user.email);
-    } else {
-      throw new Error("could not complete signup");
+      axios.defaults.headers.common["Authorization"] = token;
+      commit("auth_success", token, user);
     }
+    return res;
   },
+  async signup({ commit }, user) {
+    commit("auth_request");
+    let res = await axios.post("http://localhost:5000/users/register", user);
+    console.log(res);
+    if (res.status == 200) {
 
-  //async code
+      
+      const token = res.data.token;
+      const user = res.data.user;
+      localStorage.setItem("token", token);
 
-  async login(context, { email, password }) {
-    const response = await signInWithEmailAndPassword(auth, email, password);
-    if (response) {
-      context.commit("SET_USER", response.user);
-    } else {
-      throw new Error("could not complete login");
+      axios.defaults.headers.common["Authorization"] = token;
+      commit("auth_success", token, user);
     }
+    return res;
   },
-
-  async logout(context) {
-    await signOut(auth);
-    context.commit("SET_USER", null);
+  logout({ commit }) {
+    commit("auth_success", "", "");
+    localStorage.setItem("token", "");
   },
 };
 
 const getters = {
-  users: (state) => {
-    console.log(state.users);
-    return state.users;
-  },
-  isLogin: (state) => {
-    return state.isLogin;
-  },
-  user: (state) => {
-    return state.user;
-  },
+  isLoggedIn: (state) => !!state.token,
+  authState: (state) => state.status,
+  user: (state) => state.user,
 };
-
-const unsub = onAuthStateChanged(auth, (user) => {
-  this.$store.commit("SET_ISLOGIN", true);
-  this.$store.commit("SET_USER", user);
-  unsub();
-});
 
 export default {
   state,

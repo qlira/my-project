@@ -37,16 +37,23 @@
             </ul>
           </v-container>
         </v-btn>
-        <v-btn to="/aboutus" text class="m1-2" style="color: #dcb933 !important">About Us</v-btn>
-        <v-btn to="/contactus" text class="m1-2" style="color: #dcb933 !important">Contact Us</v-btn>
+        <v-btn to="/aboutus" text class="m1-2" style="color: #dcb933 !important"
+          >About Us</v-btn
+        >
+        <v-btn
+          to="/contactus"
+          text
+          class="m1-2"
+          style="color: #dcb933 !important"
+          >Contact Us</v-btn
+        >
       </div>
-      <div v-if="!user" style="display: flex; aligh-items: center">
+      <div v-if="!isLoggedIn" style="display: flex; aligh-items: center">
         <v-btn text class="m1-2" to="/sign-in" style="color: #dcb933 !important"
           >Sign In</v-btn
         >
       </div>
-      <div v-if="user">
-        <h4>{{ user.email }} {{ user.firstName }}</h4>
+      <div v-if="isLoggedIn">
         <v-btn text class="m1-2" @click="handleLogout">Logout</v-btn>
       </div>
     </nav>
@@ -76,11 +83,8 @@ export default {
     };
   },
   computed: {
-    isLogin() {
-      return this.$store.getters.isLogin;
-    },
-    user() {
-      return this.$store.getters.user;
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
     },
     path() {
       return this.$route.path;
@@ -92,7 +96,6 @@ export default {
     },
     handleLogout() {
       this.$store.dispatch("logout");
-      console.log(this.$store.getters.isLogin);
     },
   },
 };
@@ -139,7 +142,6 @@ nav {
   padding: 15px 0px;
 }
 .category-menu ul li:hover {
-
 }
 .v-btn {
   color: whitesmoke !important;

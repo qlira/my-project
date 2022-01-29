@@ -5,7 +5,7 @@ import Image4 from "../assets/images/the355.jpg";
 
 export default [
   {
-    id: '1',
+    id: "1",
     image: Image3,
     title: "Scream",
     categories: ["Aksion", "Fantashkence", "Komedi"],
@@ -13,7 +13,7 @@ export default [
     rating: 6.7,
   },
   {
-    id: '2',
+    id: "2",
     image: Image,
     title: "Eternals",
     categories: ["Aksion", "Fantashkence", "Drama"],
@@ -21,7 +21,7 @@ export default [
     rating: 6.7,
   },
   {
-    id: '3',
+    id: "3",
     image: Image2,
     title: "Spiderman: NWH",
     categories: ["Aksion", "Fantashkence", "Komedi"],
@@ -29,7 +29,7 @@ export default [
     rating: 6.7,
   },
   {
-    id: '4',
+    id: "4",
     image: Image4,
     title: "The 355",
     categories: ["Aksion", "Fantashkence", "Komedi"],
@@ -37,7 +37,7 @@ export default [
     rating: 6.7,
   },
   {
-    id: '5',
+    id: "5",
     image: Image,
     title: "Eternals",
     categories: ["Aksion", "Fantashkence", "Komedi"],
@@ -45,7 +45,7 @@ export default [
     rating: 6.7,
   },
   {
-    id: '6',
+    id: "6",
     image: Image,
     title: "Eternals",
     categories: ["Aksion", "Fantashkence", "Komedi"],
@@ -53,7 +53,7 @@ export default [
     rating: 6.7,
   },
   {
-    id: '7',
+    id: "7",
     image: Image,
     title: "Eternals",
     categories: ["Aksion", "Fantashkence", "Komedi"],
@@ -61,7 +61,7 @@ export default [
     rating: 6.7,
   },
   {
-    id: '8',
+    id: "8",
     image: Image,
     title: "Eternals",
     categories: ["Aksion", "Fantashkence", "Komedi"],
@@ -69,7 +69,7 @@ export default [
     rating: 6.7,
   },
   {
-    id: '9',
+    id: "9",
     image: Image,
     title: "Eternals",
     categories: ["Aksion", "Fantashkence", "Komedi"],
@@ -77,7 +77,7 @@ export default [
     rating: 6.7,
   },
   {
-    id: '10',
+    id: "10",
     image: Image,
     title: "Eternals",
     categories: ["Aksion", "Fantashkence", "Komedi"],
@@ -85,7 +85,7 @@ export default [
     rating: 6.7,
   },
   {
-    id: '11',
+    id: "11",
     image: Image,
     title: "Eternals",
     categories: ["Aksion", "Fantashkence", "Komedi"],

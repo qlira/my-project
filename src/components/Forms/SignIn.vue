@@ -103,7 +103,7 @@
             style="
               background-color: whitesmoke;
               width: 60%;
-              height: 75%;
+              height: 85%;
               border-radius: 15px 0 0 15px;
             "
           >
@@ -138,6 +138,18 @@
                   clearable
                   filled
                   rounded
+                  label="Last Name"
+                  type="text"
+                  v-model="lastNameInput"
+                  :rules="[loginRules.required]"
+                >
+                </v-text-field>
+                <v-text-field
+                  single-line
+                  outlined
+                  clearable
+                  filled
+                  rounded
                   label="Email"
                   type="email"
                   v-model="emailInput"
@@ -156,6 +168,18 @@
                   :rules="[loginRules.password, loginRules.required]"
                 >
                 </v-text-field>
+                <v-text-field
+                  single-line
+                  outlined
+                  clearable
+                  filled
+                  rounded
+                  label="Confirm Password"
+                  type="password"
+                  v-model="confirmPass"
+                  :rules="[loginRules.password, loginRules.required]"
+                >
+                </v-text-field>
                 <v-btn
                   rounded
                   x-large
@@ -171,7 +195,7 @@
             style="
               background: #dcb933;
               width: 40%;
-              height: 75%;
+              height: 85%;
               border-radius: 0 15px 15px 0;
               border-width: 5px;
             "
@@ -222,7 +246,9 @@ export default {
       loginPassword: "",
       emailInput: "",
       passwordInput: "",
+      confirmPass: "",
       firstNameInput: "",
+      lastNameInput: "",
       error: null,
       loginRules: {
         required: (value) => !!value || "Required.",
@@ -243,34 +269,37 @@ export default {
     },
     async submitLogInForm() {
       if (this.$refs.formLogin.validate()) {
-        try {
-          await this.$store.dispatch("login", {
-            email: this.loginEmail,
-            password: this.loginPassword,
-          });
-          this.$router.push("/");
-        } catch (err) {
-          this.error = err.message;
-        }
+        let user = {
+          email: this.loginEmail,
+          password: this.loginPassword,
+        };
+        this.$store.dispatch("login", user).then((res) => {
+          if (res.status == 200) {
+            this.$router.push("/");
+          }
+        });
       }
     },
     async submitRegisterForm() {
       if (this.$refs.formSignup.validate()) {
-        try {
-          await this.$store.dispatch("signUp", {
-            email: this.emailInput,
-            password: this.passwordInput,
-            firstName: this.firstNameInput,
-          });
-          this.emailInput = "";
-          this.passwordInput = "";
-          this.firstNameInput = "";
-          this.$router.push("/");
-        } catch (err) {
-          this.error = err.message;
-        }
-      } else {
-        return;
+        let user = {
+          firstName: this.firstNameInput,
+          lastName: this.lastNameInput,
+          email: this.emailInput,
+          password: this.passwordInput,
+          passwordCheck: this.confirmPass,
+        };
+        this.$store.dispatch("signup", user).then((res) => {
+          if (res.status == 200) {
+            let loginUser = {
+              email: this.emailInput,
+              password: this.passwordInput,
+            };
+            this.$store.dispatch("login", loginUser).then((loginRes) => {
+              if (loginRes.status == 200) this.$router.push("/");
+            });
+          }
+        });
       }
     },
   },
