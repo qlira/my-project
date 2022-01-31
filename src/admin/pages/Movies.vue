@@ -35,64 +35,55 @@
 
                 <v-card-text>
                   <v-container>
-                    <v-row>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.id"
-                          label="ID"
-                          type="text"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.title"
-                          label="Title"
-                          type="text"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-select
-                          v-model="editedItem.categories[0]"
-                          label="Categories"
-                          :items="staticCategoriesName"
-                        ></v-select>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-select
-                          v-model="editedItem.categories[1]"
-                          label="Categories"
-                          :items="staticCategoriesName"
-                        ></v-select>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-select
-                          v-model="editedItem.categories[2]"
-                          label="Categories"
-                          :items="staticCategoriesName"
-                        ></v-select>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.description"
-                          label="Description"
-                          type="text"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.rating"
-                          label="Rating"
-                          type="text"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="14" sm="6" md="13">
-                        <v-text-field
-                          v-model="editedItem.image"
-                          label="Choose an Image"
-                          type="text"
-                        ></v-text-field>
-                      </v-col>
-                    </v-row>
+                    <v-form>
+                      <v-row>
+                        <v-col cols="12" sm="6" md="4"> </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            v-model="title"
+                            label="Title"
+                            type="text"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-select
+                            v-model="category"
+                            label="Categories"
+                            :items="categories"
+                            item-value="_id"
+                            item-text="name"
+                          ></v-select>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            v-model="description"
+                            label="Description"
+                            type="text"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            v-model="rating"
+                            label="Rating"
+                            type="text"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="14" sm="6" md="13">
+                          <v-text-field
+                            v-model="price"
+                            label="Price"
+                            type="text"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="14" sm="6" md="13">
+                          <v-text-field
+                            v-model="image"
+                            label="Choose an Image"
+                            type="text"
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                    </v-form>
                   </v-container>
                 </v-card-text>
 
@@ -135,21 +126,7 @@
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-select
-                          v-model="editedItem.categories[0]"
-                          label="Categories"
-                          :items="staticCategoriesName"
-                        ></v-select>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-select
-                          v-model="editedItem.categories[1]"
-                          label="Categories"
-                          :items="staticCategoriesName"
-                        ></v-select>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-select
-                          v-model="editedItem.categories[2]"
+                          v-model="editedItem.category"
                           label="Categories"
                           :items="staticCategoriesName"
                         ></v-select>
@@ -229,30 +206,28 @@ export default {
     dialogDelete: false,
     headers: [
       { text: "Title", value: "title", sortable: false },
-      { text: "Categories", value: "categories", sortable: false },
+      { text: "Category", value: "category", sortable: false },
       { text: "Description", value: "description", sortable: false },
       { text: "Rating", value: "rating", sortable: false },
       { text: "Image", value: "image", sortable: false },
       { text: "Actions", value: "actions", sortable: false },
     ],
-    // desserts: [],
     editedIndex: -1,
     editedItem: {
       id: "",
       title: "",
-      categories: ["", "", ""],
+      category: "",
       description: "",
       rating: "",
       image: "",
     },
-    defaultItem: {
-      id: "",
-      title: "",
-      categories: ["", "", ""],
-      description: "",
-      rating: "",
-      image: "",
-    },
+    title: "",
+    price: "",
+    category: "",
+    description: "",
+    rating: "",
+    image: "",
+
     staticCategoriesName: [
       "Aksion",
       "Anime",
@@ -275,6 +250,9 @@ export default {
     },
     movies() {
       return this.$store.getters.movies;
+    },
+    categories() {
+      return this.$store.getters.categories;
     },
   },
 
@@ -331,7 +309,14 @@ export default {
     },
 
     saveAdd() {
-      this.movies.push(this.editedItem);
+      let movie = {
+        title: this.title,
+        description: this.description,
+        price: this.price,
+        category: this.category,
+        photo: this.image,
+      };
+      this.$store.dispatch("addMovie", movie);
       this.close();
     },
     saveEdit() {

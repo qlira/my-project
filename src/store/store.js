@@ -3,6 +3,7 @@ import Vuex from "vuex";
 
 import movies from "./modules/movies";
 import users from "./modules/users";
+import categories from "./modules/categories"
 
 import createPersistedState from "vuex-persistedstate";
 import * as Cookies from "js-cookie";
@@ -14,5 +15,6 @@ export default new Vuex.Store({
   modules: {
     movies,
     users,
+    categories,
   },
 });

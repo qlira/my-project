@@ -6,7 +6,7 @@
           <movie-item
             :title="movie.title"
             :image="movie.image"
-            :categories="movie.categories"
+            :category="movie.category"
             :id="movie.id"
           >
           </movie-item>
@@ -21,7 +21,7 @@
           <movie-item
             :title="movie.title"
             :image="movie.image"
-            :categories="movie.categories"
+            :category="movie.category"
             :id="movie.id"
           >
           </movie-item>
@@ -60,7 +60,6 @@ export default {
       return this.$store.getters.filteredMovies;
     },
   },
-  methods: {},
 };
 </script>
 

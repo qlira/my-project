@@ -19,21 +19,15 @@
           <v-content>
             <v-list-item
               style="display: inline-block; padding: 0 10px 0 0; color: white"
-              v-for="(category, index) in selectedMovie.categories"
-              :key="index"
               >{{ category }}</v-list-item
             >
             <v-content style="display: inline-block">{{ rating }}</v-content>
           </v-content>
-           <v-alert
-              outlined
-              dense
-              border="left"
-              type="warning"
-            >
+          <v-alert outlined dense border="left" type="warning">
             <!-- could be removed -->
-              Për shkak të masave <strong>anti COVID-19</strong> biletat janë të <strong>limituara</strong>
-            </v-alert>
+            Për shkak të masave <strong>anti COVID-19</strong> biletat janë të
+            <strong>limituara</strong>
+          </v-alert>
           <v-btn
             depressed
             elevation="3"
@@ -124,6 +118,9 @@ export default {
     description() {
       return this.selectedMovie.description;
     },
+    category() {
+      return this.selectedMovie.category;
+    },
   },
   methods: {
     openReserveDialog() {
@@ -152,10 +149,10 @@ export default {
   align-items: center;
   padding: 50px 15px;
 }
-.v-content:first-child{
+.v-content:first-child {
   font-size: 30px;
 }
-.v-content{
+.v-content {
   font-size: 20px;
   color: white;
 }

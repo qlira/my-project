@@ -13,15 +13,12 @@
         ><v-img height="380" :src="image"></v-img
       ></router-link>
 
-      <v-card-title style="color: whitesmoke; font-family: Poppins">{{ title }}</v-card-title>
+      <v-card-title style="color: whitesmoke; font-family: Poppins">{{
+        title
+      }}</v-card-title>
 
       <v-container class="card-text-container">
-        <v-card-text
-          align="left"
-          v-for="category in categories"
-          :key="category"
-          >{{ category }}</v-card-text
-        >
+        <v-card-text align="left">{{ category }}</v-card-text>
       </v-container>
     </v-card>
   </v-main>
@@ -34,7 +31,7 @@ export default {
       showD: false,
     };
   },
-  props: ["id", "title", "categories", "image"],
+  props: ["id", "title", "category", "image"],
   computed: {
     movieLink() {
       return "/Movie/" + this.id;
@@ -44,8 +41,8 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 .card-text-container {
   display: flex;
   font-family: "Lato";
