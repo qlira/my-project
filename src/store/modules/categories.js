@@ -39,6 +39,27 @@ const actions = {
     }
     return res;
   },
+  async updateCategory({ commit }, category) {
+    let res = await axios.put(
+      "http://localhost:5000/category/" + category._id,
+      category
+    );
+    console.log(res);
+    if (res.satus == 200) {
+      const category = res.data.category;
+      commit("category_success", category);
+    }
+    return res;
+  },
+  async deleteCategory({ commit }, category) {
+    let res = await axios.delete("http://localhost:5000/category/"+ category._id, category);
+    console.log(res);
+    if (res.satus == 200) {
+      const category = res.data.category;
+      commit("category_success", category);
+    }
+    return res;
+  },
 };
 
 const getters = {

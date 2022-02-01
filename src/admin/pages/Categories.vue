@@ -73,17 +73,18 @@
                     <v-row>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
+                          v-model="editedItem.id"
+                          hidden
                           label="ID"
                           type="hidden"
-                          disabled
-                        >{{categories._id}}</v-text-field>
+                        ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="name"
+                          v-model="editedItem.name"
                           label="Name"
                           type="text"
-                        >{{categories.name}} asd</v-text-field>
+                        ></v-text-field>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -142,7 +143,10 @@ export default {
       { text: "Actions", value: "actions", sortable: false },
     ],
     editedIndex: -1,
-    editedName: "",
+    editedItem: {
+      id: "",
+      name: "",
+    },
     name: "",
   }),
 
@@ -173,16 +177,23 @@ export default {
         value.toString().toLocaleLowerCase().indexOf(search) !== -1
       );
     },
-    editItem() {
+    editItem(item) {
+      this.editedIndex = this.categories.indexOf(item);
+      this.editedItem = Object.assign({}, item);
+      console.log(this.editedItem);
+      console.log(this.editedItem._id);
       this.editDialog = true;
     },
 
-    deleteItem() {
+    deleteItem(item) {
+      this.editedIndex = this.categories.indexOf(item);
+      this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
 
     deleteItemConfirm() {
-      this.movies.splice(this.editedIndex, 1);
+      // this.categories.splice(this.editedIndex, 1);
+      this.$store.dispatch("deleteCategory", this.editedItem);
       this.closeDelete();
     },
 
@@ -203,7 +214,7 @@ export default {
       this.close();
     },
     saveEdit() {
-      Object.assign(this.movies[this.editedIndex], this.editedItem);
+      this.$store.dispatch("updateCategory", this.editedItem);
       this.close();
     },
   },
