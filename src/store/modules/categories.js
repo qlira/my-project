@@ -2,6 +2,7 @@ import axios from "axios";
 
 const state = {
   categories: [],
+  category: {},
   loading: false,
 };
 
@@ -11,6 +12,9 @@ const mutations = {
   },
   changeLoadingState(state, loading) {
     state.loading = loading;
+  },
+  category_success(state, category) {
+    state.category = category;
   },
 };
 
@@ -22,6 +26,18 @@ const actions = {
       commit("loadCategories", categories);
       commit("changeLoadingState", true);
     });
+  },
+  async addCategory({ commit }, category) {
+    let res = await axios.post(
+      "http://localhost:5000/category/create",
+      category
+    );
+    console.log(res);
+    if (res.status == 200) {
+      const category = res.data.category;
+      commit("category_success", category);
+    }
+    return res;
   },
 };
 

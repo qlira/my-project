@@ -31,7 +31,7 @@ const actions = {
     commit("SET_MOVIES", movies);
   },
   async addMovie({ commit }, movie) {
-    commit("auth_request");
+    commit("movie_request");
     const token = localStorage.getItem("token");
     let res = await axios.post("http://localhost:5000/movies/create", movie, {
       header: {
@@ -42,7 +42,7 @@ const actions = {
     console.log(res);
     if (res.status == 200) {
       const movie = res.data.movie;
-      commit("auth_success", movie);
+      commit("movie_success", movie);
     }
     return res;
   },

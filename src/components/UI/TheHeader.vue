@@ -28,11 +28,11 @@
           <v-container class="category-menu" v-if="showCategories === true">
             <ul>
               <li
-                v-for="(category, index) in staticCategoriesName"
-                :key="index"
+                v-for="category in categories"
+                :key="category"
                 @click="filterByCategory(category)"
               >
-                {{ category }}
+                {{ category.name }}
               </li>
             </ul>
           </v-container>
@@ -88,6 +88,9 @@ export default {
     },
     path() {
       return this.$route.path;
+    },
+    categories() {
+      return this.$store.getters.categories;
     },
   },
   methods: {

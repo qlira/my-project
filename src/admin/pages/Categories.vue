@@ -3,8 +3,7 @@
     <v-container>
       <v-data-table
         :headers="headers"
-        :items="movies"
-        sort-by="calories"
+        :items="categories"
         class="elevation-1"
         :search="search"
         :custom-filter="filterOnlyCapsText"
@@ -25,7 +24,7 @@
                   v-bind="attrs"
                   v-on="on"
                 >
-                  Add User
+                  Add Category
                 </v-btn>
               </template>
               <v-card>
@@ -40,45 +39,8 @@
                         <v-col cols="12" sm="6" md="4"> </v-col>
                         <v-col cols="12" sm="6" md="4">
                           <v-text-field
-                            v-model="title"
-                            label="Title"
-                            type="text"
-                          ></v-text-field>
-                        </v-col>
-                        <v-col cols="12" sm="6" md="4">
-                          <v-select
-                            v-model="category"
-                            label="Categories"
-                            :items="categories"
-                            item-value="_id"
-                            item-text="name"
-                          ></v-select>
-                        </v-col>
-                        <v-col cols="12" sm="6" md="4">
-                          <v-text-field
-                            v-model="description"
-                            label="Description"
-                            type="text"
-                          ></v-text-field>
-                        </v-col>
-                        <v-col cols="12" sm="6" md="4">
-                          <v-text-field
-                            v-model="rating"
-                            label="Rating"
-                            type="text"
-                          ></v-text-field>
-                        </v-col>
-                        <v-col cols="14" sm="6" md="13">
-                          <v-text-field
-                            v-model="price"
-                            label="Price"
-                            type="text"
-                          ></v-text-field>
-                        </v-col>
-                        <v-col cols="14" sm="6" md="13">
-                          <v-text-field
-                            v-model="image"
-                            label="Choose an Image"
+                            v-model="name"
+                            label="Name"
                             type="text"
                           ></v-text-field>
                         </v-col>
@@ -111,46 +73,17 @@
                     <v-row>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="editedItem.id"
                           label="ID"
-                          type="text"
+                          type="hidden"
                           disabled
-                        ></v-text-field>
+                        >{{categories._id}}</v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          v-model="editedItem.title"
-                          label="Title"
+                          v-model="name"
+                          label="Name"
                           type="text"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-select
-                          v-model="editedItem.category"
-                          label="Categories"
-                          :items="staticCategoriesName"
-                        ></v-select>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.description"
-                          label="Description"
-                          type="text"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.rating"
-                          label="Rating"
-                          type="text"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.image"
-                          label="Image"
-                          type="text"
-                        ></v-text-field>
+                        >{{categories.name}} asd</v-text-field>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -205,36 +138,17 @@ export default {
     editDialog: false,
     dialogDelete: false,
     headers: [
-      { text: "Title", value: "title", sortable: false },
-      { text: "Category", value: "category", sortable: false },
-      { text: "Description", value: "description", sortable: false },
-      { text: "Rating", value: "rating", sortable: false },
-      { text: "Image", value: "image", sortable: false },
+      { text: "Name", value: "name", sortable: false },
       { text: "Actions", value: "actions", sortable: false },
     ],
     editedIndex: -1,
-    editedItem: {
-      id: "",
-      title: "",
-      category: "",
-      description: "",
-      rating: "",
-      image: "",
-    },
-    title: "",
-    price: "",
-    category: "",
-    description: "",
-    rating: "",
-    image: "",
+    editedName: "",
+    name: "",
   }),
 
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? "Add Movie" : "Edit Movie";
-    },
-    movies() {
-      return this.$store.getters.movies;
+      return this.editedIndex === -1 ? "Add Category" : "Edit Category";
     },
     categories() {
       return this.$store.getters.categories;
@@ -259,15 +173,11 @@ export default {
         value.toString().toLocaleLowerCase().indexOf(search) !== -1
       );
     },
-    editItem(item) {
-      this.editedIndex = this.movies.indexOf(item);
-      this.editedItem = Object.assign({}, item);
+    editItem() {
       this.editDialog = true;
     },
 
-    deleteItem(item) {
-      this.editedIndex = this.movies.indexOf(item);
-      this.editedItem = Object.assign({}, item);
+    deleteItem() {
       this.dialogDelete = true;
     },
 
@@ -279,29 +189,17 @@ export default {
     close() {
       this.addDialog = false;
       this.editDialog = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
     },
 
     closeDelete() {
       this.dialogDelete = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
     },
 
     saveAdd() {
-      let movie = {
-        title: this.title,
-        description: this.description,
-        price: this.price,
-        category: this.category,
-        photo: this.image,
+      let category = {
+        name: this.name,
       };
-      this.$store.dispatch("addMovie", movie);
+      this.$store.dispatch("addCategory", category);
       this.close();
     },
     saveEdit() {
