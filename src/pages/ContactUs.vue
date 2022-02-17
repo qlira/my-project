@@ -27,7 +27,6 @@
             <v-text-field
               class="name"
               v-model="name"
-              placeholder="placeholder text"
               :counter="10"
               :rules="nameRules"
               label="Name"
@@ -100,10 +99,11 @@
       <v-spacer tag="v-container"></v-spacer>
       <v-spacer tag="v-container"></v-spacer>
       <v-container style="padding: 0" fluid>
-        <iframe
+        <iframe 
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2934.3466705580945!2d21.151025915754936!3d42.65400852447946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13549ef1e2266879%3A0x9f9ca7c7ab182591!2sStatue%20of%20Bill%20Clinton!5e0!3m2!1sen!2s!4v1642203706273!5m2!1sen!2s"
           width="100%"
           height="450"
+          style="filter:invert(90%)"
         ></iframe>
       </v-container>
     </v-main>
