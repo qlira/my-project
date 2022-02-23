@@ -35,7 +35,7 @@
 
                 <v-card-text>
                   <v-container>
-                    <v-form>
+                    <form enctype="multipart/form-data">
                       <v-row>
                         <v-col cols="12" sm="6" md="4"> </v-col>
                         <v-col cols="12" sm="6" md="4">
@@ -79,11 +79,11 @@
                           <v-text-field
                             v-model="image"
                             label="Choose an Image"
-                            type="text"
+                            type="file"
                           ></v-text-field>
                         </v-col>
                       </v-row>
-                    </v-form>
+                    </form>
                   </v-container>
                 </v-card-text>
 

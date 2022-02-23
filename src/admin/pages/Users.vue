@@ -14,7 +14,7 @@
               <v-text-field v-model="search" label="Search"></v-text-field>
             </template>
             <v-spacer></v-spacer>
-            
+
             <!-- edit DIALOGGGGGGGG -->
             <v-dialog v-model="editDialog" max-width="500px">
               <v-card>
@@ -25,7 +25,7 @@
                 <v-card-text>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" sm="6" md="4">
+                      <v-col cols="12" sm="6" md="4" v-show="false">
                         <v-text-field
                           v-model="editedItem.id"
                           hidden
@@ -34,11 +34,12 @@
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
-                        <v-text-field
+                        <v-checkbox
                           v-model="editedItem.role"
                           label="Role"
                           type="checkbox"
-                        ></v-text-field>
+                          id="role"
+                        />
                       </v-col>
                     </v-row>
                   </v-container>
@@ -103,7 +104,6 @@ export default {
       id: "",
       role: false,
     },
-    role: false,
   }),
 
   computed: {
@@ -169,7 +169,8 @@ export default {
     // },
     saveEdit() {
       this.$store.dispatch("updateRole", this.editedItem);
-      console.log("save "+this.editedItem.role);
+      console.log("save " + this.editedItem._id);
+      this.$router.push("/dashboard");
       this.close();
     },
   },
