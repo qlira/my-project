@@ -207,7 +207,7 @@ export default {
     dialogDelete: false,
     headers: [
       { text: "Title", value: "title", sortable: false },
-      { text: "Category", value: "category", sortable: false },
+      { text: "Category", value: "category.name", sortable: false },
       { text: "Description", value: "description", sortable: false },
       { text: "Rating", value: "rating", sortable: false },
       { text: "Image", value: "photo", sortable: false },

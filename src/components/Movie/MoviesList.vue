@@ -7,7 +7,7 @@
             :title="movie.title"
             :photo="movie.photo"
             :category="movie.category.name"
-            :id="movie.id"
+            :id="movie._id"
           >
           </movie-item>
           <movie-detalis
@@ -22,11 +22,11 @@
             :title="movie.title"
             :photo="movie.photo"
             :category="movie.category.name"
-            :id="movie.id"
+            :id="movie._id"
           >
           </movie-item>
           <movie-detalis
-            :id="movie.id"
+            :id="movie._id"
             v-if="showNever === true"
           ></movie-detalis>
         </v-col>

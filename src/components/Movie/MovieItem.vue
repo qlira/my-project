@@ -10,7 +10,7 @@
       </template>
 
       <router-link :to="movieLink"
-        ><v-img height="380" :src="image"></v-img
+        ><v-img height="380" :src="photoSrc"></v-img
       ></router-link>
 
       <v-card-title style="color: whitesmoke; font-family: Poppins">{{
@@ -35,6 +35,9 @@ export default {
   computed: {
     movieLink() {
       return "/Movie/" + this.id;
+    },
+    photoSrc() {
+      return "http://localhost:5000/movies/movie/photo/" + this.id;
     },
   },
 };

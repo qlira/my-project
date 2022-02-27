@@ -3,7 +3,7 @@
     <v-main>
       <v-container class="con-1">
         <v-card color="" width="50%" height="auto" style="border-radius: 15px">
-          <v-img :src="image" height="600px"></v-img>
+          <v-img :src="photoSrc" height="600px"></v-img>
         </v-card>
         <v-card
           color=""
@@ -109,8 +109,8 @@ export default {
     };
   },
   computed: {
-    image() {
-      return this.selectedMovie.image;
+    photoSrc() {
+      return "http://localhost:5000/movies/movie/photo/" + this.id;
     },
     rating() {
       return this.selectedMovie.rating;
@@ -119,7 +119,7 @@ export default {
       return this.selectedMovie.description;
     },
     category() {
-      return this.selectedMovie.category;
+      return this.selectedMovie.category.name;
     },
   },
   methods: {
@@ -134,7 +134,7 @@ export default {
     console.log(this.$store.getters.movies);
     console.log("id:" + this.id);
     this.selectedMovie = this.$store.getters.movies.find(
-      (movie) => movie.id === this.id
+      (movie) => movie._id === this.id
     );
   },
 };
