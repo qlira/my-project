@@ -31,7 +31,7 @@ export default {
       showD: false,
     };
   },
-  props: ["id", "title", "category", "image"],
+  props: ["id", "title", "category", "photo"],
   computed: {
     movieLink() {
       return "/Movie/" + this.id;

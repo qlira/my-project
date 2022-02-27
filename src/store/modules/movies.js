@@ -28,7 +28,11 @@ const mutations = {
 
 const actions = {
   initMovies: ({ commit }) => {
-    commit("SET_MOVIES", movies);
+    axios.get("http://localhost:5000/movies/").then((response) => {
+      console.log(response.data);
+      const movies = response.data;
+      commit("SET_MOVIES", movies);
+    });
   },
   async addMovie({ commit }, movie) {
     commit("movie_request");

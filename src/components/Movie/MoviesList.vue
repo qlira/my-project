@@ -5,8 +5,8 @@
         <v-col v-for="movie in movies" :key="movie.id">
           <movie-item
             :title="movie.title"
-            :image="movie.image"
-            :category="movie.category"
+            :photo="movie.photo"
+            :category="movie.category.name"
             :id="movie.id"
           >
           </movie-item>
@@ -20,8 +20,8 @@
         <v-col v-for="movie in filteredMovies" :key="movie.id">
           <movie-item
             :title="movie.title"
-            :image="movie.image"
-            :category="movie.category"
+            :photo="movie.photo"
+            :category="movie.category.name"
             :id="movie.id"
           >
           </movie-item>

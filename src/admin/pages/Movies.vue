@@ -76,11 +76,12 @@
                           ></v-text-field>
                         </v-col>
                         <v-col cols="14" sm="6" md="13">
-                          <v-text-field
+                          <v-file-input
+                            accept="image/*"
                             v-model="image"
                             label="Choose an Image"
-                            type="file"
-                          ></v-text-field>
+                            @change="handleUploadFile($event)"
+                          ></v-file-input>
                         </v-col>
                       </v-row>
                     </form>
@@ -209,7 +210,7 @@ export default {
       { text: "Category", value: "category", sortable: false },
       { text: "Description", value: "description", sortable: false },
       { text: "Rating", value: "rating", sortable: false },
-      { text: "Image", value: "image", sortable: false },
+      { text: "Image", value: "photo", sortable: false },
       { text: "Actions", value: "actions", sortable: false },
     ],
     editedIndex: -1,
@@ -226,7 +227,7 @@ export default {
     category: "",
     description: "",
     rating: "",
-    image: "",
+    image: undefined,
   }),
 
   computed: {
@@ -294,19 +295,29 @@ export default {
     },
 
     saveAdd() {
-      let movie = {
-        title: this.title,
-        description: this.description,
-        price: this.price,
-        category: this.category,
-        photo: this.image,
-      };
-      this.$store.dispatch("addMovie", movie);
+      var formData = new FormData();
+      formData.append("title", this.title);
+      formData.append("description", this.description);
+      formData.append("price", this.price);
+      formData.append("category", this.category);
+      formData.append("rating", this.rating);
+      formData.append("photo", this.image);
+      // let movie = {
+      //   title: this.title,
+      //   description: this.description,
+      //   price: this.price,
+      //   category: this.category,
+      //   photo: this.image,
+      // };
+      this.$store.dispatch("addMovie", formData);
       this.close();
     },
     saveEdit() {
       Object.assign(this.movies[this.editedIndex], this.editedItem);
       this.close();
+    },
+    handleUploadFile(files) {
+      this.image = files;
     },
   },
 };
