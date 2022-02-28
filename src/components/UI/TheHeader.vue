@@ -66,20 +66,6 @@ export default {
     return {
       showCategories: false,
       filteredMovies: [],
-      staticCategoriesName: [
-        "Aksion",
-        "Anime",
-        "Adventure",
-        "Drama",
-        "Fantashkence",
-        "Shkence",
-        "Histori",
-        "Horror",
-        "Komedi",
-        "Krim",
-        "Romance",
-        "Thriller",
-      ],
     };
   },
   computed: {
@@ -95,7 +81,7 @@ export default {
   },
   methods: {
     filterByCategory(categ) {
-      this.$store.dispatch("updateMovies", categ);
+      this.$store.dispatch("filterMovies", categ);
     },
     handleLogout() {
       this.$store.dispatch("logout");

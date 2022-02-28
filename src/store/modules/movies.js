@@ -1,4 +1,3 @@
-import movies from "../../data/movies";
 import axios from "axios";
 
 const state = {
@@ -50,7 +49,50 @@ const actions = {
     }
     return res;
   },
-  updateMovies({ state, commit }, value) {
+  async updateMovie({ commit }, movie) {
+    const token = localStorage.getItem("token");
+    let res = await axios.put(
+      "http://localhost:5000/movies/" + movie.get("_id"),
+      movie,
+      {
+        header: {
+          Accept: "application/json",
+          "x-auth-token": token,
+        },
+      }
+    );
+    console.log("updatedMovie: " + res);
+    if (res.satus == 200) {
+      const movie = res.data.movie;
+      commit("movie_success", movie);
+    }
+    return res;
+  },
+  async updateCategory({ commit }, category) {
+    let res = await axios.put(
+      "http://localhost:5000/category/" + category._id,
+      category
+    );
+    console.log(res);
+    if (res.satus == 200) {
+      const category = res.data.category;
+      commit("category_success", category);
+    }
+    return res;
+  },
+  async deleteMovie({ commit }, movie) {
+    let res = await axios.delete(
+      "http://localhost:5000/movies/" + movie._id,
+      movie
+    );
+    console.log(res);
+    if (res.satus == 200) {
+      const movie = res.data.movie;
+      commit("movie_success", movie);
+    }
+    return res;
+  },
+  filterMovies({ state, commit }, value) {
     if (state.movies) {
       commit("FILTER_MOVIES", value);
     }

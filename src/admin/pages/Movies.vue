@@ -109,51 +109,56 @@
 
                 <v-card-text>
                   <v-container>
-                    <v-row>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.id"
-                          label="ID"
-                          type="text"
-                          disabled
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.title"
-                          label="Title"
-                          type="text"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-select
-                          v-model="editedItem.category"
-                          label="Categories"
-                          :items="staticCategoriesName"
-                        ></v-select>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.description"
-                          label="Description"
-                          type="text"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.rating"
-                          label="Rating"
-                          type="text"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.image"
-                          label="Image"
-                          type="text"
-                        ></v-text-field>
-                      </v-col>
-                    </v-row>
+                    <form enctype="multipart/form-data">
+                      <v-row>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            v-model="editedItem.id"
+                            label="ID"
+                            type="text"
+                            disabled
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            v-model="editedItem.title"
+                            label="Title"
+                            type="text"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-select
+                            v-model="editedItem.category"
+                            label="Categories"
+                            :items="categories"
+                            item-value="_id"
+                            item-text="name"
+                          ></v-select>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            v-model="editedItem.description"
+                            label="Description"
+                            type="text"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            v-model="editedItem.rating"
+                            label="Rating"
+                            type="text"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-file-input
+                            accept="image/*"
+                            v-model="editedItem.image"
+                            label="Choose an Image"
+                            @change="handleUploadEditedFile($event)"
+                          ></v-file-input>
+                        </v-col>
+                      </v-row>
+                    </form>
                   </v-container>
                 </v-card-text>
 
@@ -217,10 +222,11 @@ export default {
     editedItem: {
       id: "",
       title: "",
+      price: "",
       category: "",
       description: "",
       rating: "",
-      image: "",
+      image: undefined,
     },
     title: "",
     price: "",
@@ -228,6 +234,8 @@ export default {
     description: "",
     rating: "",
     image: undefined,
+
+    idd: "621acb149b869c9822de8acd",
   }),
 
   computed: {
@@ -263,6 +271,11 @@ export default {
     editItem(item) {
       this.editedIndex = this.movies.indexOf(item);
       this.editedItem = Object.assign({}, item);
+      console.log(this.editedItem._id);
+      console.log(this.editedItem.id);
+      this.editedItem.id = this.editedItem._id;
+      console.log(this.editedItem.id);
+
       this.editDialog = true;
     },
 
@@ -273,25 +286,17 @@ export default {
     },
 
     deleteItemConfirm() {
-      this.movies.splice(this.editedIndex, 1);
+      this.$store.dispatch("deleteMovie", this.editedItem);
       this.closeDelete();
     },
 
     close() {
       this.addDialog = false;
       this.editDialog = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
     },
 
     closeDelete() {
       this.dialogDelete = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
     },
 
     saveAdd() {
@@ -302,22 +307,31 @@ export default {
       formData.append("category", this.category);
       formData.append("rating", this.rating);
       formData.append("photo", this.image);
-      // let movie = {
-      //   title: this.title,
-      //   description: this.description,
-      //   price: this.price,
-      //   category: this.category,
-      //   photo: this.image,
-      // };
       this.$store.dispatch("addMovie", formData);
       this.close();
     },
     saveEdit() {
-      Object.assign(this.movies[this.editedIndex], this.editedItem);
+      var formData = new FormData();
+      formData.append("_id", this.editedItem.id);
+      formData.append("title", this.editedItem.title);
+      formData.append("description", this.editedItem.description);
+      formData.append("price", this.editedItem.price);
+      formData.append("category", this.editedItem.category);
+      formData.append("rating", this.editedItem.rating);
+      formData.append("photo", this.editedItem.image);
+      
+      console.log("getID" + formData.get("_id"));
+
+      this.$store.dispatch("updateMovie", formData);
+      console.log(this.editedItem);
       this.close();
     },
     handleUploadFile(files) {
       this.image = files;
+    },
+    handleUploadEditedFile(files) {
+      this.editedItem.image = files;
+      console.log(this.editedItem.image);
     },
   },
 };
