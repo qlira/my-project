@@ -316,10 +316,11 @@ export default {
       formData.append("title", this.editedItem.title);
       formData.append("description", this.editedItem.description);
       formData.append("price", this.editedItem.price);
-      formData.append("category", this.editedItem.category);
+      formData.append("category", this.editedItem.category._id);
       formData.append("rating", this.editedItem.rating);
       formData.append("photo", this.editedItem.image);
-      
+      console.log("catID" + this.editedItem.category._id);
+
       console.log("getID" + formData.get("_id"));
 
       this.$store.dispatch("updateMovie", formData);

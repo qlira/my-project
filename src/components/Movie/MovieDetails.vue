@@ -12,7 +12,7 @@
           active-class="card"
           class="cardC"
         >
-          <v-content>{{ selectedMovie.title }}</v-content>
+          <v-content>{{ title }}</v-content>
           <v-divider></v-divider>
           <v-content>{{ description }}</v-content>
           <v-divider></v-divider>
@@ -57,6 +57,8 @@
                       <v-text-field
                         label="Quantity"
                         v-model="quantity"
+                        @change="minMaxHandler"
+                        :value="1"
                         type="number"
                         :rules="[rules.required, rules.max, rules.min]"
                       ></v-text-field>
@@ -69,6 +71,9 @@
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-checkbox v-model="isVIP" label="VIP SEAT"></v-checkbox>
+                    </v-col>
+                    <v-col cols="12" sm="8" md="9">
+                      <p>Total: {{ price * quantity }}</p>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -101,7 +106,7 @@ export default {
         min: (value) => value > 0 || "Quantity should be above 0",
         max: (value) => value <= 5 || "Quantity should not be above 5",
       },
-      quantity: "",
+      quantity: 1,
       isVIP: false,
       reserveTicket: false,
       selectedMovie: null,
@@ -109,6 +114,9 @@ export default {
     };
   },
   computed: {
+    title() {
+      return this.selectedMovie.title;
+    },
     photoSrc() {
       return "http://localhost:5000/movies/movie/photo/" + this.id;
     },
@@ -120,6 +128,22 @@ export default {
     },
     category() {
       return this.selectedMovie.category.name;
+    },
+    price() {
+      return this.selectedMovie.price;
+    },
+  },
+  watch: {
+    quantity(value) {
+      if (value > 5) {
+        setTimeout(() => {
+        this.quantity = 5;
+      }, 1200);
+      } else if (value < 1) {
+        setTimeout(() => {
+        this.quantity = 1;
+      }, 1200);
+      }
     },
   },
   methods: {
