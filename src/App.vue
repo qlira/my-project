@@ -27,9 +27,9 @@ export default {
   },
   created() {
     this.$store.dispatch("initMovies");
+    console.log("movies: " ,this.$store.getters.movies);
     this.$store.dispatch("loadCategories");
     this.$store.dispatch("loadUsers");
-    console.log(this.path);
   },
 };
 </script>

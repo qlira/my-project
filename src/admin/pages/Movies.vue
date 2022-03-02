@@ -4,7 +4,6 @@
       <v-data-table
         :headers="headers"
         :items="movies"
-        sort-by="calories"
         class="elevation-1"
         :search="search"
         :custom-filter="filterOnlyCapsText"
@@ -215,7 +214,7 @@ export default {
       { text: "Category", value: "category.name", sortable: false },
       { text: "Description", value: "description", sortable: false },
       { text: "Rating", value: "rating", sortable: false },
-      { text: "Image", value: "photo", sortable: false },
+      // { text: "Image", value: "photo", sortable: false },
       { text: "Actions", value: "actions", sortable: false },
     ],
     editedIndex: -1,
@@ -309,6 +308,12 @@ export default {
       formData.append("photo", this.image);
       this.$store.dispatch("addMovie", formData);
       this.close();
+      this.title = "";
+      this.description = "";
+      this.price = "";
+      this.category = "";
+      this.rating = "";
+      this.image = undefined;
     },
     saveEdit() {
       var formData = new FormData();

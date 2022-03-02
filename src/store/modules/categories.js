@@ -27,7 +27,7 @@ const actions = {
       commit("changeLoadingState", true);
     });
   },
-  async addCategory({ commit }, category) {
+  async addCategory({ commit, dispatch }, category) {
     let res = await axios.post(
       "http://localhost:5000/category/create",
       category
@@ -37,9 +37,10 @@ const actions = {
       const category = res.data.category;
       commit("category_success", category);
     }
+    dispatch('loadCategories');
     return res;
   },
-  async updateCategory({ commit }, category) {
+  async updateCategory({ commit, dispatch }, category) {
     let res = await axios.put(
       "http://localhost:5000/category/" + category._id,
       category
@@ -49,15 +50,17 @@ const actions = {
       const category = res.data.category;
       commit("category_success", category);
     }
+    dispatch('loadCategories');
     return res;
   },
-  async deleteCategory({ commit }, category) {
+  async deleteCategory({ commit, dispatch }, category) {
     let res = await axios.delete("http://localhost:5000/category/"+ category._id, category);
     console.log(res);
     if (res.satus == 200) {
       const category = res.data.category;
       commit("category_success", category);
     }
+    dispatch('loadCategories');
     return res;
   },
 };

@@ -27,10 +27,11 @@
           >Categories
           <v-container class="category-menu" v-if="showCategories === true">
             <ul>
+              <li @click="filterByCategory('ALL')">ALL</li>
               <li
                 v-for="category in categories"
                 :key="category"
-                @click="filterByCategory(category)"
+                @click="filterByCategory(category.name)"
               >
                 {{ category.name }}
               </li>

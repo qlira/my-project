@@ -13,7 +13,7 @@ const mutations = {
   },
   FILTER_MOVIES(state, value) {
     state.filteredMovies = state.movies.filter((movie) => {
-      return movie.category === value;
+      return movie.category.name === value;
     });
   },
   movie_request(state) {
@@ -33,7 +33,7 @@ const actions = {
       commit("SET_MOVIES", movies);
     });
   },
-  async addMovie({ commit }, movie) {
+  async addMovie({ commit, dispatch }, movie) {
     commit("movie_request");
     const token = localStorage.getItem("token");
     let res = await axios.post("http://localhost:5000/movies/create", movie, {
@@ -46,10 +46,12 @@ const actions = {
     if (res.status == 200) {
       const movie = res.data.movie;
       commit("movie_success", movie);
+      dispatch("initMovies");
     }
     return res;
   },
-  async updateMovie({ commit }, movie) {
+  async updateMovie({ commit, dispatch }, movie) {
+    commit("movie_request");
     const token = localStorage.getItem("token");
     let res = await axios.put(
       "http://localhost:5000/movies/" + movie.get("_id"),
@@ -66,21 +68,10 @@ const actions = {
       const movie = res.data.movie;
       commit("movie_success", movie);
     }
+    dispatch("initMovies");
     return res;
   },
-  async updateCategory({ commit }, category) {
-    let res = await axios.put(
-      "http://localhost:5000/category/" + category._id,
-      category
-    );
-    console.log(res);
-    if (res.satus == 200) {
-      const category = res.data.category;
-      commit("category_success", category);
-    }
-    return res;
-  },
-  async deleteMovie({ commit }, movie) {
+  async deleteMovie({ commit, dispatch }, movie) {
     let res = await axios.delete(
       "http://localhost:5000/movies/" + movie._id,
       movie
@@ -90,11 +81,13 @@ const actions = {
       const movie = res.data.movie;
       commit("movie_success", movie);
     }
+    dispatch("initMovies");
     return res;
   },
   filterMovies({ state, commit }, value) {
     if (state.movies) {
       commit("FILTER_MOVIES", value);
+      console.log("name " + value);
     }
   },
 };
