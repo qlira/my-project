@@ -32,23 +32,26 @@
         </v-col>
       </v-row>
     </v-container>
+    <pagination-menu :currentPage="page"></pagination-menu>
   </v-main>
 </template>
 
 <script>
 import MovieItem from "./MovieItem.vue";
 import MovieDetalis from "./MovieDetails.vue";
+import PaginationMenu from './PaginationMenu.vue';
 
 export default {
   components: {
     MovieItem,
     MovieDetalis,
+    PaginationMenu,
   },
   data() {
     return {
       title: "qlira",
       rows: 100,
-      currentPage: 1,
+      page: 1,
       showNever: false,
     };
   },
