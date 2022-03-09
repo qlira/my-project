@@ -2,6 +2,7 @@ import axios from "axios";
 
 const state = {
   movies: [],
+  paginatedMovies: [],
   movie: {},
   filteredMovies: [],
   status: "",
@@ -12,12 +13,15 @@ const mutations = {
     state.movies = movies;
   },
   FILTER_MOVIES(state, value) {
-    state.filteredMovies = state.movies.filter((movie) => {
+    state.filteredMovies = state.paginatedMovies.filter((movie) => {
       return movie.category.name === value;
     });
   },
   movie_request(state) {
     state.status = "loading";
+  },
+  SET_PAGINATEDMOVIES(state, paginatedMovies) {
+    state.paginatedMovies = paginatedMovies;
   },
   movie_success(state, movie) {
     state.movie = movie;
@@ -84,6 +88,18 @@ const actions = {
     dispatch("initMovies");
     return res;
   },
+  paginatedMovies({ commit, dispatch }, page) {
+    console.log("Paginated hini1:", page);
+    axios
+      .get("http://localhost:5000/movies/moviePagination?page=" + page)
+      .then((response) => {
+        console.log(response.data);
+        const paginatedMovies = response.data;
+        commit("SET_PAGINATEDMOVIES", paginatedMovies);
+        console.log("PaginatedMovies: ", paginatedMovies);
+      });
+      dispatch('filterMovies', 'ALL')
+  },
   filterMovies({ state, commit }, value) {
     if (state.movies) {
       commit("FILTER_MOVIES", value);
@@ -98,6 +114,9 @@ const getters = {
   },
   filteredMovies: (state) => {
     return state.filteredMovies;
+  },
+  paginatedMovies: (state) => {
+    return state.paginatedMovies;
   },
 };
 

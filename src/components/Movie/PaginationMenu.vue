@@ -3,7 +3,9 @@
     <v-container>
       <v-pagination
         v-model="selectedPage"
-        :length="moviesLength%2==0? moviesLength/2 : moviesLength/2+1"
+        :length="
+          moviesLength % 3 == 0 ? moviesLength / 3 : moviesLength / 3 + 1
+        "
         @input="handlePageChange"
         dark
         style="font-family: Lato"
@@ -25,12 +27,20 @@ export default {
       return this.$store.getters.movies.length;
     },
   },
+  created() {
+    this.$store.dispatch("paginatedMovies", this.selectedPage);
+    const mm = this.$store.getters.paginatedMovies;
+    console.log(mm);
+  },
   methods: {
     handlePageChange(value) {
       this.selectedPage = value;
+      this.$store.dispatch("paginatedMovies", this.selectedPage);
+      const mmm = this.$store.getters.paginatedMovies;
+      console.log("PageMovies2: ", mmm);
+
       console.log("Page: ", this.selectedPage);
       console.log("MoviesLength: ", this.moviesLength);
-
     },
   },
 };

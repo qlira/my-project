@@ -2,7 +2,7 @@
   <v-main>
     <v-container>
       <v-row v-if="filteredMovies.length === 0">
-        <v-col v-for="movie in movies" :key="movie.id">
+        <v-col v-for="movie in pageMovies" :key="movie.id">
           <movie-item
             :title="movie.title"
             :photo="movie.photo"
@@ -58,6 +58,9 @@ export default {
   computed: {
     movies() {
       return this.$store.getters.movies;
+    },
+    pageMovies(){
+      return this.$store.getters.paginatedMovies;
     },
     filteredMovies() {
       return this.$store.getters.filteredMovies;
