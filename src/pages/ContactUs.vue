@@ -23,11 +23,12 @@
 
       <v-container class="content" fluid>
         <v-container class="contact-block">
-          <v-form ref="form" v-model="valid" lazy-validation>
+          <v-form ref="contactForm">
             <v-text-field
               class="name"
               v-model="name"
-              :counter="10"
+              type="text"
+              :counter="50"
               :rules="nameRules"
               label="Name"
               required
@@ -37,11 +38,13 @@
               v-model="email"
               :rules="emailRules"
               label="E-mail"
+              type="email"
               required
             ></v-text-field>
             <v-textarea
               class="messagebox"
               v-model="message"
+              type="text"
               :rules="messageRules"
               label="Message"
               required
@@ -54,7 +57,7 @@
                 border-radius: 0px;
               "
               class="mr-4"
-              @click="validate"
+              @click="submitForm"
               >Submit</v-btn
             >
             <v-btn
@@ -134,10 +137,19 @@ export default {
     ],
   }),
   methods: {
-    validate() {
-      if (this.$refs.form.validate()) {
-        this.snackbar = true;
-      }
+    submitForm() {
+        if (this.$refs.contactForm.validate()) {
+          let contact = {
+            fullName: this.name,
+            email: this.email,
+            messagebox: this.message
+          };
+        this.$store.dispatch("addContact", contact);
+        this.name = "";
+        this.email = "";
+        this.message = "";
+        }
+
     },
     reset() {
       this.$refs.form.reset();
