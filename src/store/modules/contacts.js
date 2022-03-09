@@ -36,6 +36,31 @@ const actions = {
           dispatch('loadContacts');
           return res;
     },
+
+    async updateContact({ commit, dispatch }, contact) {
+        let res = await axios.put(
+          "http://localhost:5000/contacts/" + contact._id,
+          contact
+        );
+        console.log(res);
+        if (res.satus == 200) {
+          const contact = res.data.contact;
+          commit("contact_success", contact);
+        }
+        dispatch('loadContacts');
+        return res;
+      },
+
+    async deleteContact({ commit, dispatch }, contact) {
+        let res = await axios.delete("http://localhost:5000/contacts/"+ contact._id, contact);
+        console.log(res);
+        if (res.satus == 200) {
+          const contact = res.data.contact;
+          commit("contact_success", contact);
+        }
+        dispatch('loadContacts');
+        return res;
+      },
 };
 
 const getters = {

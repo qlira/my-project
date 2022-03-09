@@ -58,6 +58,7 @@ export default {
         { icon: "person", text: "Users", route: "/dashboard/users" },
         { icon: "movie", text: "Movies", route: "/dashboard/movies" },
         { icon: "movie", text: "Categories", route: "/dashboard/categories" },
+        { icon: "message", text: "Contacts", route: "/dashboard/contacts" },
         
       ],
     };

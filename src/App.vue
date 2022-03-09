@@ -30,6 +30,8 @@ export default {
     console.log("movies: " ,this.$store.getters.movies);
     this.$store.dispatch("loadCategories");
     this.$store.dispatch("loadUsers");
+    this.$store.dispatch("loadContacts");
+
   },
 };
 </script>

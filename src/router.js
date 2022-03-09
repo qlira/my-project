@@ -7,6 +7,7 @@ import Users from './admin/pages/Users.vue'
 import ContactUs from "./pages/ContactUs.vue";
 import AboutUs from "./pages/AboutUs.vue";
 import Categories from './admin/pages/Categories.vue'
+import Contacts from './admin/pages/Contacts.vue'
 export const routes = [
   { path: "/", component: HomePage },
   { path: "/sign-in", component: SignIn },
@@ -17,7 +18,7 @@ export const routes = [
   {
     path: "/dashboard",
     component: Dashboard,
-    children: [{ path: "movies", component: Movies }, { path: "users", component: Users }, { path: "categories", component: Categories }],
+    children: [{ path: "movies", component: Movies }, { path: "users", component: Users }, { path: "categories", component: Categories }, { path: "contacts", component: Contacts }],
   },
 
   {
