@@ -33,7 +33,6 @@ export default {
     this.$store.dispatch("loadContacts");
     this.$store.dispatch("loadTickets");
 
-
   },
 };
 </script>

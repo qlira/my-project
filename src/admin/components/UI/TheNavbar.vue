@@ -2,8 +2,7 @@
   <div>
     <nav>
       <v-app-bar color="lightgrey" dark app>
-        <v-app-bar-nav-icon @click="toogleMenu">
-        </v-app-bar-nav-icon>
+        <v-app-bar-nav-icon @click="toogleMenu"> </v-app-bar-nav-icon>
         <v-toolbar-title class="rext-uppercase">
           <span>MyCinema</span>
         </v-toolbar-title>
@@ -15,17 +14,17 @@
       </v-app-bar>
     </nav>
     <v-navigation-drawer
-    v-if="drawer === true"
+      v-if="drawer === true"
       dark
       app
       class="lightgrey darken-4"
     >
-    <v-layout column align-center>
+      <v-layout column align-center>
         <v-avatar size="100">
-            <v-img :src="img"></v-img>
+          <v-img :src="img"></v-img>
         </v-avatar>
         <p class="white--text subheading mt-1 text-center">Username</p>
-    </v-layout>
+      </v-layout>
       <v-list flat>
         <v-list-item
           v-for="link in links"
@@ -47,15 +46,13 @@
 </template>
 
 <script>
-import profile from '../../assets/images/profile.png'
+import profile from "../../assets/images/profile.png";
 export default {
   data() {
     return {
       img: profile,
       drawer: false,
       links: [
-        { icon: "dashboard", text: "Dashboard", route: "/dashboard" },
-        { icon: "person", text: "Users", route: "/dashboard/users" },
         { icon: "movie", text: "Movies", route: "/dashboard/movies" },
         { icon: "movie", text: "Categories", route: "/dashboard/categories" },
         { icon: "message", text: "Contacts", route: "/dashboard/contacts" },
@@ -72,6 +69,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
