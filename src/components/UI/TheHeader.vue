@@ -38,6 +38,15 @@
             </ul>
           </v-container>
         </v-btn>
+        <v-btn
+          v-if="isLoggedIn"
+          to="/ticketorders"
+          text
+          class="m1-2"
+          style="color: #dcb933 !important"
+        >
+          Ticket Orders
+        </v-btn>
         <v-btn to="/aboutus" text class="m1-2" style="color: #dcb933 !important"
           >About Us</v-btn
         >
@@ -54,7 +63,14 @@
           >Sign In</v-btn
         >
       </div>
-      <div v-if="isLoggedIn">
+      <div
+        style="display: flex; flex-direction: row; align-items: center"
+        v-if="isLoggedIn"
+      >
+        <li style="list-style: none; text-transform: uppercase">
+          <span style="padding-right: 10px">Hello</span>
+          {{ this.user.firstName }}
+        </li>
         <v-btn text class="m1-2" @click="handleLogout">Logout</v-btn>
       </div>
     </nav>
@@ -78,6 +94,9 @@ export default {
     },
     categories() {
       return this.$store.getters.categories;
+    },
+    user() {
+      return this.$store.getters.user;
     },
   },
   methods: {

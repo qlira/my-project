@@ -49,28 +49,12 @@
                   <v-row>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        :value="selectedMovie.title"
-                        disabled
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field
                         label="Quantity"
                         v-model="quantity"
-                        @change="minMaxHandler"
                         :value="1"
                         type="number"
                         :rules="[rules.required, rules.max, rules.min]"
                       ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-select
-                        :items="dates"
-                        label="Avaiable Dates"
-                      ></v-select>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-checkbox v-model="isVIP" label="VIP SEAT"></v-checkbox>
                     </v-col>
                     <v-col cols="12" sm="8" md="9">
                       <p>Total: {{ price * quantity }}</p>
@@ -85,7 +69,7 @@
               <v-btn color="blue darken-1" text @click="closeReserveDialog">
                 Cancel
               </v-btn>
-              <v-btn color="blue darken-1" text @click="closeReserveDialog">
+              <v-btn color="blue darken-1" text @click="submitTicket">
                 Save
               </v-btn>
             </v-card-actions>
@@ -107,10 +91,8 @@ export default {
         max: (value) => value <= 5 || "Quantity should not be above 5",
       },
       quantity: 1,
-      isVIP: false,
       reserveTicket: false,
       selectedMovie: null,
-      dates: ["18/01/2022", "22/01/2022", "24/01/2022", "26/01/2022"],
     };
   },
   computed: {
@@ -132,17 +114,20 @@ export default {
     price() {
       return this.selectedMovie.price;
     },
+    user() {
+      return this.$store.getters.user;
+    },
   },
   watch: {
     quantity(value) {
       if (value > 5) {
         setTimeout(() => {
-        this.quantity = 5;
-      }, 1200);
+          this.quantity = 5;
+        }, 1200);
       } else if (value < 1) {
         setTimeout(() => {
-        this.quantity = 1;
-      }, 1200);
+          this.quantity = 1;
+        }, 1200);
       }
     },
   },
@@ -151,6 +136,20 @@ export default {
       this.reserveTicket = true;
     },
     closeReserveDialog() {
+      this.reserveTicket = false;
+    },
+
+    submitTicket() {
+      let ticket = {
+        quantity: this.quantity,
+        totalPrice: this.price * this.quantity,
+        user: this.user.id,
+        movie: this.selectedMovie._id,
+      };
+      this.$store.dispatch("addTicket", ticket);
+      console.log("tiketa", ticket);
+      console.log("useri i loguar", this.user);
+
       this.reserveTicket = false;
     },
   },

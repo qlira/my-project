@@ -51,6 +51,7 @@ const actions = {
 
       axios.defaults.headers.common["Authorization"] = token;
       commit("auth_success", token, user);
+      commit("user_success", user)
     }
     return res;
   },
@@ -90,7 +91,7 @@ const actions = {
 const getters = {
   isLoggedIn: (state) => !!state.token,
   authState: (state) => state.status,
-  user: (state) => state.user,
+  user: (state) => {return state.user},
   users: (state) => state.users,
 };
 

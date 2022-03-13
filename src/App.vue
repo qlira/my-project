@@ -31,6 +31,8 @@ export default {
     this.$store.dispatch("loadCategories");
     this.$store.dispatch("loadUsers");
     this.$store.dispatch("loadContacts");
+    this.$store.dispatch("loadTickets");
+
 
   },
 };

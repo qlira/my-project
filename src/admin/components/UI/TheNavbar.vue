@@ -59,6 +59,7 @@ export default {
         { icon: "movie", text: "Movies", route: "/dashboard/movies" },
         { icon: "movie", text: "Categories", route: "/dashboard/categories" },
         { icon: "message", text: "Contacts", route: "/dashboard/contacts" },
+        { icon: "message", text: "Tickets", route: "/dashboard/tickets" },
         
       ],
     };
