@@ -6,16 +6,31 @@
           <v-col v-for="ticket in userTickets" :key="ticket._id">
             <v-card elevation="2" outlined shaped active-class="carda">
               <v-card-title>{{ ticket.movie.title }}</v-card-title>
-              <v-card-subtitle>{{ticket.user.firstName}} {{ticket.user.lastName}}</v-card-subtitle>
-              <v-card-text>{{ ticket.user.email }}</v-card-text>
-              <v-card-text>{{ ticket.quantity }}</v-card-text>
-              <v-card-text>{{ ticket.totalPrice }}</v-card-text>
+              <v-card-subtitle
+                >{{ ticket.user.firstName }}
+                {{ ticket.user.lastName }}</v-card-subtitle
+              >
+              <v-card-subtitle>{{ ticket.user.email }}</v-card-subtitle>
+              <v-card-subtitle>Quantity: {{ ticket.quantity }}</v-card-subtitle>
+              <v-card-subtitle
+                >Price to pay: {{ ticket.totalPrice }}$</v-card-subtitle
+              >
 
               <v-card-actions>
-                <v-btn>Edit</v-btn>
-                <v-btn>Delete</v-btn>
+                <v-btn color="red" @click="openDialog">Cancel</v-btn>
               </v-card-actions>
             </v-card>
+            <v-dialog v-model="confirm" max-width="500px">
+              <v-card>
+                <v-card-title>
+                  <span class="text-h5">Are you sure?</span>
+                </v-card-title>
+                <v-card-actions>
+                  <v-btn @click="closeDialog">No</v-btn>
+                  <v-btn @click="cancelTicket(ticket)">Yes</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </v-col>
         </v-row>
       </v-container>
@@ -28,6 +43,7 @@ export default {
   data() {
     return {
       userTickets: [],
+      confirm: false,
     };
   },
   computed: {
@@ -38,15 +54,26 @@ export default {
       return this.$store.getters.tickets;
     },
   },
-
+  methods: {
+    openDialog() {
+      this.confirm = true;
+    },
+    closeDialog() {
+      this.confirm = false;
+    },
+    cancelTicket(ticket) {
+      console.log("tiketa qe po fshihet", ticket);
+      this.$store.dispatch("deleteTicket", ticket);
+      this.confirm = false;
+    },
+  },
   mounted() {
-      this.userTickets = this.tickets.filter((ticket) => {
+    this.userTickets = this.tickets.filter((ticket) => {
       return ticket.user._id === this.user.id;
     });
-    console.log('usertickets', this.userTickets)
-    console.log('ticekt', this.tickets)
-  }
-
+    console.log("usertickets", this.userTickets);
+    console.log("ticekt", this.tickets);
+  },
 };
 </script>
 

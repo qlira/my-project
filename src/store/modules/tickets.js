@@ -19,7 +19,7 @@ const mutations = {
 };
 
 const actions = {
-  loadContacts({ commit }) {
+  loadTickets({ commit }) {
     axios.get("http://localhost:5000/tickets/").then((response) => {
       console.log(response.data);
       const tickets = response.data;
