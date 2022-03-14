@@ -115,7 +115,7 @@ export default {
       return this.selectedMovie.price;
     },
     user() {
-      return this.$store.getters.user;
+      return JSON.parse(localStorage.getItem("user"));;
     },
   },
   watch: {
@@ -143,7 +143,7 @@ export default {
       let ticket = {
         quantity: this.quantity,
         totalPrice: this.price * this.quantity,
-        user: this.user.id,
+        user: this.user.user.id,
         movie: this.selectedMovie._id,
       };
       this.$store.dispatch("addTicket", ticket);

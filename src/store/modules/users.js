@@ -14,7 +14,6 @@ const mutations = {
   },
   auth_success(state, token, user) {
     state.token = token;
-    state.user = user;
     state.status = "success";
   },
   loadUsers(state, users) {
@@ -25,7 +24,7 @@ const mutations = {
   },
   user_success(state, user) {
     state.user = user;
-  }
+  },
 };
 
 const actions = {
@@ -45,36 +44,45 @@ const actions = {
     console.log(res);
     if (res.status == 200) {
       const token = res.data.token;
-      const user = res.data.user;
+      // const user = res.data.user;
       console.log("tokeni" + token);
       localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(res.data));
+      const user = JSON.parse(localStorage.getItem("user"));
+      console.log("useri", user);
 
       axios.defaults.headers.common["Authorization"] = token;
-      commit("auth_success", token, user);
-      commit("user_success", user)
+      commit("auth_success", token);
+      commit("user_success", user);
     }
     return res;
   },
-  async signup({ commit }, user) {
+  async signup({ commit, dispatch }, user) {
     commit("auth_request");
     let res = await axios.post("http://localhost:5000/users/register", user);
     console.log(res);
     if (res.status == 200) {
       const token = res.data.token;
-      const user = res.data.user;
       localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(res.data));
+      const user = JSON.parse(localStorage.getItem("user"));
 
       axios.defaults.headers.common["Authorization"] = token;
       commit("auth_success", token, user);
+      commit("user_success", user);
+
     }
+    dispatch("loadUsers");
     return res;
   },
   logout({ commit }) {
     commit("auth_success", "", "");
     localStorage.setItem("token", "");
+    localStorage.setItem("user", {});
+    
   },
   //updateRole
-  async updateRole({ commit }, user) {
+  async updateRole({ commit, dispatch }, user) {
     let res = await axios.put(
       "http://localhost:5000/users/user/" + user._id,
       user
@@ -84,14 +92,17 @@ const actions = {
       const user = res.data.user;
       commit("user_success", user);
     }
+    dispatch("loadUsers");
     return res;
   },
 };
 
 const getters = {
-  isLoggedIn: (state) => !!state.token,
+  isLoggedIn: (state) => (state.token ? true : false),
   authState: (state) => state.status,
-  user: (state) => {return state.user},
+  user: (state) => {
+    return state.user;
+  },
   users: (state) => state.users,
 };
 

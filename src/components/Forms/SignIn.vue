@@ -45,6 +45,7 @@
                   rounded
                   prepend-inner-icon="mdi-lock"
                   label="Password"
+                  type="password"
                   v-model="loginPassword"
                   :rules="[loginRules.required]"
                   :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -263,6 +264,14 @@ export default {
       },
     };
   },
+  computed: {
+    useri() {
+      return this.$store.getters.user;
+    },
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
+    },
+  },
   methods: {
     showSignIn() {
       this.show = !this.show;
@@ -275,6 +284,9 @@ export default {
         };
         this.$store.dispatch("login", user).then((res) => {
           if (res.status == 200) {
+            console.log("uuuseri ", this.useri);
+            console.log("loogedin ", this.isLoggedIn);
+
             this.$router.push("/");
           }
         });

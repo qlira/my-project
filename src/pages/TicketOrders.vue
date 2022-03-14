@@ -2,8 +2,8 @@
   <v-app>
     <v-main style="padding-bottom: 0">
       <v-container fluid style="height: 100%">
-        <v-row>
-          <v-col v-for="ticket in userTickets" :key="ticket._id">
+        <v-row v-if="tti.length > 0">
+          <v-col v-for="ticket in tti" :key="ticket._id">
             <v-card elevation="2" outlined shaped active-class="carda">
               <v-card-title>{{ ticket.movie.title }}</v-card-title>
               <v-card-subtitle
@@ -33,6 +33,14 @@
             </v-dialog>
           </v-col>
         </v-row>
+        <v-row v-if="tti.length === 0">
+          <v-col style="padding-top: 30px">
+          <v-alert outlined dense border="left" type="warning">
+            <!-- could be removed -->
+            Nuk keni asnje tiket te rezervuar
+          </v-alert>
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
   </v-app>
@@ -48,15 +56,22 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.getters.user;
+      return JSON.parse(localStorage.getItem("user"));
     },
     tickets() {
       return this.$store.getters.tickets;
+    },
+
+    tti(){
+      return this.tickets.filter((ticket) => {
+      return ticket.user._id === this.user.user.id;
+    });
     },
   },
   methods: {
     openDialog() {
       this.confirm = true;
+      console.log("tti: ", this.tti);
     },
     closeDialog() {
       this.confirm = false;
@@ -66,13 +81,6 @@ export default {
       this.$store.dispatch("deleteTicket", ticket);
       this.confirm = false;
     },
-  },
-  mounted() {
-    this.userTickets = this.tickets.filter((ticket) => {
-      return ticket.user._id === this.user.id;
-    });
-    console.log("usertickets", this.userTickets);
-    console.log("ticekt", this.tickets);
   },
 };
 </script>

@@ -170,7 +170,6 @@ export default {
     saveEdit() {
       this.$store.dispatch("updateRole", this.editedItem);
       console.log("save " + this.editedItem._id);
-      this.$router.push("/dashboard");
       this.close();
     },
   },

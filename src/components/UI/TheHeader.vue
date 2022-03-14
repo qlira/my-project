@@ -69,7 +69,7 @@
       >
         <li style="list-style: none; text-transform: uppercase">
           <span style="padding-right: 10px">Hello</span>
-          {{ this.user.firstName }}
+          {{ this.user.user.firstName }}
         </li>
         <v-btn text class="m1-2" @click="handleLogout">Logout</v-btn>
       </div>
@@ -96,7 +96,7 @@ export default {
       return this.$store.getters.categories;
     },
     user() {
-      return this.$store.getters.user;
+      return JSON.parse(localStorage.getItem("user"));
     },
   },
   methods: {
@@ -105,6 +105,8 @@ export default {
     },
     handleLogout() {
       this.$store.dispatch("logout");
+      this.$router.push("/sign-in");
+      window.location.reload();
     },
   },
 };

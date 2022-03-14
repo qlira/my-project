@@ -7,12 +7,11 @@ import categories from "./modules/categories";
 import contacts from "./modules/contacts";
 import tickets from "./modules/tickets";
 import createPersistedState from "vuex-persistedstate";
-import * as Cookies from "js-cookie";
+// import * as Cookies from "js-cookie";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  plugins: [createPersistedState()],
   modules: {
     movies,
     users,

@@ -54,9 +54,10 @@ export default {
       drawer: false,
       links: [
         { icon: "movie", text: "Movies", route: "/dashboard/movies" },
-        { icon: "movie", text: "Categories", route: "/dashboard/categories" },
+        { icon: "category", text: "Categories", route: "/dashboard/categories" },
+        { icon: "people", text: "Users", route: "/dashboard/users" },
         { icon: "message", text: "Contacts", route: "/dashboard/contacts" },
-        { icon: "message", text: "Tickets", route: "/dashboard/tickets" },
+        { icon: "category", text: "Tickets", route: "/dashboard/tickets" },
         
       ],
     };
