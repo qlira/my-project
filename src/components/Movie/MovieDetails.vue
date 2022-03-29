@@ -2,20 +2,18 @@
   <v-app>
     <v-main>
       <v-container class="con-1">
-        <v-card color="" width="50%" height="auto" style="border-radius: 15px">
+        <v-card  class="cardI" color="" width="50%" height="auto" style="border-radius: 15px">
           <v-img :src="photoSrc" height="600px"></v-img>
         </v-card>
         <v-card
           color=""
           width="50%"
-          height="60%"
+          height="auto%"
           active-class="card"
           class="cardC"
         >
           <v-content>{{ title }}</v-content>
-          <v-divider></v-divider>
           <v-content>{{ description }}</v-content>
-          <v-divider></v-divider>
           <v-content>
             <v-list-item
               style="display: inline-block; padding: 0 10px 0 0; color: white"
@@ -23,11 +21,7 @@
             >
             <v-content style="display: inline-block">{{ rating }}</v-content>
           </v-content>
-          <v-alert outlined dense border="left" type="warning">
-            <!-- could be removed -->
-            Për shkak të masave <strong>anti COVID-19</strong> biletat janë të
-            <strong>limituara</strong>
-          </v-alert>
+
           <v-btn
             depressed
             elevation="3"
@@ -115,7 +109,7 @@ export default {
       return this.selectedMovie.price;
     },
     user() {
-      return JSON.parse(localStorage.getItem("user"));;
+      return JSON.parse(localStorage.getItem("user"));
     },
   },
   watch: {
@@ -179,44 +173,26 @@ export default {
   font-size: 20px;
   color: white;
 }
-/* .container {
-  display: flex;
-  padding: 140px 0px 60px 0px;
-  width: 100%;
-}
-.desc-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
 
-  width: 50%;
-  background-color: #3d3d3d;
-  color: whitesmoke;
-}
-h1 {
-  font-size: 40px;
-}
-
-ul li {
-  display: inline-block;
-  list-style: none;
-  padding-right: 10px;
-  font-size: 22px;
-}
-
-p {
-  width: 100%;
-  font-size: 18px;
-  text-align: center;
-  padding: 40px;
-  border-top: 1px solid whitesmoke;
-  border-bottom: 1px solid whitesmoke;
-  
-} */
 .con-1 {
   display: flex;
   height: 100%;
   align-items: center;
+}
+
+@media screen and (max-width: 789px) {
+  .con-1 {
+    flex-direction: column;
+    padding-top: 50px !important;
+  }
+  .cardC {
+    width: 90% !important;
+    border-radius: 0 0 15px 15px !important;
+
+  }
+  .cardI {
+    width: 90% !important;
+    border-radius: 15px 15px 0 0 !important;
+  }
 }
 </style>

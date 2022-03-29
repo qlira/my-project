@@ -3,14 +3,7 @@
     <v-main>
       <v-container dark class="con">
         <v-container class="form-con-1" v-if="show === false">
-          <v-container
-            style="
-              background-color: white;
-              width: 60%;
-              height: 70%;
-              border-radius: 15px 0 0 15px;
-            "
-          >
+          <v-container class="con-f1">
             <v-card class="cardColor-1">
               <v-spacer tag="v-card-title"></v-spacer>
               <v-spacer tag="v-card-title"></v-spacer>
@@ -62,14 +55,7 @@
               </v-form>
             </v-card>
           </v-container>
-          <v-container
-            style="
-              background: #dcb933;
-              width: 40%;
-              height: 70%;
-              border-radius: 0 15px 15px 0;
-            "
-          >
+          <v-container class="con2-f1">
             <v-card class="cardColor-1">
               <v-spacer tag="v-card-title"></v-spacer>
               <v-spacer tag="v-card-title"></v-spacer>
@@ -100,14 +86,7 @@
         <!-- FORM 2222 -->
 
         <v-container class="form-con-1" v-if="show === true">
-          <v-container
-            style="
-              background-color: whitesmoke;
-              width: 60%;
-              height: 85%;
-              border-radius: 15px 0 0 15px;
-            "
-          >
+          <v-container class="con-f2">
             <v-card class="cardColor-1">
               <v-spacer tag="v-card-title"></v-spacer>
               <v-spacer tag="v-card-title"></v-spacer>
@@ -192,15 +171,7 @@
               </v-form>
             </v-card>
           </v-container>
-          <v-container
-            style="
-              background: #dcb933;
-              width: 40%;
-              height: 85%;
-              border-radius: 0 15px 15px 0;
-              border-width: 5px;
-            "
-          >
+          <v-container class="con2-f2">
             <v-card class="cardColor-2">
               <v-spacer tag="v-card-title"></v-spacer>
               <v-spacer tag="v-card-title"></v-spacer>
@@ -331,6 +302,31 @@ export default {
   width: 80%;
   align-items: center;
 }
+.con-f1 {
+  background-color: white;
+  width: 60%;
+  height: 70%;
+  border-radius: 15px 0 0 15px;
+}
+.con2-f1 {
+  background: #dcb933;
+  width: 40%;
+  height: 70%;
+  border-radius: 0 15px 15px 0;
+}
+.con-f2 {
+  background-color: whitesmoke;
+  width: 60%;
+  height: 85%;
+  border-radius: 15px 0 0 15px;
+}
+.con2-f2 {
+  background: #dcb933;
+  width: 40%;
+  height: 85%;
+  border-radius: 0 15px 15px 0;
+  border-width: 5px;
+}
 .cardColor-1 {
   background-color: transparent !important;
   border-color: transparent !important;
@@ -351,5 +347,35 @@ export default {
 }
 .subtl {
   font-family: "Lato";
+}
+
+@media screen and (max-width: 776px) {
+  .form-con-1 {
+    flex-direction: column-reverse;
+  }
+  .con-f1 {
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+  }
+  .con2-f1 {
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+  }
+  .con-f2{
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+  }
+  .con2-f2 {
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+  }
+}
+@media screen and (max-width: 1264px) {
+  .con-f1 {
+    height: 80%;
+  }
+  .con2-f1 {
+    height: 80%;
+  }
 }
 </style>

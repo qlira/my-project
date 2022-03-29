@@ -24,7 +24,7 @@
                   v-bind="attrs"
                   v-on="on"
                 >
-                  Add User
+                  Add Movie
                 </v-btn>
               </template>
               <v-card>
@@ -321,12 +321,14 @@ export default {
       formData.append("title", this.editedItem.title);
       formData.append("description", this.editedItem.description);
       formData.append("price", this.editedItem.price);
-      formData.append("category", this.editedItem.category._id);
+      formData.append("category", this.editedItem.category);
       formData.append("rating", this.editedItem.rating);
       formData.append("photo", this.editedItem.image);
       console.log("catID" + this.editedItem.category._id);
 
       console.log("getID" + formData.get("_id"));
+      console.log("getCar=tegory" + formData.get("category"))
+      console.log("categoria", this.editedItem.category)
 
       this.$store.dispatch("updateMovie", formData);
       console.log(this.editedItem);

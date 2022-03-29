@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container>
+    <v-container style="padding-top: 50px">
       <v-data-table
         :headers="headers"
         :items="users"
@@ -80,7 +80,6 @@
           <v-icon small class="mr-2" @click="editItem(item)">
             mdi-pencil
           </v-icon>
-          <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
         </template>
       </v-data-table>
     </v-container>
@@ -140,33 +139,13 @@ export default {
       this.editDialog = true;
     },
 
-    // deleteItem(item) {
-    //   this.editedIndex = this.users.indexOf(item);
-    //   this.editedItem = Object.assign({}, item);
-    //   this.dialogDelete = true;
-    // },
-
-    // deleteItemConfirm() {
-    //   // this.categories.splice(this.editedIndex, 1);
-    //   this.$store.dispatch("deleteCategory", this.editedItem);
-    //   this.closeDelete();
-    // },
+   
 
     close() {
       this.editDialog = false;
     },
 
-    // closeDelete() {
-    //   this.dialogDelete = false;
-    // },
-
-    // saveAdd() {
-    //   let category = {
-    //     name: this.name,
-    //   };
-    //   this.$store.dispatch("addCategory", category);
-    //   this.close();
-    // },
+    
     saveEdit() {
       this.$store.dispatch("updateRole", this.editedItem);
       console.log("save " + this.editedItem._id);

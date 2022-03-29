@@ -204,4 +204,17 @@ ul li {
   /* Change the message color */
   color: white !important;
 }
+
+@media screen and (max-width: 768px) {
+    .content{
+      flex-direction: column-reverse;
+    }
+    .contact-block{
+      max-width: 100%;
+      justify-content: center;
+    }
+    .info-block{
+      max-width: 100%;
+    }
+}
 </style>

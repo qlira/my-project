@@ -4,7 +4,7 @@
       <v-pagination
         v-model="selectedPage"
         :length="
-          moviesLength % 3 == 0 ? moviesLength / 3 : moviesLength / 3 + 1
+          moviesLength % 4 == 0 ? moviesLength / 4 : moviesLength / 4 + 1
         "
         @input="handlePageChange"
         dark

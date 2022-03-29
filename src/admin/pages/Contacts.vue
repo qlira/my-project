@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container>
+    <v-container style="padding-top: 50px">
       <v-data-table
         :headers="headers"
         :items="contacts"

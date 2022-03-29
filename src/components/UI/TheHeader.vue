@@ -16,6 +16,14 @@
         <v-btn text class="m1-2" to="/" style="color: #dcb933 !important"
           >Home</v-btn
         >
+        <v-btn
+          v-if="user.user.role === true"
+          text
+          class="m1-2"
+          to="/dashboard"
+          style="color: #dcb933 !important"
+          >Dashboard</v-btn
+        >
 
         <v-btn
           text
