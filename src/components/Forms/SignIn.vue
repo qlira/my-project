@@ -257,8 +257,8 @@ export default {
           if (res.status == 200) {
             console.log("uuuseri ", this.useri);
             console.log("loogedin ", this.isLoggedIn);
-
             this.$router.push("/");
+            window.location.reload();
           }
         });
       }
